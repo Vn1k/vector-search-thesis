@@ -2,8 +2,9 @@ import sys
 import time
 import pandas as pd
 from qdrant_client import QdrantClient
-from qdrant_client.models import VectorParams, Distance, PointStruct
+from qdrant_client.models import VectorParams, Distance, PointStruct, Filter, FieldCondition, MatchValue
 from sentence_transformers import SentenceTransformer
+import pycountry
 
 QDRANT_HOST = "127.0.0.1"
 QDRANT_PORT = 6333
@@ -36,6 +37,19 @@ def init_qdrant():
         vectors_config=VectorParams(size=384, distance=Distance.COSINE),
     )
     print(f"✅ Collection '{COLLECTION_NAME}' siap menerima data.\n")
+
+    print("⚙️  Membuat Index Filter...")
+    client.create_payload_index(
+        collection_name=COLLECTION_NAME,
+        field_name="iso", 
+        field_schema="keyword"
+    )
+    client.create_payload_index(
+        collection_name=COLLECTION_NAME,
+        field_name="Agreement", 
+        field_schema="keyword"
+    )
+    print("✅ Indexing Selesai.\n")
     return client
 
 def load_data():
@@ -49,6 +63,12 @@ def load_data():
     
     # Hapus baris yang teks pasalnya kosong
     df = df.dropna(subset=['article_text'])
+
+    print(f"total data before cleanig: {len(df)}")
+
+    df = df.drop_duplicates(subset=['article_text', 'Agreement'])
+
+    print(f"total data after cleaning: {len(df)}")
     
     # Batasi jumlah data jika diperlukan
     if DATA_LIMIT:
@@ -108,12 +128,29 @@ def find_document(client, model, query, limit=3):
     print("-" * 50)
     print(f"🔍 User query: '{query}'")
 
-    # Encode query user
+    detected_iso = detect_iso_from_query(query)
+    qdrant_filter = None
+
+    if detected_iso:
+        print(f"ML detect country: {detected_iso}, using filter")
+
+        qdrant_filter = Filter(
+            must=[
+                FieldCondition(
+                    key="iso",
+                    match=MatchValue(value=detected_iso)
+                )
+            ]
+        )
+    else:
+        print("No detectec country, using global")
+
     query_vector = model.encode(query, normalize_embeddings=True).tolist()
 
     result = client.query_points(
         collection_name=COLLECTION_NAME,
         query=query_vector,  
+        query_filter=qdrant_filter,
         limit=limit,
         with_payload=True
     ).points
@@ -129,12 +166,40 @@ def find_document(client, model, query, limit=3):
         
         judul = payload.get('article_name', '(Tanpa Judul)')
         janji = payload.get('Agreement', '-')
-        teks_preview = payload.get('article_text', '')[:150].replace('\n', ' ')
+        teks_preview = payload.get('article_text', '').replace('\n', ' ')
 
         print(f"\n   [{i+1}] Score: {score:.4f}")
         print(f"       Judul     : {judul}")
         print(f"       Perjanjian: {janji}")
         print(f"       Isi       : {teks_preview}...")
+
+def detect_iso_from_query(query):
+    query_lower = query.lower()
+
+    manual_map = {
+        "russia": "RUS",           
+        "vietnam": "VNM",          
+        "usa": "USA",              
+        "united states": "USA",
+        "uk": "GBR",               
+        "england": "GBR",
+        "south korea": "KOR",      
+        "korea": "KOR",
+        "brunei": "BRN",           
+        "laos": "LAO"             
+    }
+
+    for name, code in manual_map.items():
+        if name in query_lower:
+            return code
+
+    for country in pycountry.countries:
+        country_name = country.name.lower()
+
+        if country_name in query_lower:
+            return country.alpha_3
+        
+    return None
 
 if __name__ == "__main__":
     # 1. Inisialisasi
@@ -148,4 +213,4 @@ if __name__ == "__main__":
     process_and_upload(client, model, df_data)
 
     # 4. Testing Pencarian (Demo)
-    find_document(client, model, "rules of origin certificate")
+    find_document(client, model, "customs duties in mutual trade")
