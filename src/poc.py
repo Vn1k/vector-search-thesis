@@ -9,13 +9,13 @@ import pycountry
 QDRANT_HOST = "127.0.0.1"
 QDRANT_PORT = 6333
 COLLECTION_NAME = "document_rtas"
-MODEL_NAME = "all-MiniLM-L6-v2"
-DATA_LIMIT = 100
+MODEL_NAME = "all-mpnet-base-v2"
+VECTOR_SIZE = 768
+DATA_LIMIT = None
 FILE_COVER = "assets/dss_trade_agreements_202511042008.csv"
 FILE_DETAIL = "assets/dss_trade_agreement_detail_formatted_202511042008.csv"
 
 def init_qdrant():
-    """Menghubungkan ke Qdrant dan menyiapkan Collection."""
     print("⏳ Menghubungkan ke Qdrant...")
     client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
     
@@ -26,15 +26,13 @@ def init_qdrant():
         print(f"❌ GAGAL Connect ke Qdrant. Pastikan Podman/Docker jalan.\nError: {e}")
         sys.exit(1)
 
-    # Reset Collection Lama
     if client.collection_exists(COLLECTION_NAME):
         client.delete_collection(COLLECTION_NAME)
         print(f"♻️  Collection lama '{COLLECTION_NAME}' di-reset.")
 
-    # Buat Collection Baru
     client.create_collection(
         collection_name=COLLECTION_NAME,
-        vectors_config=VectorParams(size=384, distance=Distance.COSINE),
+        vectors_config=VectorParams(size=VECTOR_SIZE, distance=Distance.COSINE),
     )
     print(f"✅ Collection '{COLLECTION_NAME}' siap menerima data.\n")
 
@@ -86,34 +84,26 @@ def process_and_upload(client, model, df):
     for index, row in df.iterrows():
         judul = row['article_name'] if pd.notna(row['article_name']) else ""
         isi = row['article_text']
-        
-        # Format: "Judul: Isi" (atau cuma Isi jika judul kosong)
-        text_to_vector = f"{judul}: {isi}" if judul else isi
-
         agreement = row['Agreement']
-        bab = row['chapter_name'] if pd.notna(row['chapter_name']) else "General"
-        # Split ISO "IDN;MYS" -> ["IDN", "MYS"]
+        chapter_name = row['chapter_name'] if pd.notna(row['chapter_name']) else "General Provisions"
         iso = str(row['iso']).split(';') if pd.notna(row['iso']) else []
 
-        # Embedding (Vectorize)
-        vector = model.encode(text_to_vector[:1000], normalize_embeddings=True).tolist()
+        text_to_vector = f"{agreement} - {chapter_name} - {judul}: {isi}" #contextual embedding
+        vector = model.encode(text_to_vector[:1000], normalize_embeddings=True).tolist() #dense vector generation
 
-        # Bungkus Payload
         payload = {
             "article_name": judul,
             "article_text": isi,
             "Agreement": agreement,
-            "bab": bab,
+            "bab": chapter_name,
             "iso": iso
         }
 
         points.append(PointStruct(id=index, vector=vector, payload=payload))
 
-        # Print progress sederhana biar terminal gak penuh
         if len(points) % 10 == 0:
             print(f"   ... Sedang memproses data ke-{len(points)}")
 
-    # Upload ke Qdrant
     print(f"\n📦 Mengupload {len(points)} vectors ke database...")
     client.upsert(
         collection_name=COLLECTION_NAME,
@@ -166,11 +156,13 @@ def find_document(client, model, query, limit=3):
         
         judul = payload.get('article_name', '(Tanpa Judul)')
         janji = payload.get('Agreement', '-')
+        iso = payload.get('iso', '')
         teks_preview = payload.get('article_text', '').replace('\n', ' ')
 
         print(f"\n   [{i+1}] Score: {score:.4f}")
         print(f"       Judul     : {judul}")
         print(f"       Perjanjian: {janji}")
+        print(f"       ISO       : {iso}")
         print(f"       Isi       : {teks_preview}...")
 
 def detect_iso_from_query(query):
@@ -213,4 +205,4 @@ if __name__ == "__main__":
     process_and_upload(client, model, df_data)
 
     # 4. Testing Pencarian (Demo)
-    find_document(client, model, "customs duties in mutual trade")
+    find_document(client, model, "Import tariff in Indonesia")
