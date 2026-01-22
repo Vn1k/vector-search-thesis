@@ -3,7 +3,7 @@ import time
 import pandas as pd
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct, Filter, FieldCondition, MatchValue
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, CrossEncoder
 import pycountry
 
 QDRANT_HOST = "127.0.0.1"
@@ -113,13 +113,14 @@ def process_and_upload(client, model, df):
     duration = time.time() - start_time
     print(f"✨ SELESAI! {len(points)} data berhasil masuk dalam {duration:.2f} detik.\n")
 
-def find_document(client, model, query, limit=3):
+def find_document(client, model, query, limit=5):
     """Fungsi pencarian dokumen."""
     print("-" * 50)
     print(f"🔍 User query: '{query}'")
 
     detected_iso = detect_iso_from_query(query)
     qdrant_filter = None
+    reranker = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
 
     if detected_iso:
         print(f"ML detect country: {detected_iso}, using filter")
@@ -137,29 +138,53 @@ def find_document(client, model, query, limit=3):
 
     query_vector = model.encode(query, normalize_embeddings=True).tolist()
 
+    #Retrieval tahap 1
     result = client.query_points(
         collection_name=COLLECTION_NAME,
         query=query_vector,  
         query_filter=qdrant_filter,
-        limit=limit,
+        limit=20,
         with_payload=True
     ).points
 
     if not result:
         print("❌ Tidak ditemukan hasil yang relevan.")
         return
+    
+    print(f"Melakukan Reranking pada {len(result)} candidate")
 
-    print(f"   Ditemukan {len(result)} hasil relevan:")
-    for i, hit in enumerate(result):
-        score = hit.score
-        payload = hit.payload
+    cross_inp = []
+
+    for hit in result:
+        pl = hit.payload
+        context_text = f"{pl['Agreement']} - {pl['bab']} - {pl['article_name']}: {pl['article_text']}"
+        cross_inp.append([query, context_text])
+
+    # reranker tahap 2
+    cross_scores = reranker.predict(cross_inp)
+
+    ranked_hits = []
+    for idx, hit in enumerate(result):
+        ranked_hits.append({
+            "original_hit": hit,
+            "new_score": cross_scores[idx]
+        })
+    
+    ranked_hits = sorted(ranked_hits, key=lambda x: x['new_score'], reverse=True)
+
+    print(f"   ✅ Menampilkan {limit} hasil terbaik setelah Re-ranking:")
+    for i in range(min(limit, len(ranked_hits))):
+        item = ranked_hits[i]
+        new_score = item['new_score']
+        original_score = item['original_hit'].score
+        pl = item['original_hit'].payload
         
-        judul = payload.get('article_name', '(Tanpa Judul)')
-        janji = payload.get('Agreement', '-')
-        iso = payload.get('iso', '')
-        teks_preview = payload.get('article_text', '').replace('\n', ' ')
+        judul = pl.get('article_name', '')
+        janji = pl.get('Agreement', '-')
+        iso = pl.get('iso', '')
+        teks_preview = pl.get('article_text', '').replace('\n', ' ')
 
-        print(f"\n   [{i+1}] Score: {score:.4f}")
+        print(f"\n   [{i+1}] Re-Rank Score: {new_score:.4f} (Vector Score: {original_score:.4f})")
         print(f"       Judul     : {judul}")
         print(f"       Perjanjian: {janji}")
         print(f"       ISO       : {iso}")
@@ -205,4 +230,4 @@ if __name__ == "__main__":
     process_and_upload(client, model, df_data)
 
     # 4. Testing Pencarian (Demo)
-    find_document(client, model, "Import tariff in Indonesia")
+    find_document(client, model, "Rules of origin criteria for textile products")
