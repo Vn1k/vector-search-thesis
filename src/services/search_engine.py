@@ -79,7 +79,7 @@ class SearchService:
         cross_inp = []
         for hit in hits:
             pl = hit.payload
-            context_text = f"{pl['Agreement']} - {pl['bab']} - {pl['article_name']}: {pl['article_text']}"
+            context_text = f"{pl['Agreement']} - {pl['chapter_name']} - {pl['article_name']}: {pl['article_text']}"
             cross_inp.append([query, context_text])
         
         cross_scores = self.reranker.predict(cross_inp)
@@ -95,10 +95,13 @@ class SearchService:
             results.append({
                 "id": hit.id,
                 "agreement": hit.payload.get('Agreement', '-'),
-                "title": hit.payload.get('article_name', '-'),
-                "content": hit.payload.get('article_text', '-'),
+                "chapter_name": hit.payload.get('chapter_name', '-'),
+                "article_name": hit.payload.get('article_name', '-'),
+                "article_text": hit.payload.get('article_text', '-'),
+                "article_text_display": hit.payload.get('article_text_display', '-'),
+                "iso": hit.payload.get('iso', '-'),
                 "score": score_percent,
-                "confidence": f"{score_percent*100:.2f}"
+                "confidence": f"{score_percent:.4%}"
             })
 
         results = sorted(results, key=lambda x: x['score'], reverse=True)

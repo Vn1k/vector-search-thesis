@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.models.search import SearchRequest, SearchResponse
+from src.models.search import SearchRequest, SearchResponse, SearchData
 from src.services.search_engine import search_engine
 
 router = APIRouter()
@@ -15,8 +15,10 @@ async def search_documents (request: SearchRequest):
     msg = "Success" if results else "No relevan document found"
 
     return SearchResponse(
-        query=request.query,
-        total_found=len(results),
-        results=results,
-        message=msg
+        code=200,
+        message=msg,
+        data=SearchData(          
+            count=len(results),   
+            rows=results          
+        )
     )

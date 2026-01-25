@@ -9,13 +9,19 @@ class SearchRequest(BaseModel):
 class DocumentResult(BaseModel):
     id: int
     agreement: str
-    title: str
-    content: str
+    chapter_name: str
+    article_name: str
+    article_text: str
+    article_text_display: str
+    iso: list[str]
     score: float
     confidence: str
 
+class SearchData(BaseModel):
+    count: int
+    rows: List[DocumentResult]
+
 class SearchResponse(BaseModel):
-    query: str
-    total_found: int
-    results: List[DocumentResult]
+    code: int
     message: Optional[str] = None
+    data: SearchData

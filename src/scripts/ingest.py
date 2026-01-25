@@ -38,6 +38,11 @@ def init_qdrant():
         field_name="Agreement", 
         field_schema="keyword"
     )
+    client.create_payload_index(
+        collection_name=settings.COLLECTION_NAME,
+        field_name="AgreementType", 
+        field_schema="keyword"
+    )
     print("✅ Indexing Selesai.\n")
     return client
 
@@ -77,24 +82,37 @@ def process_and_upload(client, model, df):
     start_time = time.time()
 
     for index, row in df.iterrows():
-        judul = row['article_name'] if pd.notna(row['article_name']) else ""
-        isi = row['article_text']
-        agreement = row['Agreement']
+        article_name = row['article_name'] if pd.notna(row['article_name']) else ""
+        article_text = row['article_text']
+        article_text_display = row['article_text_display']
+        agreement_name = row['Agreement'] # Agreement and title is the same
+
+        raw_agreement_type = str(row['AgreementType']) if pd.notna(row.get('AgreementType')) else "Trade Agreement"
+        agreement_type_for_payload =[t.strip() for t in raw_agreement_type.split(';')]
+
+        acronym = row['acronym'] if pd.notna(row.get('acronym')) else ""
         chapter_name = row['chapter_name'] if pd.notna(row['chapter_name']) else "General Provisions"
         iso = str(row['iso']).split(';') if pd.notna(row['iso']) else []
 
+        raw_region = row['region'] if pd.notna(row.get('region')) else "Global"
+        region_for_payload = [r.strip() for r in raw_region.split(';')]
+
         # Contextual Embedding Logic
-        text_to_vector = f"{agreement} - {chapter_name} - {judul}: {isi}" 
+        text_to_vector = f"{agreement_name} - {chapter_name} - {article_name}: {article_text}"
         
         # Encode
         vector = model.encode(text_to_vector[:1000], normalize_embeddings=True).tolist()
 
         payload = {
-            "article_name": judul,
-            "article_text": isi,
-            "Agreement": agreement,
-            "bab": chapter_name,
-            "iso": iso
+            "article_name": article_name,
+            "article_text": article_text,
+            "article_text_display": article_text_display,
+            "Agreement": agreement_name,
+            "AgreementType": agreement_type_for_payload,
+            "chapter_name": chapter_name,
+            "iso": iso,
+            "acronym": acronym,
+            "region": region_for_payload
         }
 
         points.append(PointStruct(id=index, vector=vector, payload=payload))
