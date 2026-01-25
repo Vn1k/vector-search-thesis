@@ -84,7 +84,17 @@ def process_and_upload(client, model, df):
     for index, row in df.iterrows():
         article_name = row['article_name'] if pd.notna(row['article_name']) else ""
         article_text = row['article_text']
-        article_text_display = row['article_text_display']
+        raw_article_text_display = row['article_text_display']
+        final_display_text = article_text
+
+        if pd.notna(raw_article_text_display):
+            display_str = str(raw_article_text_display).strip()
+
+            if display_str.lower().startswith('http') or display_str.lower().startswith('<a'):
+                final_display_text = article_text
+            else:
+                final_display_text = display_str
+        
         agreement_name = row['Agreement'] # Agreement and title is the same
 
         raw_agreement_type = str(row['AgreementType']) if pd.notna(row.get('AgreementType')) else "Trade Agreement"
@@ -106,7 +116,7 @@ def process_and_upload(client, model, df):
         payload = {
             "article_name": article_name,
             "article_text": article_text,
-            "article_text_display": article_text_display,
+            "article_text_display": final_display_text,
             "Agreement": agreement_name,
             "AgreementType": agreement_type_for_payload,
             "chapter_name": chapter_name,

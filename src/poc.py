@@ -8,7 +8,7 @@ import pycountry
 
 QDRANT_HOST = "127.0.0.1"
 QDRANT_PORT = 6333
-COLLECTION_NAME = "document_rtas"
+COLLECTION_NAME = "terminal_document_rtas"
 MODEL_NAME = "all-mpnet-base-v2"
 VECTOR_SIZE = 768
 DATA_LIMIT = None
