@@ -65,3 +65,13 @@ Sistem menggunakan pendekatan **Hybrid / Two-Stage** untuk menyeimbangkan kecepa
 * **Ground Truth:** ID dokumen yang "seharusnya" muncul.
 * **MRR (Mean Reciprocal Rank):** Mengukur seberapa tinggi ranking jawaban benar. (Ranking 1 nilai 1.0, Ranking 2 nilai 0.5).
 * **Hit Rate @ K:** Persentase keberhasilan jawaban benar muncul di dalam Top-K (Top 3 atau Top 5).
+
+NOTES BIMBINGAN HARI INI
+1. bisa menebak kata yang tidak dan iya (negation)
+2. kalo typo tidak sesuai kasi uinya aja
+3. bab 3 dan 4 skenario, untuk nentuin ground truth berdasarkan legal tina
+4. bisa nge highlight keyword yang di cari (low)
+5. English uk dan us itu berbeda apakah bisa di cari karna itu konteksnya sama hanya penulisan
+6. jika artikel sama dijadikan satu seperti legal tina
+7. ada dataset dummy yang baru
+8. 

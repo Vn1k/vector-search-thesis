@@ -2,6 +2,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 from sentence_transformers import SentenceTransformer, CrossEncoder
 from src.core.config import settings
+from spellchecker import SpellChecker
 import math
 import pycountry
 
@@ -11,6 +12,7 @@ class SearchService:
         self.client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
         self.vector_model = SentenceTransformer(settings.VECTOR_MODEL)
         self.reranker = CrossEncoder(settings.RERANKER_MODEL)
+        self.spell = SpellChecker()
         print("System ready")
     
     def sigmoid(self, x):
@@ -61,7 +63,29 @@ class SearchService:
         else:
             print("No detected country, using global")
 
-        query_vector = self.vector_model.encode(query).tolist()
+        corrected_query_list = []
+        words = query.split()
+        
+        # Cari kata yang mungkin salah eja
+        misspelled = self.spell.unknown(words)
+
+        for word in words:
+            if word in misspelled:
+                # Dapatkan koreksi paling mungkin (bisa None jika tidak ketemu)
+                correction = self.spell.correction(word)
+                if correction:
+                    corrected_query_list.append(correction)
+                else:
+                    corrected_query_list.append(word) # Jika tidak ada saran, pakai kata asli
+            else:
+                corrected_query_list.append(word)
+        
+        final_query = " ".join(corrected_query_list)
+        
+        if query != final_query:
+            print(f"Typo detected! Original: '{query}' -> Corrected: '{final_query}'")
+
+        query_vector = self.vector_model.encode(final_query).tolist()
 
         #Retrieval tahap 1 (vector search happens here)
         hits = self.client.query_points(
@@ -80,7 +104,7 @@ class SearchService:
         for hit in hits:
             pl = hit.payload
             context_text = f"{pl['Agreement']} - {pl['chapter_name']} - {pl['article_name']}: {pl['article_text']}"
-            cross_inp.append([query, context_text])
+            cross_inp.append([final_query, context_text])
         
         cross_scores = self.reranker.predict(cross_inp)
 
