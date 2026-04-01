@@ -4,22 +4,31 @@ from typing import List, Optional
 class SearchRequest(BaseModel):
     query: str
     limit: int = 5
-    threshold: float = 0.10
+    threshold: float = 0.50
 
-class DocumentResult(BaseModel):
+# Model untuk artikel di dalam group
+class ArticleResult(BaseModel):
     id: int
-    agreement: str
     chapter_name: str
     article_name: str
     article_text: str
     article_text_display: str
-    iso: list[str]
     score: float
     confidence: str
 
+# Model untuk tiap group (per agreement)
+class GroupedResult(BaseModel):
+    rta_id: int
+    agreement: str
+    acronym: str
+    iso: List[str]
+    best_score: float
+    best_confidence: str
+    articles: List[ArticleResult] 
+
 class SearchData(BaseModel):
     count: int
-    rows: List[DocumentResult]
+    rows: List[GroupedResult]
 
 class SearchResponse(BaseModel):
     code: int

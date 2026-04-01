@@ -43,6 +43,11 @@ def init_qdrant():
         field_name="AgreementType", 
         field_schema="keyword"
     )
+    client.create_payload_index(
+        collection_name=settings.COLLECTION_NAME,
+        field_name="rta_id",
+        field_schema="integer"
+    )
     print("✅ Indexing Selesai.\n")
     return client
 
@@ -115,6 +120,7 @@ def process_and_upload(client, model, df):
         vector = model.encode(text_to_vector[:1000], normalize_embeddings=True).tolist()
 
         payload = {
+            "rta_id": int(row['rta_id']),
             "article_name": article_name,
             "article_text": article_text,
             "article_text_display": final_display_text,
