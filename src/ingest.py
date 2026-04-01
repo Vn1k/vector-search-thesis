@@ -4,7 +4,7 @@ import pandas as pd
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
 from sentence_transformers import SentenceTransformer
-from src.core.config import settings
+from src.config import settings
 
 def init_qdrant():
     print(f"⏳ Menghubungkan ke Qdrant di {settings.QDRANT_HOST}...")

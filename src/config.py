@@ -4,7 +4,7 @@ from pathlib import Path
 
 load_dotenv()
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 class Settings:
     PROJECT_NAME: str = "Vector Search Thesis"

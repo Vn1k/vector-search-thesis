@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.core.config import settings
-from src.api.v1.endpoints import search
+from src.config import settings
+from src import search_endpoint
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
@@ -13,7 +13,7 @@ app.add_middleware(
     allow_headers=["*"], 
 )
 
-app.include_router(search.router, prefix=settings.API_V1, tags=["Search"])
+app.include_router(search_endpoint.router, prefix=settings.API_V1, tags=["Search"])
 
 @app.get("/")
 def root():

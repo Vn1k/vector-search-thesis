@@ -1,7 +1,7 @@
 from qdrant_client import QdrantClient
 from qdrant_client.models import Filter, FieldCondition, MatchValue
 from sentence_transformers import SentenceTransformer, CrossEncoder
-from src.core.config import settings
+from src.config import settings
 from spellchecker import SpellChecker
 import math
 import pycountry
