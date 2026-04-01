@@ -28,3 +28,7 @@ project_root/
                 ├── __init__.py
                 └── search.py # Endpoint @app.get("/search")
 ```
+
+to run `uvicorn src.main:app --reload`
+
+to init `python -m src.scripts.ingest`

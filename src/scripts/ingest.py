@@ -78,6 +78,7 @@ def load_data():
 def process_and_upload(client, model, df):
     """Melakukan embedding dan upload data ke Qdrant."""
     points = []
+    batch_size = 100
     print("🚀 Memulai proses Embedding...")
     start_time = time.time()
 
@@ -127,14 +128,20 @@ def process_and_upload(client, model, df):
 
         points.append(PointStruct(id=index, vector=vector, payload=payload))
 
-        if len(points) % 100 == 0: # Print tiap 100 aja biar gak spam
-            print(f"   ... Sedang memproses data ke-{len(points)}")
-
-    print(f"\n📦 Mengupload {len(points)} vectors ke database...")
-    client.upsert(
-        collection_name=settings.COLLECTION_NAME,
-        points=points
-    )
+        if len(points) >= batch_size:
+            client.upsert(
+                collection_name=settings.COLLECTION_NAME,
+                points=points
+            )
+            print(f"   ✅ Berhasil upload {len(points)} data (Total terproses: {index + 1})")
+            points = []
+    
+    if points:
+        client.upsert(
+            collection_name=settings.COLLECTION_NAME,
+            points=points
+        )
+        print(f"   ✅ Berhasil upload sisa {len(points)} data.")
     
     duration = time.time() - start_time
     print(f"✨ SELESAI! {len(points)} data berhasil masuk dalam {duration:.2f} detik.\n")
