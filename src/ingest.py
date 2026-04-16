@@ -5,6 +5,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
 from sentence_transformers import SentenceTransformer
 from src.config import settings
+import localspelling
 
 def init_qdrant():
     print(f"⏳ Menghubungkan ke Qdrant di {settings.QDRANT_HOST}...")
@@ -78,6 +79,17 @@ def load_data():
         df = df.head(settings.DATA_LIMIT)
         
     print(f"📊 Total Data Siap Diproses: {len(df)} baris.\n")
+
+    df['total_chars'] = (df['Agreement'].astype(str) + " - " + 
+                         df['chapter_name'].astype(str) + " - " + 
+                         df['article_name'].astype(str) + ": " + 
+                         df['article_text'].astype(str)).str.len()
+    
+    print("\n=== Statistik Panjang Karakter ===")
+    print(df['total_chars'].describe())
+    over_limit = len(df[df['total_chars'] > 3000])
+    print(f"⚠️ Data di atas 3000 karakter: {over_limit} dari {len(df)} baris")
+    print("==================================\n")
     return df
 
 def process_and_upload(client, model, df):
@@ -86,7 +98,7 @@ def process_and_upload(client, model, df):
     batch_size = 100
     print("🚀 Memulai proses Embedding...")
     start_time = time.time()
-
+    changes_count = 0
     for index, row in df.iterrows():
         article_name = row['article_name'] if pd.notna(row['article_name']) else ""
         article_text = row['article_text']
@@ -115,9 +127,21 @@ def process_and_upload(client, model, df):
 
         # Contextual Embedding Logic
         text_to_vector = f"{agreement_name} - {chapter_name} - {article_name}: {article_text}"
+
+        text_for_embedding = localspelling.convert_spelling(text_to_vector, "us")
         
-        # Encode
-        vector = model.encode(text_to_vector[:1000], normalize_embeddings=True).tolist()
+        if text_to_vector != text_for_embedding:
+            changes_count += 1
+            print(f"🔍 [LOG] Perubahan spelling pada baris {index}:")
+            orig_words = text_to_vector.split()
+            conv_words = text_for_embedding.split()
+            for i in range(min(len(orig_words), len(conv_words))):
+                if orig_words[i] != conv_words[i]:
+                    print(f"   🔄 {orig_words[i]} ➔ {conv_words[i]}")
+            print("-" * 30)
+
+        # Encode (truncation model limit 3000 (512 token))
+        vector = model.encode(text_for_embedding[:3000], normalize_embeddings=True).tolist()
 
         payload = {
             "rta_id": int(row['rta_id']),
@@ -150,7 +174,11 @@ def process_and_upload(client, model, df):
         print(f"   ✅ Berhasil upload sisa {len(points)} data.")
     
     duration = time.time() - start_time
-    print(f"✨ SELESAI! {len(points)} data berhasil masuk dalam {duration:.2f} detik.\n")
+    print("\n" + "="*30)
+    print(f"✨ PROSES SELESAI!")
+    print(f"📊 Total baris yang dikonversi ke US: {changes_count} dari {len(df)} data.")
+    print(f"⏱️ Waktu total: {duration:.2f} detik.")
+    print("="*30 + "\n")
 
 if __name__ == "__main__":
     # 1. Setup Database
