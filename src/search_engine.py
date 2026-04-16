@@ -5,7 +5,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import FieldCondition, Filter, MatchValue
 from sentence_transformers import CrossEncoder, SentenceTransformer
 from spellchecker import SpellChecker
-
+import localspelling
 from src.config import settings
 
 
@@ -86,11 +86,18 @@ class SearchService:
             else:
                 corrected_query_list.append(word)
 
-        final_query = " ".join(corrected_query_list)
+        typo_query = " ".join(corrected_query_list)
 
-        if query != final_query:
-            print(f"Typo detected! Original: '{query}' -> Corrected: '{final_query}'")
+        if query != typo_query:
+            print(f"Typo detected! Original: '{query}' -> Corrected: '{typo_query}'")
+
+        spelling_query = localspelling.convert_spelling(typo_query, "us")
+
+        if typo_query != spelling_query:
+            print(f"Dialect Normalized! '{typo_query}' -> '{spelling_query}'")
+
         # ──────────────────────────────────────────────────────────────────────
+        final_query = spelling_query
 
         query_vector = self.vector_model.encode(final_query).tolist()
 
@@ -187,4 +194,4 @@ class SearchService:
         }
 
 
-search_engine = SearchService(use_reranker=True)
+search_engine = SearchService(use_reranker=False)
