@@ -1,5 +1,6 @@
 import math
 import json
+import logging
 import pycountry
 from qdrant_client import QdrantClient
 from qdrant_client.models import FieldCondition, Filter, MatchValue
@@ -9,10 +10,18 @@ import localspelling
 from ollama import chat
 from src.config import settings
 
+# Konfigurasi logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger(__name__)
+
 
 class SearchService:
     def __init__(self, use_reranker: bool = False, use_llm: bool = False):
-        print("Initialization model & database")
+        logger.info("[Init] Initializing model & database")
         self.client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
         self.vector_model = SentenceTransformer(settings.VECTOR_MODEL)
         self.spell = SpellChecker()
@@ -21,21 +30,21 @@ class SearchService:
         self.use_reranker = use_reranker
         if self.use_reranker:
             self.reranker = CrossEncoder(settings.RERANKER_MODEL)
-            print("Reranker: ON")
+            logger.info("[Init] Reranker: ON")
         else:
             self.reranker = None
-            print("Reranker: OFF (vector score only)")
+            logger.info("[Init] Reranker: OFF (vector score only)")
 
         # ─── LLM Query Parser (opsional) ──────────────────────────────────────
         self.use_llm = use_llm
-        self.LLM_MODEL = "nemotron-3-nano:4b" 
+        self.LLM_MODEL = "nemotron-3-nano:4b"
         if self.use_llm:
-            print(f"LLM Query Parser: ON ({self.LLM_MODEL})")
+            logger.info(f"[Init] LLM Query Parser: ON ({self.LLM_MODEL})")
         else:
-            print("LLM Query Parser: OFF")
+            logger.info("[Init] LLM Query Parser: OFF")
         # ──────────────────────────────────────────────────────────────────────
 
-        print("System ready")
+        logger.info("[Init] System ready")
 
     def sigmoid(self, x):
         return 1 / (1 + math.exp(-x))
@@ -50,6 +59,8 @@ class SearchService:
 
         Return fallback dict jika LLM gagal.
         """
+        logger.info(f"[LLM Parser] Original query: '{user_query}'")
+
         prompt = f"""
 You are a legal document assistant for a trade agreement search engine.
 Analyze the following user query and extract structured information.
@@ -87,19 +98,22 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
                 "iso_code": parsed.get("iso_code", None),
             }
 
-            print(f"[LLM] positive_query : {result['positive_query']}")
-            print(f"[LLM] excluded_terms : {result['excluded_terms']}")
-            print(f"[LLM] iso_code       : {result['iso_code']}")
+            logger.info(f"[LLM Parser] positive_query: '{result['positive_query']}'")
+            logger.info(f"[LLM Parser] excluded_terms: {result['excluded_terms']}")
+            logger.info(f"[LLM Parser] iso_code: {result['iso_code']}")
 
             return result
 
         except Exception as e:
-            print(f"[LLM] Parsing failed: {e} — fallback ke query original")
+            logger.warning(
+                f"[LLM Parser] Parsing failed: {e} — fallback ke query original"
+            )
             return {
                 "positive_query": user_query,
                 "excluded_terms": [],
                 "iso_code": None,
             }
+
     # ──────────────────────────────────────────────────────────────────────────
 
     def detect_iso_from_query(self, query):
@@ -129,13 +143,16 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
         return None
 
     def search(self, query: str, limit: int = 5, threshold: float = 0.1):
+        logger.info(f"[Search] === New Search Request ===")
+        logger.info(f"[Search] Original user query: '{query}'")
+        logger.info(f"[Search] Parameters: limit={limit}, threshold={threshold}")
 
         # ─── Step 1: LLM query parsing (jika aktif) ───────────────────────────
         excluded_terms = []
 
         if self.use_llm:
             parsed = self.llm_query_parser(query)
-            search_query = parsed["positive_query"]    # query bersih tanpa negasi
+            search_query = parsed["positive_query"]  # query bersih tanpa negasi
             excluded_terms = parsed["excluded_terms"]  # akan difilter nanti
             llm_iso = parsed["iso_code"]
         else:
@@ -148,12 +165,14 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
         qdrant_filter = None
         if detected_iso:
-            print(f"Detected country: {detected_iso}, using filter")
+            logger.info(
+                f"[QueryTransform] Detected country: {detected_iso}, using filter"
+            )
             qdrant_filter = Filter(
                 must=[FieldCondition(key="iso", match=MatchValue(value=detected_iso))]
             )
         else:
-            print("No detected country, using global")
+            logger.info("[QueryTransform] No detected country, using global search")
         # ──────────────────────────────────────────────────────────────────────
 
         # ─── Step 3: Spell correction + dialect normalization ─────────────────
@@ -169,17 +188,29 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
         typo_query = " ".join(corrected)
         if search_query != typo_query:
-            print(f"Typo corrected : '{search_query}' -> '{typo_query}'")
+            logger.info(
+                f"[QueryTransform] Spell correction: '{search_query}' -> '{typo_query}'"
+            )
+        else:
+            logger.debug(f"[QueryTransform] Spell correction: no changes")
 
         spelling_query = localspelling.convert_spelling(typo_query, "us")
         if typo_query != spelling_query:
-            print(f"Dialect normalized: '{typo_query}' -> '{spelling_query}'")
+            logger.info(
+                f"[QueryTransform] Dialect normalization: '{typo_query}' -> '{spelling_query}'"
+            )
+        else:
+            logger.debug(f"[QueryTransform] Dialect normalization: no changes")
 
         final_query = spelling_query
+        logger.info(f"[QueryTransform] Final query to Qdrant: '{final_query}'")
         # ──────────────────────────────────────────────────────────────────────
 
         # ─── Step 4: Vector search ────────────────────────────────────────────
         query_vector = self.vector_model.encode(final_query).tolist()
+        logger.debug(
+            f"[QueryTransform] Query vector generated (dim: {len(query_vector)})"
+        )
 
         hits = self.client.query_points(
             collection_name=settings.COLLECTION_NAME,
@@ -189,7 +220,10 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
             with_payload=True,
         ).points
 
+        logger.info(f"[QueryTransform] Qdrant returned {len(hits)} results")
+
         if not hits:
+            logger.info("[QueryTransform] No results from Qdrant, returning empty")
             return []
         # ──────────────────────────────────────────────────────────────────────
 
@@ -220,15 +254,38 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
         # ─── Step 6: Filter excluded_terms (hasil LLM negation) ───────────────
         if excluded_terms:
-            def contains_excluded(item: dict) -> bool:
-                text = item.get("article_text", "").lower()
-                return any(term.lower() in text for term in excluded_terms)
+            logger.info(
+                f"[NegationFilter] Starting exclusion filter with terms: {excluded_terms}"
+            )
+            logger.info(f"[NegationFilter] Results before filter: {len(results)}")
 
-            before = len(results)
-            results = [r for r in results if not contains_excluded(r)]
+            def find_excluded_terms(item: dict) -> list:
+                """Return list of excluded terms found in the document."""
+                text = item.get("article_text", "").lower()
+                return [term for term in excluded_terms if term.lower() in text]
+
+            filtered_results = []
+            excluded_docs_log = []
+
+            for item in results:
+                found_terms = find_excluded_terms(item)
+                if found_terms:
+                    # Log excluded document details
+                    doc_info = f"{item.get('agreement', '-')} - {item.get('chapter_name', '-')} - {item.get('article_name', '-')}"
+                    excluded_docs_log.append({"doc": doc_info, "terms": found_terms})
+                    logger.info(
+                        f"[NegationFilter] EXCLUDED: '{doc_info}' matched terms: {found_terms}"
+                    )
+                else:
+                    filtered_results.append(item)
+
+            results = filtered_results
             after = len(results)
-            if before != after:
-                print(f"[LLM Filter] Removed {before - after} results → excluded: {excluded_terms}")
+
+            logger.info(
+                f"[NegationFilter] Results after filter: {after} (removed {len(results) - after + len(excluded_docs_log)} documents)"
+            )
+            logger.info(f"[NegationFilter] Excluded terms applied: {excluded_terms}")
         # ──────────────────────────────────────────────────────────────────────
 
         results = sorted(results, key=lambda x: x["score"], reverse=True)
@@ -247,18 +304,25 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
                     "best_confidence": item["confidence"],
                     "articles": [],
                 }
-            grouped[rta_id]["articles"].append({
-                "id": item["id"],
-                "chapter_name": item["chapter_name"],
-                "article_name": item["article_name"],
-                "article_text": item["article_text"],
-                "article_text_display": item["article_text_display"],
-                "score": item["score"],
-                "confidence": item["confidence"],
-            })
+            grouped[rta_id]["articles"].append(
+                {
+                    "id": item["id"],
+                    "chapter_name": item["chapter_name"],
+                    "article_name": item["article_name"],
+                    "article_text": item["article_text"],
+                    "article_text_display": item["article_text_display"],
+                    "score": item["score"],
+                    "confidence": item["confidence"],
+                }
+            )
 
-        grouped_list = sorted(grouped.values(), key=lambda x: x["best_score"], reverse=True)
-        return grouped_list[:limit]
+        grouped_list = sorted(
+            grouped.values(), key=lambda x: x["best_score"], reverse=True
+        )
+        final_results = grouped_list[:limit]
+        logger.info(f"[Search] Returning {len(final_results)} grouped results")
+        logger.info(f"[Search] === Search Request Complete ===")
+        return final_results
         # ──────────────────────────────────────────────────────────────────────
 
     def _build_result(self, hit, score_percent: float) -> dict:
@@ -278,6 +342,6 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
 
 search_engine = SearchService(
-    use_reranker=False,  
-    use_llm=False,      
+    use_reranker=False,
+    use_llm=True,
 )
