@@ -6,6 +6,7 @@ from qdrant_client.models import VectorParams, Distance, PointStruct
 from sentence_transformers import SentenceTransformer
 from src.config import settings
 import localspelling
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def init_qdrant():
     print(f"⏳ Menghubungkan ke Qdrant di {settings.QDRANT_HOST}...")
