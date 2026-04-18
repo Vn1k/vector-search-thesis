@@ -1,3 +1,4 @@
 .env
 venv
 __pycache__
+negation_model_*
