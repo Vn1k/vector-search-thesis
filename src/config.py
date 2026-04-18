@@ -20,7 +20,7 @@ class Settings:
     VECTOR_MODEL: str = "all-mpnet-base-v2"
     RERANKER_MODEL: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 
-    DATA_LIMIT = 5000
+    DATA_LIMIT = None
     FILE_COVER = str(BASE_DIR / "assets" / "dss_trade_agreements_202602201509.csv")
     FILE_DETAIL = str(BASE_DIR / "assets" / "dss_trade_agreement_detail_formatted_202602201508.csv")
 
