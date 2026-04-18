@@ -6,7 +6,94 @@ from qdrant_client.models import VectorParams, Distance, PointStruct
 from sentence_transformers import SentenceTransformer
 from src.config import settings
 import localspelling
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+
+def tail_preview(text, tail_chars=180):
+    """Mengambil potongan akhir teks agar log tetap ringkas."""
+    normalized = " ".join(str(text).split())
+    if len(normalized) <= tail_chars:
+        return normalized
+    return f"...{normalized[-tail_chars:]}"
+
+
+def get_model_tokenizer(model):
+    """Ambil tokenizer dari SentenceTransformer."""
+    if hasattr(model, "tokenizer") and model.tokenizer is not None:
+        return model.tokenizer
+
+    first_module = model._first_module()
+    if hasattr(first_module, "tokenizer"):
+        return first_module.tokenizer
+
+    raise RuntimeError("Tokenizer tidak ditemukan pada SentenceTransformer model.")
+
+
+def truncate_text_by_token_limit(text, tokenizer, token_limit):
+    """Potong teks sesuai batas token model, kembalikan teks hasil potong + statistik token."""
+    full_tokenized = tokenizer(text, add_special_tokens=True, truncation=False)
+    total_tokens = len(full_tokenized["input_ids"])
+
+    truncated = tokenizer(
+        text,
+        add_special_tokens=True,
+        truncation=True,
+        max_length=token_limit,
+        return_offsets_mapping=getattr(tokenizer, "is_fast", False),
+    )
+    used_tokens = len(truncated["input_ids"])
+
+    if total_tokens <= token_limit:
+        return text, total_tokens, used_tokens
+
+    cut_char_idx = len(text)
+    if "offset_mapping" in truncated:
+        offsets = truncated["offset_mapping"]
+        spans = [pair for pair in offsets if pair[1] > pair[0]]
+        if spans:
+            cut_char_idx = spans[-1][1]
+    else:
+        decoded = tokenizer.decode(
+            truncated["input_ids"], skip_special_tokens=True, clean_up_tokenization_spaces=False
+        )
+        pos = text.find(decoded)
+        if pos >= 0:
+            cut_char_idx = pos + len(decoded)
+        else:
+            cut_char_idx = len(decoded)
+
+    return text[:cut_char_idx], total_tokens, used_tokens
+
+
+def print_log_snapshot(start_row, end_row, last_truncation_log, last_spelling_log, is_final=False):
+    """Tampilkan ringkasan log untuk rentang data tertentu."""
+    label = "LOG SNAPSHOT AKHIR" if is_final else "LOG SNAPSHOT"
+    print("\n" + "=" * 30)
+    print(f"{label} DATA {start_row}-{end_row}")
+
+    if last_truncation_log:
+        print(
+            f"[TRUNCATE] Baris {last_truncation_log['row_index']}: "
+            f"{last_truncation_log['total_tokens']} -> {last_truncation_log['used_tokens']} token "
+            f"(limit {last_truncation_log['token_limit']}, "
+            f"hilang {last_truncation_log['dropped_tokens']} token)"
+        )
+        print(f"   - Akhir teks terpakai   : {last_truncation_log['tail_used']}")
+        print(f"   - Akhir teks seharusnya : {last_truncation_log['tail_full']}")
+        print(f"   - Karakter terbuang     : {last_truncation_log['dropped_chars']}")
+    else:
+        print("[TRUNCATE] Tidak ada data yang terpotong pada rentang ini.")
+
+    if last_spelling_log:
+        print(f"[SPELLING] Perubahan terakhir UK -> US pada baris {last_spelling_log['row_index']}:")
+        for original, converted in last_spelling_log["changes"]:
+            print(f"   - {original} -> {converted}")
+        if last_spelling_log["extra_changes"] > 0:
+            print(f"   - ... dan {last_spelling_log['extra_changes']} perubahan lain")
+    else:
+        print("[SPELLING] Tidak ada perubahan spelling pada rentang ini.")
+
+    print("=" * 30)
+
 
 def init_qdrant():
     print(f"⏳ Menghubungkan ke Qdrant di {settings.QDRANT_HOST}...")
@@ -97,9 +184,19 @@ def process_and_upload(client, model, df):
     """Melakukan embedding dan upload data ke Qdrant."""
     points = []
     batch_size = 100
+    log_every = 500
+    tokenizer = get_model_tokenizer(model)
+    embedding_token_limit = model.get_max_seq_length() or getattr(model, "max_seq_length", None) or 384
+
     print("🚀 Memulai proses Embedding...")
+    print(f"⚙️ Limit token embedding (sesuai model): {embedding_token_limit}")
     start_time = time.time()
     changes_count = 0
+    truncation_count = 0
+    processed_count = 0
+    current_window_start = 1
+    last_truncation_log = None
+    last_spelling_log = None
     for index, row in df.iterrows():
         article_name = row['article_name'] if pd.notna(row['article_name']) else ""
         article_text = row['article_text']
@@ -133,16 +230,44 @@ def process_and_upload(client, model, df):
         
         if text_to_vector != text_for_embedding:
             changes_count += 1
-            print(f"🔍 [LOG] Perubahan spelling pada baris {index}:")
             orig_words = text_to_vector.split()
             conv_words = text_for_embedding.split()
+            spelling_changes = []
             for i in range(min(len(orig_words), len(conv_words))):
                 if orig_words[i] != conv_words[i]:
-                    print(f"   🔄 {orig_words[i]} ➔ {conv_words[i]}")
-            print("-" * 30)
+                    spelling_changes.append((orig_words[i], conv_words[i]))
 
-        # Encode (truncation model limit 3000 (512 token))
-        vector = model.encode(text_for_embedding[:3000], normalize_embeddings=True).tolist()
+            if spelling_changes:
+                shown_changes = spelling_changes[:8]
+                last_spelling_log = {
+                    "row_index": index,
+                    "changes": shown_changes,
+                    "extra_changes": len(spelling_changes) - len(shown_changes),
+                }
+
+        # Encode (truncation mengikuti batas token model, bukan karakter)
+        text_for_encoding, total_tokens, used_tokens = truncate_text_by_token_limit(
+            text_for_embedding,
+            tokenizer,
+            embedding_token_limit,
+        )
+
+        if total_tokens > embedding_token_limit:
+            truncation_count += 1
+            dropped_chars = len(text_for_embedding) - len(text_for_encoding)
+            dropped_tokens = total_tokens - used_tokens
+            last_truncation_log = {
+                "row_index": index,
+                "total_tokens": total_tokens,
+                "used_tokens": used_tokens,
+                "token_limit": embedding_token_limit,
+                "dropped_tokens": dropped_tokens,
+                "dropped_chars": dropped_chars,
+                "tail_used": tail_preview(text_for_encoding),
+                "tail_full": tail_preview(text_for_embedding),
+            }
+
+        vector = model.encode(text_for_encoding, normalize_embeddings=True).tolist()
 
         payload = {
             "rta_id": int(row['rta_id']),
@@ -158,14 +283,26 @@ def process_and_upload(client, model, df):
         }
 
         points.append(PointStruct(id=index, vector=vector, payload=payload))
+        processed_count += 1
 
         if len(points) >= batch_size:
             client.upsert(
                 collection_name=settings.COLLECTION_NAME,
                 points=points
             )
-            print(f"   ✅ Berhasil upload {len(points)} data (Total terproses: {index + 1})")
+            print(f"   ✅ Berhasil upload {len(points)} data (Total terproses: {processed_count})")
             points = []
+
+        if processed_count % log_every == 0:
+            print_log_snapshot(
+                start_row=current_window_start,
+                end_row=processed_count,
+                last_truncation_log=last_truncation_log,
+                last_spelling_log=last_spelling_log,
+            )
+            current_window_start = processed_count + 1
+            last_truncation_log = None
+            last_spelling_log = None
     
     if points:
         client.upsert(
@@ -173,11 +310,21 @@ def process_and_upload(client, model, df):
             points=points
         )
         print(f"   ✅ Berhasil upload sisa {len(points)} data.")
+
+    if processed_count % log_every != 0:
+        print_log_snapshot(
+            start_row=current_window_start,
+            end_row=processed_count,
+            last_truncation_log=last_truncation_log,
+            last_spelling_log=last_spelling_log,
+            is_final=True,
+        )
     
     duration = time.time() - start_time
     print("\n" + "="*30)
     print(f"✨ PROSES SELESAI!")
     print(f"📊 Total baris yang dikonversi ke US: {changes_count} dari {len(df)} data.")
+    print(f"Total baris yang terkena truncation: {truncation_count} dari {len(df)} data.")
     print(f"⏱️ Waktu total: {duration:.2f} detik.")
     print("="*30 + "\n")
 
