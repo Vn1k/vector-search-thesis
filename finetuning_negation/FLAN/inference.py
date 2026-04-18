@@ -39,15 +39,43 @@ class NegationParser:
     """
 
     def __init__(self, model_path: str = DEFAULT_MODEL_DIR):
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = self._resolve_device()
         logger.info(f"[NegationParser] Loading model from: {model_path}")
         logger.info(f"[NegationParser] Device: {self.device}")
 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_path)
+        self.tokenizer = self._load_tokenizer(model_path)
         self.model = AutoModelForSeq2SeqLM.from_pretrained(model_path).to(self.device)
         self.model.eval()
 
         logger.info("[NegationParser] Model ready")
+
+    @staticmethod
+    def _resolve_device() -> str:
+        if torch.cuda.is_available():
+            return "cuda"
+
+        mps_backend = getattr(torch.backends, "mps", None)
+        if mps_backend and mps_backend.is_available():
+            return "mps"
+
+        return "cpu"
+
+    @staticmethod
+    def _load_tokenizer(model_path: str):
+        try:
+            return AutoTokenizer.from_pretrained(model_path)
+        except AttributeError as exc:
+            if "has no attribute 'keys'" not in str(exc):
+                raise
+
+            logger.warning(
+                "[NegationParser] Tokenizer config incompatible with current "
+                "Transformers version. Retrying with extra_special_tokens={}."
+            )
+            return AutoTokenizer.from_pretrained(
+                model_path,
+                extra_special_tokens={},
+            )
 
     def parse(self, query: str) -> dict:
         """
