@@ -392,6 +392,7 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
 search_engine = SearchService(
     use_reranker=False,
-    use_llm=False,  # Using fine-tuned parser instead
+    #Negation
+    use_llm=False,
     use_finetuned=True,
 )
