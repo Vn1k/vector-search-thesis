@@ -1,0 +1,38 @@
+{
+  "total": 397,
+  "elapsed_sec": 96.86,
+  "exact_match": 0.9017632241813602,
+  "positive_query_acc": 0.9269521410579346,
+  "excluded_terms_acc": 0.9773299748110831,
+  "iso_code_acc": 0.9899244332493703,
+  "per_group": {
+    "single_excluded": {
+      "total": 294,
+      "exact_match": 0.9183673469387755,
+      "positive_query_acc": 0.9251700680272109,
+      "excluded_terms_acc": 0.9931972789115646,
+      "iso_code_acc": 1.0
+    },
+    "multi_excluded": {
+      "total": 46,
+      "exact_match": 0.8695652173913043,
+      "positive_query_acc": 0.9347826086956522,
+      "excluded_terms_acc": 0.9130434782608695,
+      "iso_code_acc": 1.0
+    },
+    "with_country": {
+      "total": 49,
+      "exact_match": 0.8571428571428571,
+      "positive_query_acc": 0.9591836734693877,
+      "excluded_terms_acc": 0.9795918367346939,
+      "iso_code_acc": 0.9183673469387755
+    },
+    "no_excluded": {
+      "total": 8,
+      "exact_match": 0.75,
+      "positive_query_acc": 0.75,
+      "excluded_terms_acc": 0.75,
+      "iso_code_acc": 1.0
+    }
+  }
+}

@@ -10,6 +10,18 @@ import localspelling
 from ollama import chat
 from src.config import settings
 
+# Import fine-tuned negation parser (optional)
+try:
+    import sys
+    import os
+
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from finetuning_negation.FLAN.inference import NegationParser
+
+    FINETUNED_AVAILABLE = True
+except ImportError:
+    FINETUNED_AVAILABLE = False
+
 # Konfigurasi logging
 logging.basicConfig(
     level=logging.INFO,
@@ -20,7 +32,12 @@ logger = logging.getLogger(__name__)
 
 
 class SearchService:
-    def __init__(self, use_reranker: bool = False, use_llm: bool = False):
+    def __init__(
+        self,
+        use_reranker: bool = False,
+        use_llm: bool = False,
+        use_finetuned: bool = True,
+    ):
         logger.info("[Init] Initializing model & database")
         self.client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
         self.vector_model = SentenceTransformer(settings.VECTOR_MODEL)
@@ -35,7 +52,26 @@ class SearchService:
             self.reranker = None
             logger.info("[Init] Reranker: OFF (vector score only)")
 
-        # ─── LLM Query Parser (opsional) ──────────────────────────────────────
+        # ─── Fine-tuned Query Parser (priority) ────────────────────────────────
+        self.use_finetuned = use_finetuned and FINETUNED_AVAILABLE
+        self.finetuned_parser = None
+        if self.use_finetuned:
+            try:
+                model_path = os.path.join(
+                    os.path.dirname(os.path.dirname(__file__)),
+                    "finetuning_negation",
+                    "FLAN",                  
+                    "negation_model_t5_v2",
+                )
+                self.finetuned_parser = NegationParser(model_path)
+                logger.info("[Init] Fine-tuned Parser: ON")
+            except Exception as e:
+                logger.warning(f"[Init] Fine-tuned parser failed to load: {e}")
+                self.use_finetuned = False
+        else:
+            logger.info("[Init] Fine-tuned Parser: OFF")
+
+        # ─── LLM Query Parser (fallback/optional) ─────────────────────────────
         self.use_llm = use_llm
         self.LLM_MODEL = "nemotron-3-nano:4b"
         if self.use_llm:
@@ -147,20 +183,32 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
         logger.info(f"[Search] Original user query: '{query}'")
         logger.info(f"[Search] Parameters: limit={limit}, threshold={threshold}")
 
-        # ─── Step 1: LLM query parsing (jika aktif) ───────────────────────────
+        # ─── Step 1: Query parsing (fine-tuned atau LLM) ──────────────────────
         excluded_terms = []
+        llm_iso = None
 
-        if self.use_llm:
+        if self.use_finetuned and self.finetuned_parser:
+            # Use fine-tuned model for fast parsing
+            logger.info("[QueryParser] Using fine-tuned model")
+            parsed = self.finetuned_parser.parse(query)
+            search_query = parsed["positive_query"]
+            excluded_terms = parsed["excluded_terms"]
+            # ISO code will be detected in Step 2
+            logger.info(f"[Finetuned] positive_query: '{search_query}'")
+            logger.info(f"[Finetuned] excluded_terms: {excluded_terms}")
+            logger.info(f"[Finetuned] confidence: {parsed.get('confidence', 0):.3f}")
+        elif self.use_llm:
+            # Fallback to LLM parsing
             parsed = self.llm_query_parser(query)
-            search_query = parsed["positive_query"]  # query bersih tanpa negasi
-            excluded_terms = parsed["excluded_terms"]  # akan difilter nanti
+            search_query = parsed["positive_query"]
+            excluded_terms = parsed["excluded_terms"]
             llm_iso = parsed["iso_code"]
         else:
+            # No parsing, use original query
             search_query = query
-            llm_iso = None
         # ──────────────────────────────────────────────────────────────────────
 
-        # ─── Step 2: Deteksi negara (LLM prioritas, fallback rule-based) ──────
+        # ─── Step 2: Deteksi negara (rule-based, jika tidak dari LLM) ─────────
         detected_iso = llm_iso or self.detect_iso_from_query(search_query)
 
         qdrant_filter = None
@@ -175,29 +223,30 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
             logger.info("[QueryTransform] No detected country, using global search")
         # ──────────────────────────────────────────────────────────────────────
 
-        # ─── Step 3: Spell correction + dialect normalization ─────────────────
-        words = search_query.split()
-        misspelled = self.spell.unknown(words)
-        corrected = []
-        for word in words:
-            if word in misspelled:
-                correction = self.spell.correction(word)
-                corrected.append(correction if correction else word)
-            else:
-                corrected.append(word)
+        # ─── Step 3: Fix tokenization (fine-tuned) + dialect normalization ────
+          # Original spell checker for non-finetuned mode
+        if not self.use_finetuned:
+            # Spell checker hanya untuk non-finetuned mode
+            words = search_query.split()
+            misspelled = self.spell.unknown(words)
+            corrected = []
+            for word in words:
+                if word in misspelled:
+                    correction = self.spell.correction(word)
+                    corrected.append(correction if correction else word)
+                else:
+                    corrected.append(word)
+            search_query = " ".join(corrected)
 
-        typo_query = " ".join(corrected)
-        if search_query != typo_query:
-            logger.info(
-                f"[QueryTransform] Spell correction: '{search_query}' -> '{typo_query}'"
-            )
-        else:
-            logger.debug(f"[QueryTransform] Spell correction: no changes")
+        # Apply UK/US spelling normalization
+        spelling_query = localspelling.convert_spelling(search_query, "us")
+        excluded_terms = [
+            localspelling.convert_spelling(term, "us") for term in excluded_terms
+        ]
 
-        spelling_query = localspelling.convert_spelling(typo_query, "us")
-        if typo_query != spelling_query:
+        if search_query != spelling_query:
             logger.info(
-                f"[QueryTransform] Dialect normalization: '{typo_query}' -> '{spelling_query}'"
+                f"[QueryTransform] Dialect normalization: '{search_query}' -> '{spelling_query}'"
             )
         else:
             logger.debug(f"[QueryTransform] Dialect normalization: no changes")
@@ -343,5 +392,6 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
 search_engine = SearchService(
     use_reranker=False,
-    use_llm=True,
+    use_llm=False,  # Using fine-tuned parser instead
+    use_finetuned=True,
 )
