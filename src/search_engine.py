@@ -310,7 +310,7 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
             def find_excluded_terms(item: dict) -> list:
                 """Return list of excluded terms found in the document."""
-                text = item.get("article_text", "").lower()
+                text = item.get("article_text_display", "").lower()
                 return [term for term in excluded_terms if term.lower() in text]
 
             filtered_results = []
