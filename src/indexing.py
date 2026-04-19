@@ -106,34 +106,34 @@ def init_qdrant():
         print(f"❌ GAGAL Connect ke Qdrant. Pastikan Podman/Docker jalan.\nError: {e}")
         sys.exit(1)
 
-    if client.collection_exists(settings.COLLECTION_NAME):
-        client.delete_collection(settings.COLLECTION_NAME)
-        print(f"♻️  Collection lama '{settings.COLLECTION_NAME}' di-reset.")
+    if client.collection_exists(settings.COLLECTION_NAME_WITHOUT_CHUNKING):
+        client.delete_collection(settings.COLLECTION_NAME_WITHOUT_CHUNKING)
+        print(f"♻️  Collection lama '{settings.COLLECTION_NAME_WITHOUT_CHUNKING}' di-reset.")
 
     client.create_collection(
-        collection_name=settings.COLLECTION_NAME,
+        collection_name=settings.COLLECTION_NAME_WITHOUT_CHUNKING,
         vectors_config=VectorParams(size=settings.VECTOR_SIZE, distance=Distance.COSINE),
     )
-    print(f"✅ Collection '{settings.COLLECTION_NAME}' siap menerima data.\n")
+    print(f"✅ Collection '{settings.COLLECTION_NAME_WITHOUT_CHUNKING}' siap menerima data.\n")
 
     print("⚙️  Membuat Index Filter...")
     client.create_payload_index(
-        collection_name=settings.COLLECTION_NAME,
+        collection_name=settings.COLLECTION_NAME_WITHOUT_CHUNKING,
         field_name="iso", 
         field_schema="keyword"
     )
     client.create_payload_index(
-        collection_name=settings.COLLECTION_NAME,
+        collection_name=settings.COLLECTION_NAME_WITHOUT_CHUNKING,
         field_name="Agreement", 
         field_schema="keyword"
     )
     client.create_payload_index(
-        collection_name=settings.COLLECTION_NAME,
+        collection_name=settings.COLLECTION_NAME_WITHOUT_CHUNKING,
         field_name="AgreementType", 
         field_schema="keyword"
     )
     client.create_payload_index(
-        collection_name=settings.COLLECTION_NAME,
+        collection_name=settings.COLLECTION_NAME_WITHOUT_CHUNKING,
         field_name="rta_id",
         field_schema="integer"
     )
@@ -287,7 +287,7 @@ def process_and_upload(client, model, df):
 
         if len(points) >= batch_size:
             client.upsert(
-                collection_name=settings.COLLECTION_NAME,
+                collection_name=settings.COLLECTION_NAME_WITHOUT_CHUNKING,
                 points=points
             )
             print(f"   ✅ Berhasil upload {len(points)} data (Total terproses: {processed_count})")
@@ -306,7 +306,7 @@ def process_and_upload(client, model, df):
     
     if points:
         client.upsert(
-            collection_name=settings.COLLECTION_NAME,
+            collection_name=settings.COLLECTION_NAME_WITHOUT_CHUNKING,
             points=points
         )
         print(f"   ✅ Berhasil upload sisa {len(points)} data.")
