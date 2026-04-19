@@ -11,7 +11,7 @@ class ArticleResult(BaseModel):
     id: int
     chapter_name: str
     article_name: str
-    article_text: str
+    # article_text: str
     article_text_display: str
     score: float
     confidence: str

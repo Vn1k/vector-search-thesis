@@ -1,5 +1,4 @@
 import math
-import spacy
 import pycountry
 from qdrant_client import QdrantClient
 from qdrant_client.models import FieldCondition, Filter, MatchValue
@@ -10,7 +9,7 @@ from src.config import settings
 
 
 class SearchService:
-    def __init__(self, use_reranker: bool = False): 
+    def __init__(self, use_reranker: bool = False):
         print("Initialization model & database")
         self.client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
         self.vector_model = SentenceTransformer(settings.VECTOR_MODEL)
@@ -167,14 +166,16 @@ class SearchService:
                     "id": item["id"],
                     "chapter_name": item["chapter_name"],
                     "article_name": item["article_name"],
-                    "article_text": item["article_text"],
+                    # "article_text": item["article_text"],
                     "article_text_display": item["article_text_display"],
                     "score": item["score"],
                     "confidence": item["confidence"],
                 }
             )
 
-        grouped_list = sorted(grouped.values(), key=lambda x: x["best_score"], reverse=True)
+        grouped_list = sorted(
+            grouped.values(), key=lambda x: x["best_score"], reverse=True
+        )
         return grouped_list[:limit]
 
     def _build_result(self, hit, score_percent: float) -> dict:
@@ -182,13 +183,13 @@ class SearchService:
         return {
             "id": hit.id,
             "rta_id": hit.payload.get("rta_id"),
-            "agreement": hit.payload.get("Agreement", "-"),
-            "chapter_name": hit.payload.get("chapter_name", "-"),
-            "article_name": hit.payload.get("article_name", "-"),
-            "article_text": hit.payload.get("article_text", "-"),
-            "article_text_display": hit.payload.get("article_text_display", "-"),
-            "acronym": hit.payload.get("acronym", "-"),
-            "iso": hit.payload.get("iso", "-"),
+            "agreement": hit.payload.get("Agreement") or "-",
+            "chapter_name": hit.payload.get("chapter_name") or "-",
+            "article_name": hit.payload.get("article_name") or "-",
+            # "article_text": hit.payload.get("article_text") or "-",
+            "article_text_display": hit.payload.get("article_text_display") or "-",
+            "acronym": hit.payload.get("acronym") or "-",
+            "iso": hit.payload.get("iso") or "-",
             "score": score_percent,
             "confidence": f"{score_percent:.4%}",
         }
