@@ -1,0 +1,2144 @@
+[
+  {
+    "query": "technical barriers not including banking, labor provisions, or trademarks",
+    "positive_query": "technical barriers",
+    "excluded_terms": [
+      "banking",
+      "labor provisions",
+      "trademarks"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement provisions excluding banking",
+    "positive_query": "government procurement provisions",
+    "excluded_terms": [
+      "banking"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "sanitary measures not related to clothing",
+    "positive_query": "sanitary measures",
+    "excluded_terms": [
+      "clothing"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Peru dispute settlement not including investment",
+    "positive_query": "Peru dispute settlement",
+    "excluded_terms": [
+      "investment"
+    ],
+    "iso_code": "PEN"
+  },
+  {
+    "query": "competition policy in Japan without automotive",
+    "positive_query": "competition policy",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": "JPN"
+  },
+  {
+    "query": "Russia investment not including aluminum",
+    "positive_query": "Russia investment",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": "RUS"
+  },
+  {
+    "query": "Vietnam rules of origin not including agricultural products",
+    "positive_query": "Vietnam rules of origin",
+    "excluded_terms": [
+      "agricultural products"
+    ],
+    "iso_code": "VNM"
+  },
+  {
+    "query": "investment except aluminum",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on sanitary measures but not agriculture",
+    "positive_query": "sanitary measures",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "security exceptions except clothing",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "clothing"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "transparency in Russia without textiles",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "textiles"
+    ],
+    "iso_code": "RU"
+  },
+  {
+    "query": "environmental provisions not including services",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on government procurement without textiles",
+    "positive_query": "regulations on government procurement",
+    "excluded_terms": [
+      "textiles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "labor provisions except intellectual property",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services without agriculture or vehicles",
+    "positive_query": "services",
+    "excluded_terms": [
+      "agriculture",
+      "vehicles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "rules of origin excluding aluminum and agricultural products",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "aluminum",
+      "agricultural products"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement provisions excluding investment",
+    "positive_query": "government procurement provisions",
+    "excluded_terms": [
+      "investment"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on sanitary measures without e-commerce",
+    "positive_query": "sanitary measures regulations",
+    "excluded_terms": [
+      "e-commerce"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "dispute settlement without services or trademarks",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "services",
+      "trademarks"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on trade remedies but not clothing",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "clothing"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "sanitary measures in Peru without banking",
+    "positive_query": "sanitary measures",
+    "excluded_terms": [
+      "banking"
+    ],
+    "iso_code": "PER"
+  },
+  {
+    "query": "security exceptions not about environmental provisions",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "institutional provisions provisions excluding rice",
+    "positive_query": "institutional provisions",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "customs procedures not related to patents",
+    "positive_query": "customs procedures",
+    "excluded_terms": [
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "technical barriers excluding automotive and agricultural products",
+    "positive_query": "technical barriers",
+    "excluded_terms": [
+      "automotive",
+      "agricultural"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "final provisions not including environmental provisions",
+    "positive_query": "final provisions",
+    "excluded_terms": [
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "environmental provisions without steel",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "sanitary measures not related to vehicles",
+    "positive_query": "sanitary measures",
+    "excluded_terms": [
+      "vehicles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "general exceptions not including apparel",
+    "positive_query": "general exceptions",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "security exceptions excluding digital trade and banking",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "digital trade",
+      "banking"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on dispute settlement without intellectual property",
+    "positive_query": "regulations on dispute settlement",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement not covering banking",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "banking"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "trade remedies not related to intellectual property",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Australia institutional provisions not including apparel",
+    "positive_query": "Australia institutional provisions",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": "AUS"
+  },
+  {
+    "query": "regulations on dispute settlement without vehicles",
+    "positive_query": "regulations on dispute settlement",
+    "excluded_terms": [
+      "vehicles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "environmental provisions excluding financial services",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs without patents or automotive",
+    "positive_query": "tariffs",
+    "excluded_terms": [
+      "patents",
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "security exceptions except financial services",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "sanitary measures not related to automotive",
+    "positive_query": "sanitary measures",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on technical barriers without rice",
+    "positive_query": "regulations on technical barriers",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "rules of origin not covering apparel",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "competition policy provisions excluding aluminum",
+    "positive_query": "competition policy provisions",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Mexico dispute settlement excluding clothing",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "clothing"
+    ],
+    "iso_code": "MEX"
+  },
+  {
+    "query": "competition policy in India without investment",
+    "positive_query": "competition policy",
+    "excluded_terms": [
+      "investment"
+    ],
+    "iso_code": "IND"
+  },
+  {
+    "query": "ASEAN transparency not including textiles",
+    "positive_query": "ASEAN transparency",
+    "excluded_terms": [
+      "textiles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement except dispute settlement",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "dispute settlement in Japan without agricultural products",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "agricultural products"
+    ],
+    "iso_code": "JPN"
+  },
+  {
+    "query": "tariffs provisions excluding digital trade",
+    "positive_query": "tariffs provisions",
+    "excluded_terms": [
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Australia final provisions not including copyright",
+    "positive_query": "Australia final provisions",
+    "excluded_terms": [
+      "copyright"
+    ],
+    "iso_code": "AUS"
+  },
+  {
+    "query": "Vietnam environmental provisions excluding steel",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": "VNM"
+  },
+  {
+    "query": "services provisions excluding agriculture",
+    "positive_query": "services provisions",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "intellectual property without environmental provisions or intellectual property",
+    "positive_query": "intellectual property",
+    "excluded_terms": [
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce provisions excluding steel",
+    "positive_query": "e-commerce provisions",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on technical barriers but not intellectual property",
+    "positive_query": "technical barriers",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on general exceptions but not dispute settlement",
+    "positive_query": "general exceptions",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services excluding banking and steel",
+    "positive_query": "services",
+    "excluded_terms": [
+      "banking",
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on dispute settlement without financial services",
+    "positive_query": "dispute settlement regulations",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on investment but not rice",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on rules of origin but not banking",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "banking"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "investment not including dispute settlement",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "intellectual property not including digital trade",
+    "positive_query": "intellectual property",
+    "excluded_terms": [
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "dispute settlement not covering agriculture",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "environmental provisions without textiles",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "textiles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs not including vehicles, investment, or agricultural products",
+    "positive_query": "tariff",
+    "excluded_terms": [
+      "vehicles",
+      "investment",
+      "agricultural products"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs except for dispute settlement",
+    "positive_query": "tariffs",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "competition policy without dispute settlement",
+    "positive_query": "competition policy",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Philippines intellectual property excluding dispute settlement",
+    "positive_query": "Philippines intellectual property",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": "PRT"
+  },
+  {
+    "query": "labor provisions without intellectual property",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "rules of origin in Malaysia without services",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "services"
+    ],
+    "iso_code": "MYL"
+  },
+  {
+    "query": "investment not covering environmental provisions",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on final provisions but not trademarks",
+    "positive_query": "final provisions",
+    "excluded_terms": [
+      "trademarks"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "final provisions not related to financial services",
+    "positive_query": "final provisions",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "dispute settlement except for apparel",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "final provisions not including e-commerce, automotive, or financial services",
+    "positive_query": "final provisions",
+    "excluded_terms": [
+      "e-commerce",
+      "automotive",
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "labor provisions excluding financial services and dispute settlement",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "financial services",
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "institutional provisions except rice",
+    "positive_query": "institutional provisions",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Thailand environmental provisions not including agriculture",
+    "positive_query": "Thailand environmental provisions",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": "THA"
+  },
+  {
+    "query": "transparency not including environmental provisions",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services provisions excluding rice",
+    "positive_query": "services provisions",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "EU final provisions not including steel",
+    "positive_query": "EU final provisions",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Mexico general exceptions not including dispute settlement",
+    "positive_query": "general exceptions",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": "MEX"
+  },
+  {
+    "query": "services in Vietnam without textiles",
+    "positive_query": "services in Vietnam",
+    "excluded_terms": [
+      "textiles"
+    ],
+    "iso_code": "VNM"
+  },
+  {
+    "query": "transparency without steel",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services except labor provisions",
+    "positive_query": "services",
+    "excluded_terms": [
+      "labor",
+      "provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "customs procedures not about digital trade",
+    "positive_query": "customs procedures",
+    "excluded_terms": [
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Australia labor provisions excluding trademarks",
+    "positive_query": "Australia labor provisions",
+    "excluded_terms": [
+      "trademarks"
+    ],
+    "iso_code": "AUS"
+  },
+  {
+    "query": "Chile environmental provisions excluding intellectual property",
+    "positive_query": "Chile environmental provisions",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": "CL"
+  },
+  {
+    "query": "security exceptions not related to financial services",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "transparency not about agricultural products",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "agricultural products"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "labor provisions except automotive",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": "null"
+  },
+  {
+    "query": "China customs procedures not including intellectual property",
+    "positive_query": "China customs procedures",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": "CHN"
+  },
+  {
+    "query": "regulations on competition policy without textiles",
+    "positive_query": "competition policy regulations",
+    "excluded_terms": [
+      "textiles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "environmental provisions in EU without intellectual property",
+    "positive_query": "environmental provisions in EU",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "intellectual property provisions excluding financial services",
+    "positive_query": "intellectual property provisions",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce without labor provisions or environmental provisions",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "labor provisions",
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce not about agriculture",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "environmental provisions excluding aluminum and rice",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "aluminum",
+      "rice"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "customs procedures excluding financial services and steel",
+    "positive_query": "customs procedures",
+    "excluded_terms": [
+      "financial services",
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "trade remedies without intellectual property",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "environmental provisions without labor provisions",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "labor provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "United States services excluding agriculture",
+    "positive_query": "United States services",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": "USA"
+  },
+  {
+    "query": "government procurement in EU without aluminum",
+    "positive_query": "government procurement EU",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "transparency except agriculture",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "rules of origin not related to banking",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "banking"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "trade remedies not about agricultural products",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "agricultural",
+      "products"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "institutional provisions not related to e-commerce",
+    "positive_query": "institutional provisions",
+    "excluded_terms": [
+      "e-commerce"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "technical barriers excluding dispute settlement and digital trade",
+    "positive_query": "technical barriers",
+    "excluded_terms": [
+      "dispute settlement",
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "competition policy not covering textiles",
+    "positive_query": "competition policy",
+    "excluded_terms": [
+      "textiles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce not including services",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Mexico labor provisions excluding copyright",
+    "positive_query": "Mexico labor provisions",
+    "excluded_terms": [
+      "copyright"
+    ],
+    "iso_code": "MEX"
+  },
+  {
+    "query": "competition policy not about digital trade",
+    "positive_query": "competition policy",
+    "excluded_terms": [
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services except investment",
+    "positive_query": "services",
+    "excluded_terms": [
+      "investment"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce except labor provisions",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "labor provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "transparency not including agriculture",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "dispute settlement not including banking, intellectual property, or textiles",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "banking",
+      "intellectual property",
+      "textiles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "technical barriers without environmental provisions",
+    "positive_query": "technical barriers",
+    "excluded_terms": [
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "security exceptions excluding investment and clothing",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "investment",
+      "clothing"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs except steel",
+    "positive_query": "tariffs",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs not including services, agriculture, or dispute settlement",
+    "positive_query": "tariffs",
+    "excluded_terms": [
+      "services",
+      "agriculture",
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on general exceptions but not digital trade",
+    "positive_query": "general exceptions",
+    "excluded_terms": [
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "final provisions not related to agricultural products",
+    "positive_query": "final provisions",
+    "excluded_terms": [
+      "agricultural products"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs not about dispute settlement",
+    "positive_query": "tariffs",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "investment excluding intellectual property",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Vietnam security exceptions not including aluminum",
+    "positive_query": "Vietnam security exceptions",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": "VNM"
+  },
+  {
+    "query": "information on government procurement but not labor provisions",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "labor provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "competition policy in Singapore without agricultural products",
+    "positive_query": "competition policy",
+    "excluded_terms": [
+      "agricultural products"
+    ],
+    "iso_code": "SGR"
+  },
+  {
+    "query": "government procurement in ASEAN without intellectual property",
+    "positive_query": "government procurement in ASEAN",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs not including patents, agriculture, or environmental provisions",
+    "positive_query": "tariffs",
+    "excluded_terms": [
+      "patents",
+      "agriculture",
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on customs procedures but not patents",
+    "positive_query": "customs procedures",
+    "excluded_terms": [
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "transparency excluding digital trade",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Australia general exceptions not including digital trade",
+    "positive_query": "general exceptions",
+    "excluded_terms": [
+      "digital trade"
+    ],
+    "iso_code": "AUS"
+  },
+  {
+    "query": "technical barriers not including steel",
+    "positive_query": "technical barriers",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "final provisions not including environmental provisions, automotive, or investment",
+    "positive_query": "final provisions",
+    "excluded_terms": [
+      "environmental provisions",
+      "automotive",
+      "investment"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services excluding vehicles and automotive",
+    "positive_query": "services",
+    "excluded_terms": [
+      "vehicles",
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement excluding e-commerce and vehicles",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "e-commerce",
+      "vehicles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on trade remedies but not apparel",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "institutional provisions except for automotive",
+    "positive_query": "institutional provisions",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "institutional provisions excluding vehicles and environmental provisions",
+    "positive_query": "institutional environmental provisions",
+    "excluded_terms": [
+      "vehicles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "India final provisions excluding copyright",
+    "positive_query": "India final provisions",
+    "excluded_terms": [
+      "copyright"
+    ],
+    "iso_code": "IND"
+  },
+  {
+    "query": "customs procedures not about environmental provisions",
+    "positive_query": "customs procedures",
+    "excluded_terms": [
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on investment but not agriculture",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "security exceptions excluding trademarks",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "trademarks"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "security exceptions not related to steel",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Thailand general exceptions excluding agricultural products",
+    "positive_query": "Thailand general exceptions",
+    "excluded_terms": [
+      "agricultural products"
+    ],
+    "iso_code": "THA"
+  },
+  {
+    "query": "information on trade remedies but not financial services",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "China transparency excluding aluminum",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": "CHN"
+  },
+  {
+    "query": "dispute settlement without textiles or agriculture",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "textiles",
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on government procurement without labor provisions",
+    "positive_query": "regulations on government procurement",
+    "excluded_terms": [
+      "labor provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "sanitary measures in Singapore without rice",
+    "positive_query": "sanitary measures",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": "SGP"
+  },
+  {
+    "query": "labor provisions excluding textiles and vehicles",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "textiles",
+      "vehicles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "sanitary measures not including services",
+    "positive_query": "sanitary measures",
+    "excluded_terms": [
+      "services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce except for steel",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on general exceptions but not banking",
+    "positive_query": "general exceptions",
+    "excluded_terms": [
+      "banking"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Japan rules of origin excluding rice",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": "JP"
+  },
+  {
+    "query": "general exceptions except banking",
+    "positive_query": "general exceptions",
+    "excluded_terms": [
+      "banking"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "environmental provisions not about copyright",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "copyright"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on institutional provisions but not automotive",
+    "positive_query": "institutional provisions",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "final provisions not related to automotive",
+    "positive_query": "final provisions",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Singapore technical barriers excluding vehicles",
+    "positive_query": "Singapore technical barriers",
+    "excluded_terms": [
+      "vehicles"
+    ],
+    "iso_code": "SG"
+  },
+  {
+    "query": "rules of origin in Australia without steel",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": "AUS"
+  },
+  {
+    "query": "rules of origin except apparel",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "competition policy not related to services",
+    "positive_query": "competition policy",
+    "excluded_terms": [
+      "services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "United States labor provisions excluding environmental provisions",
+    "positive_query": "United States labor provisions",
+    "excluded_terms": [
+      "environmental"
+    ],
+    "iso_code": "USA"
+  },
+  {
+    "query": "information on government procurement but not agricultural products",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "agricultural products"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "dispute settlement excluding investment and environmental provisions",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "investment",
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "institutional provisions except for copyright",
+    "positive_query": "institutional provisions",
+    "excluded_terms": [
+      "copyright"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce not about apparel",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "technical barriers not related to automotive",
+    "positive_query": "technical barriers",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "dispute settlement not including financial services",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Japan institutional provisions excluding e-commerce",
+    "positive_query": "Japan institutional provisions",
+    "excluded_terms": [
+      "e-commerce"
+    ],
+    "iso_code": "JPN"
+  },
+  {
+    "query": "security exceptions without services or trademarks",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "services",
+      "trademarks"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "institutional provisions except for patents",
+    "positive_query": "institutional provisions",
+    "excluded_terms": [
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "sanitary measures not including digital trade",
+    "positive_query": "sanitary measures",
+    "excluded_terms": [
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "trade remedies except aluminum",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs except apparel",
+    "positive_query": "tariffs",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "transparency not related to digital trade",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "labor provisions not including services, agriculture, or steel",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "services",
+      "agriculture",
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on intellectual property without patents",
+    "positive_query": "regulations on intellectual property",
+    "excluded_terms": [
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "investment provisions excluding copyright",
+    "positive_query": "investment provisions",
+    "excluded_terms": [
+      "copyright"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement not related to dispute settlement",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on e-commerce but not clothing",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "clothing"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "intellectual property in Australia without aluminum",
+    "positive_query": "intellectual property",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": "AUS"
+  },
+  {
+    "query": "rules of origin not related to environmental provisions",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "trade remedies except for financial services",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Vietnam environmental provisions excluding clothing",
+    "positive_query": "Vietnam environmental provisions",
+    "excluded_terms": [
+      "clothing"
+    ],
+    "iso_code": "VNM"
+  },
+  {
+    "query": "environmental provisions not covering apparel",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "United States dispute settlement not including steel",
+    "positive_query": "United States dispute settlement",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": "USA"
+  },
+  {
+    "query": "India general exceptions excluding rice",
+    "positive_query": "general exceptions",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": "IN"
+  },
+  {
+    "query": "rules of origin excluding vehicles",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "vehicles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Chile security exceptions excluding patents",
+    "positive_query": "Chile security exceptions",
+    "excluded_terms": [
+      "patents"
+    ],
+    "iso_code": "CHL"
+  },
+  {
+    "query": "information on labor provisions but not automotive",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "New Zealand security exceptions not including apparel",
+    "positive_query": "New Zealand security exceptions",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": "NZL"
+  },
+  {
+    "query": "regulations on intellectual property without financial services",
+    "positive_query": "intellectual property regulations",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "dispute settlement provisions excluding patents",
+    "positive_query": "dispute settlement provisions",
+    "excluded_terms": [
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "technical barriers in Singapore without textiles",
+    "positive_query": "technical barriers Singapore",
+    "excluded_terms": [
+      "textiles"
+    ],
+    "iso_code": "SIN"
+  },
+  {
+    "query": "dispute settlement in Australia without agricultural products",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "agricultural products"
+    ],
+    "iso_code": "AUS"
+  },
+  {
+    "query": "investment except for labor provisions",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "labor provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement without rice or financial services",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "rice",
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on tariffs without automotive",
+    "positive_query": "regulations on tariffs",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs without apparel",
+    "positive_query": "tariffs",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on transparency without services",
+    "positive_query": "regulations on transparency",
+    "excluded_terms": [
+      "services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "transparency except steel",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "competition policy in United States without rice",
+    "positive_query": "competition policy United States",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": "USA"
+  },
+  {
+    "query": "regulations on intellectual property without banking",
+    "positive_query": "regulations on intellectual property",
+    "excluded_terms": [
+      "banking"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services without textiles or digital trade",
+    "positive_query": "services",
+    "excluded_terms": [
+      "textiles",
+      "digital trade"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "dispute settlement except patents",
+    "positive_query": "dispute settlement",
+    "excluded_terms": [
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services without dispute settlement",
+    "positive_query": "services",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on labor provisions but not steel",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on e-commerce without aluminum",
+    "positive_query": "regulations on e-commerce",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "trade remedies except apparel",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce except for clothing",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "clothing"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "investment provisions excluding agriculture",
+    "positive_query": "investment provisions",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Malaysia sanitary measures not including e-commerce",
+    "positive_query": "Malaysia sanitary measures",
+    "excluded_terms": [
+      "e-commerce"
+    ],
+    "iso_code": "MAL"
+  },
+  {
+    "query": "Philippines dispute settlement excluding rice",
+    "positive_query": "Philippines dispute settlement",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": "PHL"
+  },
+  {
+    "query": "institutional provisions except for aluminum",
+    "positive_query": "institutional provisions",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "rules of origin in Philippines without banking",
+    "positive_query": "rules of origin Philippines",
+    "excluded_terms": [
+      "banking"
+    ],
+    "iso_code": "PHL"
+  },
+  {
+    "query": "competition policy except for steel",
+    "positive_query": "competition policy",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Chile intellectual property excluding rice",
+    "positive_query": "intellectual property",
+    "excluded_terms": [
+      "rice"
+    ],
+    "iso_code": "CHL"
+  },
+  {
+    "query": "transparency without clothing or steel",
+    "positive_query": "textile",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on transparency but not services",
+    "positive_query": "transparency",
+    "excluded_terms": [
+      "services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "trade remedies except financial services",
+    "positive_query": "trade remedies",
+    "excluded_terms": [
+      "financial services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "security exceptions without trademarks or environmental provisions",
+    "positive_query": "security exceptions",
+    "excluded_terms": [
+      "trademarks",
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce in Japan without patents",
+    "positive_query": "e-commerce Japan",
+    "excluded_terms": [
+      "patents"
+    ],
+    "iso_code": "JPN"
+  },
+  {
+    "query": "government procurement excluding apparel and intellectual property",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "apparel",
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "rules of origin in India without copyright",
+    "positive_query": "rules of origin in India",
+    "excluded_terms": [
+      "copyright"
+    ],
+    "iso_code": "INA"
+  },
+  {
+    "query": "customs procedures provisions excluding dispute settlement",
+    "positive_query": "customs procedures provisions",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "intellectual property except for steel",
+    "positive_query": "intellectual property",
+    "excluded_terms": [
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services not including dispute settlement, textiles, or patents",
+    "positive_query": "services",
+    "excluded_terms": [
+      "dispute settlement",
+      "textiles",
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement not including patents, dispute settlement, or automotive",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "patents",
+      "dispute settlement",
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on trade remedies without agricultural products",
+    "positive_query": "trade remedies regulations",
+    "excluded_terms": [
+      "agricultural products"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce not including financial services, environmental provisions, or textiles",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "financial services",
+      "environmental provisions",
+      "textiles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on labor provisions but not aluminum",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "information on investment but not services",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "services"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "rules of origin except for trademarks",
+    "positive_query": "rules of origin",
+    "excluded_terms": [
+      "trademarks"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "e-commerce not including agriculture",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Korea e-commerce not including intellectual property",
+    "positive_query": "Korea e-commerce",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": "KOR"
+  },
+  {
+    "query": "technical barriers provisions excluding intellectual property",
+    "positive_query": "technical barriers provisions",
+    "excluded_terms": [
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "tariffs in ASEAN without trademarks",
+    "positive_query": "tariffs in ASEAN",
+    "excluded_terms": [
+      "trademarks"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "final provisions without textiles or steel",
+    "positive_query": "final provisions",
+    "excluded_terms": [
+      "textiles",
+      "steel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement not including environmental provisions",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "environmental provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "environmental provisions excluding apparel",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "apparel"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "investment not about trademarks",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "trademarks"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "labor provisions without automotive",
+    "positive_query": "labor provisions",
+    "excluded_terms": [
+      "automotive"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "Australia rules of origin not including labor provisions",
+    "positive_query": "Australia rules of origin",
+    "excluded_terms": [
+      "labor provisions"
+    ],
+    "iso_code": "AUS"
+  },
+  {
+    "query": "e-commerce excluding financial services and investment",
+    "positive_query": "e-commerce",
+    "excluded_terms": [
+      "financial services",
+      "investment"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "services excluding dispute settlement and patents",
+    "positive_query": "services",
+    "excluded_terms": [
+      "dispute settlement",
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "investment without dispute settlement or intellectual property",
+    "positive_query": "investment",
+    "excluded_terms": [
+      "dispute settlement",
+      "intellectual property"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "United States final provisions not including trademarks",
+    "positive_query": "United States final provisions",
+    "excluded_terms": [
+      "trademarks"
+    ],
+    "iso_code": "USA"
+  },
+  {
+    "query": "sanitary measures provisions excluding aluminum",
+    "positive_query": "sanitary measures provisions",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "government procurement without labor provisions",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "labor provisions"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "technical barriers without e-commerce or patents",
+    "positive_query": "technical barriers",
+    "excluded_terms": [
+      "e-commerce",
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "regulations on investment without aluminum",
+    "positive_query": "regulations on investment",
+    "excluded_terms": [
+      "aluminum"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "investment provisions excluding vehicles",
+    "positive_query": "investment provisions",
+    "excluded_terms": [
+      "vehicles"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "institutional provisions excluding patents",
+    "positive_query": "institutional provisions",
+    "excluded_terms": [
+      "patents"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "China services excluding labor provisions",
+    "positive_query": "China services",
+    "excluded_terms": [
+      "labor provisions"
+    ],
+    "iso_code": "CN"
+  },
+  {
+    "query": "general exceptions excluding agriculture",
+    "positive_query": "general exceptions",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "environmental provisions not including agriculture",
+    "positive_query": "environmental provisions",
+    "excluded_terms": [
+      "agriculture"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "intellectual property not covering investment",
+    "positive_query": "intellectual property investment",
+    "excluded_terms": [
+      "not"
+    ],
+    "iso_code": null
+  },
+  {
+    "query": "New Zealand general exceptions not including dispute settlement",
+    "positive_query": "New Zealand general exceptions",
+    "excluded_terms": [
+      "dispute settlement"
+    ],
+    "iso_code": "NZ"
+  },
+  {
+    "query": "Indonesia tariffs not including labor provisions",
+    "positive_query": "Indonesia tariffs",
+    "excluded_terms": [
+      "labor provisions"
+    ],
+    "iso_code": "IDN"
+  },
+  {
+    "query": "government procurement not including e-commerce, dispute settlement, or digital trade",
+    "positive_query": "government procurement",
+    "excluded_terms": [
+      "e-commerce",
+      "dispute settlement",
+      "digital trade"
+    ],
+    "iso_code": null
+  }
+]
