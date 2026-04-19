@@ -1,0 +1,989 @@
+[
+  {
+    "idx": 5,
+    "query": "I only care about Trade in Goods — Technical Barriers to Trade, not Micro, Small and Medium Sized Enterprises",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: I only care about Trade in Goods — Technical Barriers to Trade, not Micro, Small and Medium Sized Enterprises",
+    "label_raw": "positive: Trade in Goods | excluded: Technical Barriers to Trade, Micro, Small and Medium Sized Enterprises | country: none",
+    "pred_raw": "positive: Trade in Goods | excluded: Technical Barriers to Trade | country: none",
+    "label_parsed": {
+      "positive_query": "Trade in Goods",
+      "excluded_terms": [
+        "Technical Barriers to Trade",
+        "Micro",
+        "Small and Medium Sized Enterprises"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Trade in Goods",
+      "excluded_terms": [
+        "Technical Barriers to Trade"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": false,
+    "iso_match": true
+  },
+  {
+    "idx": 15,
+    "query": "looking for Micro, Small and Medium Sized Enterprises, not the part about annexes",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: looking for Micro, Small and Medium Sized Enterprises, not the part about annexes",
+    "label_raw": "positive: looking for Micro, Small and Medium Sized Enterprises | excluded: annexes | country: none",
+    "pred_raw": "positive: Micro, Small and Medium Sized Enterprises | excluded: annexes | country: none",
+    "label_parsed": {
+      "positive_query": "looking for Micro, Small and Medium Sized Enterprises",
+      "excluded_terms": [
+        "annexes"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Micro, Small and Medium Sized Enterprises",
+      "excluded_terms": [
+        "annexes"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 30,
+    "query": "drop Quantitative Restrictions on Exports and Imports, show me Trade in Services — General Issues Under Trade in Services",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: drop Quantitative Restrictions on Exports and Imports, show me Trade in Services — General Issues Under Trade in Services",
+    "label_raw": "positive: drop Quantitative Restrictions on Exports and Imports, show me Trade in Services | excluded: General Issues Under Trade in Services | country: none",
+    "pred_raw": "positive: Trade in Services | excluded: General Issues Under Trade in Services | country: none",
+    "label_parsed": {
+      "positive_query": "drop Quantitative Restrictions on Exports and Imports, show me Trade in Services",
+      "excluded_terms": [
+        "General Issues Under Trade in Services"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Trade in Services",
+      "excluded_terms": [
+        "General Issues Under Trade in Services"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 51,
+    "query": "General Issues Under Trade in Services for Malaysia but not banking",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: General Issues Under Trade in Services for Malaysia but not banking",
+    "label_raw": "positive: General Issues Under Trade in Services for Malaysia | excluded: banking | country: MYS",
+    "pred_raw": "positive: General Issues Under Trade in Services | excluded: banking | country: MYS",
+    "label_parsed": {
+      "positive_query": "General Issues Under Trade in Services for Malaysia",
+      "excluded_terms": [
+        "banking"
+      ],
+      "iso_code": "MYS"
+    },
+    "pred_parsed": {
+      "positive_query": "General Issues Under Trade in Services",
+      "excluded_terms": [
+        "banking"
+      ],
+      "iso_code": "MYS"
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 62,
+    "query": "Canada General Issues Under Trade in Services not including agricultural products",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Canada General Issues Under Trade in Services not including agricultural products",
+    "label_raw": "positive: Canada General Issues Under Trade in Services | excluded: agricultural products | country: CAN",
+    "pred_raw": "positive: Canada General Issues Under Trade in Services | excluded: agricultural products | country: none",
+    "label_parsed": {
+      "positive_query": "Canada General Issues Under Trade in Services",
+      "excluded_terms": [
+        "agricultural products"
+      ],
+      "iso_code": "CAN"
+    },
+    "pred_parsed": {
+      "positive_query": "Canada General Issues Under Trade in Services",
+      "excluded_terms": [
+        "agricultural products"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": true,
+    "iso_match": false
+  },
+  {
+    "idx": 65,
+    "query": "not e-commerce platforms — General Issues Under Trade in Services provisions in Trade in Services only",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: not e-commerce platforms — General Issues Under Trade in Services provisions in Trade in Services only",
+    "label_raw": "positive: e-commerce platforms | excluded: General Issues Under Trade in Services provisions in Trade in Services | country: none",
+    "pred_raw": "positive: not e-commerce platforms | excluded: General Issues Under Trade in Services provisions in Trade in Services | country: none",
+    "label_parsed": {
+      "positive_query": "e-commerce platforms",
+      "excluded_terms": [
+        "General Issues Under Trade in Services provisions in Trade in Services"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "not e-commerce platforms",
+      "excluded_terms": [
+        "General Issues Under Trade in Services provisions in Trade in Services"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 94,
+    "query": "drop Technical Barriers to Trade, show me Paperless Trade under Digital Trade / Electronic Commerce",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: drop Technical Barriers to Trade, show me Paperless Trade under Digital Trade / Electronic Commerce",
+    "label_raw": "positive: Paperless Trade under Digital Trade / Electronic Commerce | excluded: none | country: none",
+    "pred_raw": "positive: Technical Barriers to Trade | excluded: Paperless Trade, Digital Trade, Electronic Commerce | country: none",
+    "label_parsed": {
+      "positive_query": "Paperless Trade under Digital Trade / Electronic Commerce",
+      "excluded_terms": [],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Technical Barriers to Trade",
+      "excluded_terms": [
+        "Paperless Trade",
+        "Digital Trade",
+        "Electronic Commerce"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": false,
+    "iso_match": true
+  },
+  {
+    "idx": 118,
+    "query": "Competition Policy, Subsidies not applicable",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Competition Policy, Subsidies not applicable",
+    "label_raw": "positive: Competition Policy, Subsidies | excluded: none | country: none",
+    "pred_raw": "positive: Competition Policy | excluded: Subsidies | country: none",
+    "label_parsed": {
+      "positive_query": "Competition Policy, Subsidies",
+      "excluded_terms": [],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Competition Policy",
+      "excluded_terms": [
+        "Subsidies"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": false,
+    "iso_match": true
+  },
+  {
+    "idx": 126,
+    "query": "search for General Issues Under Trade in Services provisions in Trade in Services and remove any schedules content",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: search for General Issues Under Trade in Services provisions in Trade in Services and remove any schedules content",
+    "label_raw": "positive: General Issues Under Trade in Services provisions | excluded: schedules content | country: none",
+    "pred_raw": "positive: General Issues Under Trade in Services provisions in Trade in Services | excluded: schedules content | country: none",
+    "label_parsed": {
+      "positive_query": "General Issues Under Trade in Services provisions",
+      "excluded_terms": [
+        "schedules content"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "General Issues Under Trade in Services provisions in Trade in Services",
+      "excluded_terms": [
+        "schedules content"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 148,
+    "query": "Anti-Dumping within scope, Subsidies out of scope",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Anti-Dumping within scope, Subsidies out of scope",
+    "label_raw": "positive: Anti-Dumping | excluded: Subsidies | country: none",
+    "pred_raw": "positive: Anti-Dumping within scope | excluded: Subsidies | country: none",
+    "label_parsed": {
+      "positive_query": "Anti-Dumping",
+      "excluded_terms": [
+        "Subsidies"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Anti-Dumping within scope",
+      "excluded_terms": [
+        "Subsidies"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 150,
+    "query": "drop automotive, show me Trade in Goods specifically Agriculture",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: drop automotive, show me Trade in Goods specifically Agriculture",
+    "label_raw": "positive: Trade in Goods | excluded: automotive | country: none",
+    "pred_raw": "positive: Trade in Goods specifically Agriculture | excluded: automotive | country: none",
+    "label_parsed": {
+      "positive_query": "Trade in Goods",
+      "excluded_terms": [
+        "automotive"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Trade in Goods specifically Agriculture",
+      "excluded_terms": [
+        "automotive"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 153,
+    "query": "Technical Barriers to Trade only, Micro, Small and Medium Sized Enterprises not relevant",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Technical Barriers to Trade only, Micro, Small and Medium Sized Enterprises not relevant",
+    "label_raw": "positive: Technical Barriers to Trade | excluded: Micro, Small and Medium Sized Enterprises | country: none",
+    "pred_raw": "positive: Technical Barriers to Trade only | excluded: Micro, Small and Medium Sized Enterprises | country: none",
+    "label_parsed": {
+      "positive_query": "Technical Barriers to Trade",
+      "excluded_terms": [
+        "Micro",
+        "Small and Medium Sized Enterprises"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Technical Barriers to Trade only",
+      "excluded_terms": [
+        "Micro",
+        "Small and Medium Sized Enterprises"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 160,
+    "query": "Energy in Indonesia without countervailing measures",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Energy in Indonesia without countervailing measures",
+    "label_raw": "positive: Energy in Indonesia | excluded: countervailing measures | country: IDN",
+    "pred_raw": "positive: Energy in Indonesia | excluded: countervailing measures | country: PHL",
+    "label_parsed": {
+      "positive_query": "Energy in Indonesia",
+      "excluded_terms": [
+        "countervailing measures"
+      ],
+      "iso_code": "IDN"
+    },
+    "pred_parsed": {
+      "positive_query": "Energy in Indonesia",
+      "excluded_terms": [
+        "countervailing measures"
+      ],
+      "iso_code": "PHL"
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": true,
+    "iso_match": false
+  },
+  {
+    "idx": 164,
+    "query": "exclude rules of procedure from Paperless Trade under Digital Trade / Electronic Commerce",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: exclude rules of procedure from Paperless Trade under Digital Trade / Electronic Commerce",
+    "label_raw": "positive: rules of procedure | excluded: Paperless Trade, Digital Trade, Electronic Commerce | country: none",
+    "pred_raw": "positive: rules of procedure | excluded: Digital Trade, Electronic Commerce | country: none",
+    "label_parsed": {
+      "positive_query": "rules of procedure",
+      "excluded_terms": [
+        "Paperless Trade",
+        "Digital Trade",
+        "Electronic Commerce"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "rules of procedure",
+      "excluded_terms": [
+        "Digital Trade",
+        "Electronic Commerce"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": false,
+    "iso_match": true
+  },
+  {
+    "idx": 167,
+    "query": "can I get Digital Trade / Electronic Commerce without the rules of procedure part?",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: can I get Digital Trade / Electronic Commerce without the rules of procedure part?",
+    "label_raw": "positive: Digital Trade / Electronic Commerce | excluded: the rules of procedure part | country: none",
+    "pred_raw": "positive: Digital Trade / Electronic Commerce | excluded: rules of procedure | country: none",
+    "label_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce",
+      "excluded_terms": [
+        "the rules of procedure part"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce",
+      "excluded_terms": [
+        "rules of procedure"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": false,
+    "iso_match": true
+  },
+  {
+    "idx": 175,
+    "query": "Digital Trade / Electronic Commerce specifically General Issues Under Digital Trade aside from Technical Barriers to Trade",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Digital Trade / Electronic Commerce specifically General Issues Under Digital Trade aside from Technical Barriers to Trade",
+    "label_raw": "positive: Digital Trade / Electronic Commerce specifically General Issues Under Digital Trade | excluded: Technical Barriers to Trade | country: none",
+    "pred_raw": "positive: Digital Trade/ Electronic Commerce specifically General Issues Under Digital Trade | excluded: Technical Barriers to Trade | country: none",
+    "label_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce specifically General Issues Under Digital Trade",
+      "excluded_terms": [
+        "Technical Barriers to Trade"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Digital Trade/ Electronic Commerce specifically General Issues Under Digital Trade",
+      "excluded_terms": [
+        "Technical Barriers to Trade"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 176,
+    "query": "is there General Issues Under Digital Trade information that skips professional services?",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: is there General Issues Under Digital Trade information that skips professional services?",
+    "label_raw": "positive: General Issues Under Digital Trade | excluded: professional services | country: none",
+    "pred_raw": "positive: General Issues Under Digital Trade information | excluded: professional services | country: none",
+    "label_parsed": {
+      "positive_query": "General Issues Under Digital Trade",
+      "excluded_terms": [
+        "professional services"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "General Issues Under Digital Trade information",
+      "excluded_terms": [
+        "professional services"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 180,
+    "query": "Trade Facilitation within scope, automotive out of scope",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Trade Facilitation within scope, automotive out of scope",
+    "label_raw": "positive: Trade Facilitation | excluded: automotive | country: none",
+    "pred_raw": "positive: Trade Facilitation within scope | excluded: automotive | country: none",
+    "label_parsed": {
+      "positive_query": "Trade Facilitation",
+      "excluded_terms": [
+        "automotive"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Trade Facilitation within scope",
+      "excluded_terms": [
+        "automotive"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 188,
+    "query": "in United States, Gender without telecommunications",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: in United States, Gender without telecommunications",
+    "label_raw": "positive: in United States, Gender | excluded: telecommunications | country: USA",
+    "pred_raw": "positive: in United States | excluded: telecommunications | country: USA",
+    "label_parsed": {
+      "positive_query": "in United States, Gender",
+      "excluded_terms": [
+        "telecommunications"
+      ],
+      "iso_code": "USA"
+    },
+    "pred_parsed": {
+      "positive_query": "in United States",
+      "excluded_terms": [
+        "telecommunications"
+      ],
+      "iso_code": "USA"
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 218,
+    "query": "General Issues Under Trade in Services under Trade in Services — ignore ISDS",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: General Issues Under Trade in Services under Trade in Services — ignore ISDS",
+    "label_raw": "positive: General Issues Under Trade in Services under Trade in Services | excluded: ISDS | country: none",
+    "pred_raw": "positive: General Issues Under Trade in Services | excluded: ISDS | country: none",
+    "label_parsed": {
+      "positive_query": "General Issues Under Trade in Services under Trade in Services",
+      "excluded_terms": [
+        "ISDS"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "General Issues Under Trade in Services",
+      "excluded_terms": [
+        "ISDS"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 221,
+    "query": "Digital Trade / Electronic Commerce — General Issues Under Digital Trade provisions excluding safeguard measures",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Digital Trade / Electronic Commerce — General Issues Under Digital Trade provisions excluding safeguard measures",
+    "label_raw": "positive: Digital Trade / Electronic Commerce — General Issues Under Digital Trade provisions | excluded: safeguard measures | country: none",
+    "pred_raw": "positive: Digital Trade / Electronic Commerce | excluded: safeguard measures | country: none",
+    "label_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce — General Issues Under Digital Trade provisions",
+      "excluded_terms": [
+        "safeguard measures"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce",
+      "excluded_terms": [
+        "safeguard measures"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 244,
+    "query": "no final provisions, just Trade in Services specifically General Issues Under Trade in Services",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: no final provisions, just Trade in Services specifically General Issues Under Trade in Services",
+    "label_raw": "positive: Trade in Services | excluded: final provisions, General Issues Under Trade in Services | country: none",
+    "pred_raw": "positive: Trade in Services specifically General Issues Under Trade in Services | excluded: final provisions | country: none",
+    "label_parsed": {
+      "positive_query": "Trade in Services",
+      "excluded_terms": [
+        "final provisions",
+        "General Issues Under Trade in Services"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Trade in Services specifically General Issues Under Trade in Services",
+      "excluded_terms": [
+        "final provisions"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": false,
+    "iso_match": true
+  },
+  {
+    "idx": 249,
+    "query": "Trade in Services specifically General Issues Under Trade in Services within scope, maritime transport out of scope",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Trade in Services specifically General Issues Under Trade in Services within scope, maritime transport out of scope",
+    "label_raw": "positive: Trade in Services specifically General Issues Under Trade in Services | excluded: maritime transport | country: none",
+    "pred_raw": "positive: Trade in Services specifically General Issues Under Trade in Services within scope | excluded: maritime transport | country: none",
+    "label_parsed": {
+      "positive_query": "Trade in Services specifically General Issues Under Trade in Services",
+      "excluded_terms": [
+        "maritime transport"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Trade in Services specifically General Issues Under Trade in Services within scope",
+      "excluded_terms": [
+        "maritime transport"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 260,
+    "query": "focus on Digital Trade / Electronic Commerce and disregard automotive",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: focus on Digital Trade / Electronic Commerce and disregard automotive",
+    "label_raw": "positive: focus on Digital Trade / Electronic Commerce | excluded: automotive | country: none",
+    "pred_raw": "positive: Digital Trade / Electronic Commerce | excluded: automotive | country: none",
+    "label_parsed": {
+      "positive_query": "focus on Digital Trade / Electronic Commerce",
+      "excluded_terms": [
+        "automotive"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce",
+      "excluded_terms": [
+        "automotive"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 261,
+    "query": "Digital Trade / Electronic Commerce within scope, anti-dumping duties out of scope",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Digital Trade / Electronic Commerce within scope, anti-dumping duties out of scope",
+    "label_raw": "positive: Digital Trade / Electronic Commerce | excluded: anti-dumping duties | country: none",
+    "pred_raw": "positive: Digital Trade / Electronic Commerce within scope | excluded: anti-dumping duties | country: none",
+    "label_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce",
+      "excluded_terms": [
+        "anti-dumping duties"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce within scope",
+      "excluded_terms": [
+        "anti-dumping duties"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 266,
+    "query": "Trade in Goods — General Issues Under Trade in Goods — Trade Facilitation out of scope",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Trade in Goods — General Issues Under Trade in Goods — Trade Facilitation out of scope",
+    "label_raw": "positive: Trade in Goods | excluded: Trade Facilitation | country: none",
+    "pred_raw": "positive: Trade in Goods — General Issues Under Trade in Goods | excluded: Trade Facilitation | country: none",
+    "label_parsed": {
+      "positive_query": "Trade in Goods",
+      "excluded_terms": [
+        "Trade Facilitation"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Trade in Goods — General Issues Under Trade in Goods",
+      "excluded_terms": [
+        "Trade Facilitation"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 278,
+    "query": "I want General Issues Under Trade in Services provisions in Trade in Services info, skip anti-circumvention",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: I want General Issues Under Trade in Services provisions in Trade in Services info, skip anti-circumvention",
+    "label_raw": "positive: General Issues Under Trade in Services provisions | excluded: anti-circumvention | country: none",
+    "pred_raw": "positive: General Issues Under Trade in Services provisions in Trade in Services info | excluded: anti-circumvention | country: none",
+    "label_parsed": {
+      "positive_query": "General Issues Under Trade in Services provisions",
+      "excluded_terms": [
+        "anti-circumvention"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "General Issues Under Trade in Services provisions in Trade in Services info",
+      "excluded_terms": [
+        "anti-circumvention"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 282,
+    "query": "everything about Intellectual Property Rights except national treatment",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: everything about Intellectual Property Rights except national treatment",
+    "label_raw": "positive: everything about Intellectual Property Rights | excluded: national treatment | country: none",
+    "pred_raw": "positive: Intellectual Property Rights | excluded: national treatment | country: none",
+    "label_parsed": {
+      "positive_query": "everything about Intellectual Property Rights",
+      "excluded_terms": [
+        "national treatment"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Intellectual Property Rights",
+      "excluded_terms": [
+        "national treatment"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 302,
+    "query": "Trade in Goods — Sanitary and Phytosanitary Measures except Subsidies and except Micro, Small and Medium Sized Enterprises",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Trade in Goods — Sanitary and Phytosanitary Measures except Subsidies and except Micro, Small and Medium Sized Enterprises",
+    "label_raw": "positive: Trade in Goods — Sanitary and Phytosanitary Measures | excluded: Subsidies, Micro, Small and Medium Sized Enterprises | country: none",
+    "pred_raw": "positive: Trade in Goods | excluded: Subsidies, Micro, Small and Medium Sized Enterprises | country: none",
+    "label_parsed": {
+      "positive_query": "Trade in Goods — Sanitary and Phytosanitary Measures",
+      "excluded_terms": [
+        "Subsidies",
+        "Micro",
+        "Small and Medium Sized Enterprises"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Trade in Goods",
+      "excluded_terms": [
+        "Subsidies",
+        "Micro",
+        "Small and Medium Sized Enterprises"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 309,
+    "query": "Micro, Small and Medium Sized Enterprises only, general exceptions not relevant",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Micro, Small and Medium Sized Enterprises only, general exceptions not relevant",
+    "label_raw": "positive: Micro, Small and Medium Sized Enterprises | excluded: general exceptions | country: none",
+    "pred_raw": "positive: Micro, Small and Medium Sized Enterprises only | excluded: general exceptions | country: none",
+    "label_parsed": {
+      "positive_query": "Micro, Small and Medium Sized Enterprises",
+      "excluded_terms": [
+        "general exceptions"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Micro, Small and Medium Sized Enterprises only",
+      "excluded_terms": [
+        "general exceptions"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 310,
+    "query": "Subsidies provisions in Trade in Goods only, Intellectual Property Rights not relevant",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Subsidies provisions in Trade in Goods only, Intellectual Property Rights not relevant",
+    "label_raw": "positive: Subsidies provisions in Trade in Goods | excluded: Intellectual Property Rights | country: none",
+    "pred_raw": "positive: Subsidies provisions in Trade in Goods only | excluded: Intellectual Property Rights | country: none",
+    "label_parsed": {
+      "positive_query": "Subsidies provisions in Trade in Goods",
+      "excluded_terms": [
+        "Intellectual Property Rights"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Subsidies provisions in Trade in Goods only",
+      "excluded_terms": [
+        "Intellectual Property Rights"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 317,
+    "query": "Digital Trade / Electronic Commerce — General Issues Under Digital Trade — Intellectual Property Rights out of scope",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Digital Trade / Electronic Commerce — General Issues Under Digital Trade — Intellectual Property Rights out of scope",
+    "label_raw": "positive: Digital Trade / Electronic Commerce — General Issues Under Digital Trade | excluded: Intellectual Property Rights | country: none",
+    "pred_raw": "positive: Digital Trade / Electronic Commerce | excluded: Intellectual Property Rights | country: none",
+    "label_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce — General Issues Under Digital Trade",
+      "excluded_terms": [
+        "Intellectual Property Rights"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Digital Trade / Electronic Commerce",
+      "excluded_terms": [
+        "Intellectual Property Rights"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 336,
+    "query": "drop Micro, Small and Medium Sized Enterprises, show me State-Owned Enterprise",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: drop Micro, Small and Medium Sized Enterprises, show me State-Owned Enterprise",
+    "label_raw": "positive: State-Owned Enterprise | excluded: Micro, Small and Medium Sized Enterprises | country: none",
+    "pred_raw": "positive: State-Owned Enterprise | excluded: none | country: none",
+    "label_parsed": {
+      "positive_query": "State-Owned Enterprise",
+      "excluded_terms": [
+        "Micro",
+        "Small and Medium Sized Enterprises"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "State-Owned Enterprise",
+      "excluded_terms": [],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": false,
+    "iso_match": true
+  },
+  {
+    "idx": 376,
+    "query": "Data Related Digital Trade Policy provisions in Digital Trade / Electronic Commerce in Canada without insurance",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Data Related Digital Trade Policy provisions in Digital Trade / Electronic Commerce in Canada without insurance",
+    "label_raw": "positive: Data Related Digital Trade Policy provisions in Digital Trade / Electronic Commerce in Canada | excluded: insurance | country: CAN",
+    "pred_raw": "positive: Data Related Digital Trade Policy provisions in Digital Trade / Electronic Commerce in Canada | excluded: insurance | country: none",
+    "label_parsed": {
+      "positive_query": "Data Related Digital Trade Policy provisions in Digital Trade / Electronic Commerce in Canada",
+      "excluded_terms": [
+        "insurance"
+      ],
+      "iso_code": "CAN"
+    },
+    "pred_parsed": {
+      "positive_query": "Data Related Digital Trade Policy provisions in Digital Trade / Electronic Commerce in Canada",
+      "excluded_terms": [
+        "insurance"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": true,
+    "iso_match": false
+  },
+  {
+    "idx": 380,
+    "query": "focus on State-Owned Enterprise and disregard investment arbitration",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: focus on State-Owned Enterprise and disregard investment arbitration",
+    "label_raw": "positive: focus on State-Owned Enterprise | excluded: investment arbitration | country: none",
+    "pred_raw": "positive: State-Owned Enterprise | excluded: investment arbitration | country: none",
+    "label_parsed": {
+      "positive_query": "focus on State-Owned Enterprise",
+      "excluded_terms": [
+        "investment arbitration"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "State-Owned Enterprise",
+      "excluded_terms": [
+        "investment arbitration"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 385,
+    "query": "Energy only, digital services not relevant",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Energy only, digital services not relevant",
+    "label_raw": "positive: Energy only | excluded: digital services | country: none",
+    "pred_raw": "positive: Energy | excluded: digital services | country: none",
+    "label_parsed": {
+      "positive_query": "Energy only",
+      "excluded_terms": [
+        "digital services"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Energy",
+      "excluded_terms": [
+        "digital services"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": false,
+    "ex_match": true,
+    "iso_match": true
+  },
+  {
+    "idx": 392,
+    "query": "search for Subsidies and remove any apparel content",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: search for Subsidies and remove any apparel content",
+    "label_raw": "positive: Subsidies | excluded: apparel content | country: none",
+    "pred_raw": "positive: Subsidies | excluded: apparel | country: none",
+    "label_parsed": {
+      "positive_query": "Subsidies",
+      "excluded_terms": [
+        "apparel content"
+      ],
+      "iso_code": null
+    },
+    "pred_parsed": {
+      "positive_query": "Subsidies",
+      "excluded_terms": [
+        "apparel"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": false,
+    "iso_match": true
+  },
+  {
+    "idx": 393,
+    "query": "Malaysia General Issues Under Digital Trade not including Micro, Small and Medium Sized Enterprises",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: Malaysia General Issues Under Digital Trade not including Micro, Small and Medium Sized Enterprises",
+    "label_raw": "positive: Malaysia General Issues Under Digital Trade | excluded: Micro, Small, Medium Sized Enterprises | country: MYS",
+    "pred_raw": "positive: Malaysia General Issues Under Digital Trade | excluded: Micro, Small and Medium Sized Enterprises | country: MYS",
+    "label_parsed": {
+      "positive_query": "Malaysia General Issues Under Digital Trade",
+      "excluded_terms": [
+        "Micro",
+        "Small",
+        "Medium Sized Enterprises"
+      ],
+      "iso_code": "MYS"
+    },
+    "pred_parsed": {
+      "positive_query": "Malaysia General Issues Under Digital Trade",
+      "excluded_terms": [
+        "Micro",
+        "Small and Medium Sized Enterprises"
+      ],
+      "iso_code": "MYS"
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": false,
+    "iso_match": true
+  },
+  {
+    "idx": 396,
+    "query": "United States General Issues Under Digital Trade excluding MFN clause",
+    "input": "Parse the trade agreement search query. Extract the positive topic and any excluded terms. Query: United States General Issues Under Digital Trade excluding MFN clause",
+    "label_raw": "positive: United States General Issues Under Digital Trade | excluded: MFN clause | country: USA",
+    "pred_raw": "positive: United States General Issues Under Digital Trade | excluded: MFN clause | country: none",
+    "label_parsed": {
+      "positive_query": "United States General Issues Under Digital Trade",
+      "excluded_terms": [
+        "MFN clause"
+      ],
+      "iso_code": "USA"
+    },
+    "pred_parsed": {
+      "positive_query": "United States General Issues Under Digital Trade",
+      "excluded_terms": [
+        "MFN clause"
+      ],
+      "iso_code": null
+    },
+    "exact_match": false,
+    "pq_match": true,
+    "ex_match": true,
+    "iso_match": false
+  }
+]
