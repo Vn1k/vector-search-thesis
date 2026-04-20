@@ -9,6 +9,7 @@ from spellchecker import SpellChecker
 import localspelling
 from ollama import chat
 from src.config import settings
+import spacy
 
 # Import fine-tuned negation parser (optional)
 try:
@@ -37,6 +38,7 @@ class SearchService:
         use_reranker: bool = False,
         use_llm: bool = False,
         use_finetuned: bool = True,
+        use_lemmatization: bool = True,
     ):
         logger.info("[Init] Initializing model & database")
         self.client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
@@ -70,7 +72,22 @@ class SearchService:
                 self.use_finetuned = False
         else:
             logger.info("[Init] Fine-tuned Parser: OFF")
-
+        
+        # ─── Lemmatization Module (SpaCy) ─────────────────────────────
+        self.use_lemmatization = use_lemmatization
+        self.nlp = None
+        if self.use_lemmatization:
+            try:
+                self.nlp = spacy.load("en_core_web_sm")
+                lemmatizer = self.nlp.get_pipe("lemmatizer")
+                logger.info("[Init] Lemmatization Module: ON")
+                logger.info(f"[Init] SpaCy loaded for Lemmatization mode: {lemmatizer.mode}")
+            except Exception as e:
+                logger.warning(f"[Init] SpaCy failed to load: {e}")
+                self.use_lemmatization = False
+        else:
+            logger.info("[Init] Lemmatization Module: OFF")
+                
         # ─── LLM Query Parser (fallback/optional) ─────────────────────────────
         self.use_llm = use_llm
         self.LLM_MODEL = "nemotron-3-nano:4b"
@@ -177,6 +194,32 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
                 return country.alpha_3
 
         return None
+
+    def lemmarization(self, negative_terms) -> list:
+        """
+        Ekspansi kueri negatif dengan trik "Heuristic Noun-Phrase":
+        HANYA me-lemmatize kata terakhir dari sebuah frasa untuk menjaga keutuhan konteks (Adjective/Verb).
+        """
+        term = negative_terms.lower().strip()
+        doc = self.nlp(term)
+
+        # Jika cuma 1 kata, langsung lemmatize saja
+        if len(doc) == 1:
+            lemma_term = doc[0].lemma_
+
+        # Jika frasa (2 kata atau lebih)
+        else:
+            # 1. Ambil teks asli dari kata pertama sampai sebelum terakhir
+            prefix = " ".join([token.text for token in doc[:-1]])
+
+            # 2. Lemmatize HANYA kata terakhir (biasanya kata benda jamak)
+            suffix_lemma = doc[-1].lemma_
+
+            # 3. Gabungkan kembali
+            lemma_term = f"{prefix} {suffix_lemma}"
+
+        # Hapus duplikat (kalau term dan lemma_term ternyata sama)
+        return list(set([term, lemma_term]))
 
     def search(self, query: str, limit: int = 5, threshold: float = 0.1):
         logger.info(f"[Search] === New Search Request ===")
@@ -303,15 +346,24 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
         # ─── Step 6: Filter excluded_terms (hasil LLM negation) ───────────────
         if excluded_terms:
-            logger.info(
-                f"[NegationFilter] Starting exclusion filter with terms: {excluded_terms}"
-            )
+            logger.info(f"[NegationFilter] Original terms from FLAN: {excluded_terms}")
+            
+            # 1. Lakukan ekspansi (Query Expansion) ke semua term
+            if self.use_lemmatization and self.nlp:
+                expanded_excluded_terms = []
+                for term in excluded_terms:
+                    expanded_excluded_terms.extend(self.lemmarization(term))
+                logger.info(f"[NegationFilter] Using Lemmatized Expansion: {expanded_excluded_terms}")
+            else:
+                expanded_excluded_terms = excluded_terms
+                logger.info("[NegationFilter] Using Exact Match Only (No Lemmatization)")
+
             logger.info(f"[NegationFilter] Results before filter: {len(results)}")
 
             def find_excluded_terms(item: dict) -> list:
-                """Return list of excluded terms found in the document."""
+                """Return list of expanded terms found in the document."""
                 text = item.get("article_text_display", "").lower()
-                return [term for term in excluded_terms if term.lower() in text]
+                return [term for term in expanded_excluded_terms if term in text]
 
             filtered_results = []
             excluded_docs_log = []
@@ -322,19 +374,14 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
                     # Log excluded document details
                     doc_info = f"{item.get('agreement', '-')} - {item.get('chapter_name', '-')} - {item.get('article_name', '-')}"
                     excluded_docs_log.append({"doc": doc_info, "terms": found_terms})
-                    logger.info(
-                        f"[NegationFilter] EXCLUDED: '{doc_info}' matched terms: {found_terms}"
-                    )
+                    logger.info(f" 🚫 DROP: '{doc_info}' matched terms: {found_terms}")
                 else:
                     filtered_results.append(item)
 
             results = filtered_results
             after = len(results)
 
-            logger.info(
-                f"[NegationFilter] Results after filter: {after} (removed {len(results) - after + len(excluded_docs_log)} documents)"
-            )
-            logger.info(f"[NegationFilter] Excluded terms applied: {excluded_terms}")
+            logger.info(f"[NegationFilter] Results after filter: {after} (removed {len(excluded_docs_log)} documents)")
         # ──────────────────────────────────────────────────────────────────────
 
         results = sorted(results, key=lambda x: x["score"], reverse=True)
@@ -395,4 +442,5 @@ search_engine = SearchService(
     #Negation
     use_llm=False,
     use_finetuned=True,
+    use_lemmatization=True
 )
