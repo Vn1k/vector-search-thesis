@@ -261,20 +261,42 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
             f"[QueryTransform] Query vector generated (dim: {len(query_vector)})"
         )
 
-        hits = self.client.query_points(
+        raw_hits = self.client.query_points(
             collection_name=settings.COLLECTION_NAME,
             query=query_vector,
             query_filter=qdrant_filter,
-            limit=20,
+            limit=30,
             with_payload=True,
         ).points
 
-        logger.info(f"[QueryTransform] Qdrant returned {len(hits)} results")
+        logger.info(f"[QueryTransform] Qdrant returned {len(raw_hits)} results")
 
-        if not hits:
+        if not raw_hits:
             logger.info("[QueryTransform] No results from Qdrant, returning empty")
             return []
         # ──────────────────────────────────────────────────────────────────────
+
+        unique_hits = []
+        seen_articles = set()
+
+        for hit in raw_hits:
+            rta_id = hit.payload.get("rta_id")
+            article_name = hit.payload.get("article_name", "").strip()
+            
+            # Buat "KTP" unik untuk setiap pasal: Contoh "100_Definitions"
+            unique_key = f"{rta_id}_{article_name}"
+
+            # Jika KTP ini belum pernah kita lihat, masukkan ke daftar unik!
+            if unique_key not in seen_articles:
+                seen_articles.add(unique_key)
+                unique_hits.append(hit)
+            else:
+                # Jika sudah ada, abaikan (karena kita hanya butuh 1 per pasal, 
+                # dan yang pertama pasti skornya paling tinggi)
+                pass
+        logger.info(f"[Deduplication] Reduced {len(raw_hits)} chunks to {len(unique_hits)} unique articles.")
+
+        hits = unique_hits
 
         # ─── Step 5: Scoring ──────────────────────────────────────────────────
         if self.use_reranker:
