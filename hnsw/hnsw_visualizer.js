@@ -108,10 +108,34 @@ function makeRng(seed) {
   };
 }
 
+function embeddingVector(point) {
+  // The canvas is 2D, so this visualizer treats each point as a tiny 2D embedding.
+  // Centering makes cosine direction easier to see than using raw positive x/y values.
+  return { x: point.x - 50, y: point.y - 50 };
+}
+
+function cosineSimilarity(a, b) {
+  const av = embeddingVector(a);
+  const bv = embeddingVector(b);
+  const dot = av.x * bv.x + av.y * bv.y;
+  const aNorm = Math.hypot(av.x, av.y);
+  const bNorm = Math.hypot(bv.x, bv.y);
+  if (aNorm === 0 || bNorm === 0) return 0;
+  return dot / (aNorm * bNorm);
+}
+
 function distance(a, b) {
-  const dx = a.x - b.x;
-  const dy = a.y - b.y;
-  return Math.hypot(dx, dy);
+  return 1 - cosineSimilarity(a, b);
+}
+
+function metricText(a, b) {
+  const similarity = cosineSimilarity(a, b);
+  const cosineDistance = 1 - similarity;
+  return `cos=${similarity.toFixed(3)}, dist=${cosineDistance.toFixed(3)}`;
+}
+
+function formatDistance(value) {
+  return value === Infinity ? "∞" : value.toFixed(3);
 }
 
 function nodeLabel(id) {
@@ -477,7 +501,7 @@ function searchLayer(graph, q, entryPoints, ef, layer, recordOptions = null) {
   if (recordOptions) {
     pushFrame({
       title: `${prefix}: initialize SEARCH-LAYER`,
-      detail: `Mulai dari ${asLabels(entryPoints)} dengan ef=${ef}. Semua perbandingan "dekat" di sini selalu diukur ke ${queryLabel(q)}, bukan ke node yang sedang dibuka.`,
+      detail: `Mulai dari ${asLabels(entryPoints)} dengan ef=${ef}. Metric yang dipakai adalah Cosine seperti di Qdrant: similarity makin besar berarti makin mirip, sedangkan Algorithm membandingkan cosine distance = 1 - similarity.`,
       algorithm: "Algorithm 2",
       layer,
       query: recordOptions.query || q,
@@ -500,7 +524,7 @@ function searchLayer(graph, q, entryPoints, ef, layer, recordOptions = null) {
     if (recordOptions) {
       pushFrame({
         title: `${prefix}: extract nearest candidate`,
-        detail: `${nodeLabel(current)} adalah item terdekat di C terhadap ${queryLabel(q)}. Bandingkan distance(${nodeLabel(current)}, ${queryLabel(q)})=${currentDistance.toFixed(1)} dengan batas terjauh di W=${furthestDistance.toFixed(1)}.`,
+        detail: `${nodeLabel(current)} adalah item terdekat di C terhadap ${queryLabel(q)}. Nilainya: ${metricText(getNode(graph, current), q)}. Bandingkan cosine distance ${formatDistance(currentDistance)} dengan batas terjauh di W ${formatDistance(furthestDistance)}.`,
         algorithm: "Algorithm 2",
         layer,
         query: recordOptions.query || q,
@@ -517,7 +541,7 @@ function searchLayer(graph, q, entryPoints, ef, layer, recordOptions = null) {
       if (recordOptions) {
         pushFrame({
           title: `${prefix}: stop condition`,
-          detail: `${nodeLabel(current)} lebih jauh dari ${queryLabel(q)} dibanding item terjauh di W, jadi Algorithm 2 berhenti scan layer ini. ${recordOptions.note || ""}`.trim(),
+          detail: `${nodeLabel(current)} punya cosine distance lebih besar dari batas W, jadi ia lebih jauh dari ${queryLabel(q)} dan Algorithm 2 berhenti scan layer ini. ${recordOptions.note || ""}`.trim(),
           algorithm: "Algorithm 2",
           layer,
           query: recordOptions.query || q,
@@ -554,8 +578,8 @@ function searchLayer(graph, q, entryPoints, ef, layer, recordOptions = null) {
         pushFrame({
           title: shouldAdd ? `${prefix}: neighbor masuk C dan W` : `${prefix}: neighbor hanya ditandai visited`,
           detail: shouldAdd
-            ? `${nodeLabel(nid)} diterima karena distance(${nodeLabel(nid)}, ${queryLabel(q)})=${neighborDistance.toFixed(1)} lebih kecil dari batas W=${boundaryDistance.toFixed(1)}, atau W belum penuh. W sebelum: ${beforeText}. W sesudah: ${afterText}. ${removedFromW.length ? `Dibuang dari W: ${removedText}.` : "Belum ada yang dibuang dari W."}`
-            : `${nodeLabel(nid)} dikunjungi dari ${nodeLabel(current)}, tetapi distance(${nodeLabel(nid)}, ${queryLabel(q)})=${neighborDistance.toFixed(1)} tidak lebih kecil dari batas W=${boundaryDistance.toFixed(1)}.`,
+            ? `${nodeLabel(nid)} diterima karena ${metricText(getNode(graph, nid), q)} dan cosine distance ${formatDistance(neighborDistance)} lebih kecil dari batas W ${formatDistance(boundaryDistance)}, atau W belum penuh. W sebelum: ${beforeText}. W sesudah: ${afterText}. ${removedFromW.length ? `Dibuang dari W: ${removedText}.` : "Belum ada yang dibuang dari W."}`
+            : `${nodeLabel(nid)} dikunjungi dari ${nodeLabel(current)}, tetapi ${metricText(getNode(graph, nid), q)} tidak lebih baik dari batas W ${formatDistance(boundaryDistance)}.`,
           algorithm: "Algorithm 2",
           layer,
           query: recordOptions.query || q,
@@ -616,7 +640,7 @@ function selectNeighborsHeuristic(graph, q, candidateIds, M, layer, options) {
       if (options.record) {
         pushFrame({
           title: "Algorithm 4: simpan neighbor yang beragam",
-          detail: `${nodeLabel(candidate)} disimpan sebagai link untuk ${baseName}. Alasannya: ${nodeLabel(candidate)} lebih dekat ke ${baseName} daripada ke semua neighbor yang sudah dipilih, jadi arahnya masih berguna dan tidak redundant.`,
+          detail: `${nodeLabel(candidate)} disimpan sebagai link untuk ${baseName}. Dengan metric Cosine, ${nodeLabel(candidate)} masih lebih mirip ke ${baseName} (${metricText(candidateNode, q)}) daripada ke semua neighbor yang sudah dipilih, jadi arahnya masih berguna dan tidak redundant.`,
           algorithm: "Algorithm 4",
           layer,
           query: q,
@@ -631,7 +655,7 @@ function selectNeighborsHeuristic(graph, q, candidateIds, M, layer, options) {
       if (options.record) {
         pushFrame({
           title: "Algorithm 4: pangkas neighbor redundant",
-          detail: `${nodeLabel(candidate)} dipangkas dari daftar link ${baseName} karena lebih dekat ke ${nodeLabel(blockedBy)} daripada ke ${baseName}. Artinya ${nodeLabel(candidate)} bisa dicapai lewat ${nodeLabel(blockedBy)}, sehingga link langsungnya dianggap redundant.`,
+          detail: `${nodeLabel(candidate)} dipangkas dari daftar link ${baseName}. Dengan Cosine, ${nodeLabel(candidate)} lebih mirip/dekat ke ${nodeLabel(blockedBy)} (${metricText(candidateNode, getNode(graph, blockedBy))}) daripada ke ${baseName} (${metricText(candidateNode, q)}). Artinya link langsung ke ${baseName} dianggap redundant.`,
           algorithm: "Algorithm 4",
           layer,
           query: q,
@@ -787,6 +811,7 @@ function paramsHtml(frame) {
     return `
       <strong>Parameter yang dipakai</strong>
       <div class="param-grid">
+        <span><b>Metric=Cosine</b><br>Qdrant membandingkan vector dengan cosine similarity.</span>
         <span><b>K=${params.K}</b><br>Jumlah hasil akhir yang ingin diambil.</span>
         <span><b>efSearch=${params.efSearch}</b><br>Lebar W saat query search. Lebih besar biasanya lebih akurat, tapi lebih lambat.</span>
         <span><b>Active layer=${app.activeLayer}</b><br>Layer yang sedang divisualisasikan sekarang.</span>
@@ -799,6 +824,7 @@ function paramsHtml(frame) {
     return `
       <strong>Parameter yang dipakai</strong>
       <div class="param-grid">
+        <span><b>Metric=Cosine</b><br>Pruning juga membandingkan kemiripan antar vector dengan cosine.</span>
         <span><b>M=${params.M}</b><br>Jumlah neighbor/link yang ingin dipilih untuk node baru.</span>
         <span><b>Mmax=${params.Mmax}</b><br>Batas maksimal link per node. Jika lewat, link dipangkas.</span>
         <span><b>Active layer=${app.activeLayer}</b><br>Layer tempat link sedang dipilih/dipangkas.</span>
@@ -811,6 +837,7 @@ function paramsHtml(frame) {
     return `
       <strong>Parameter yang dipakai</strong>
       <div class="param-grid">
+        <span><b>Metric=Cosine</b><br>Similarity besar = lebih mirip; distance kecil = lebih dekat.</span>
         <span><b>ef aktif=${activeEf}</b><br>Ukuran maksimal W pada step ini.</span>
         <span><b>Active layer=${app.activeLayer}</b><br>Layer graph yang sedang dicari.</span>
         <span><b>efConstruction=${params.efConstruction}</b><br>Dipakai saat indexing agar kandidat neighbor lebih luas.</span>
@@ -822,6 +849,7 @@ function paramsHtml(frame) {
   return `
     <strong>Parameter yang dipakai</strong>
     <div class="param-grid">
+      <span><b>Metric=Cosine</b><br>Visualizer memakai cosine distance = 1 - cosine similarity.</span>
       <span><b>M=${params.M}</b><br>Jumlah neighbor/link yang dipilih.</span>
       <span><b>Mmax=${params.Mmax}</b><br>Batas maksimal link per node.</span>
       <span><b>K=${params.K}</b><br>Jumlah hasil nearest neighbor.</span>
@@ -845,7 +873,8 @@ function helperHtml(frame) {
       <strong>Penjelasan istilah step ini</strong>
       <ul>
         <li><b>C / candidate queue</b>: daftar node yang sudah ditemukan dan masih mungkin di-expand. Algorithm mengambil node terdekat dari C untuk dicek berikutnya.</li>
-        <li><b>W / nearest list</b>: daftar node terbaik sementara yang paling dekat ke <b>${escapeHtml(queryLabel(frame.query))}</b>. Kalau W lebih besar dari <b>ef</b>, node paling jauh dari query dibuang.</li>
+        <li><b>W / nearest list</b>: daftar node terbaik sementara yang paling mirip ke <b>${escapeHtml(queryLabel(frame.query))}</b> berdasarkan Cosine. Kalau W lebih besar dari <b>ef</b>, node dengan cosine distance paling besar dibuang.</li>
+        <li><b>Cosine</b>: similarity makin besar berarti makin mirip. Di pseudocode HNSW, ini dibaca sebagai distance, yaitu <b>1 - similarity</b>.</li>
         <li><b>Visited</b>: node yang sudah pernah dilihat, supaya tidak dihitung berulang.</li>
       </ul>
     `;
@@ -856,7 +885,7 @@ function helperHtml(frame) {
       <ul>
         <li><b>R</b>: neighbor yang dipilih untuk menjadi link graph.</li>
         <li><b>Wd</b>: kandidat yang dipangkas karena arahnya dianggap redundant.</li>
-        <li><b>RNG pruning</b>: kandidat disimpan kalau memberi arah baru; dipangkas kalau lebih dekat ke neighbor terpilih daripada ke node baru/query.</li>
+        <li><b>RNG pruning</b>: kandidat disimpan kalau memberi arah baru; dipangkas kalau secara Cosine lebih mirip ke neighbor terpilih daripada ke node yang sedang dipruning.</li>
         <li><b>Saat pindah ke node lama</b>: HNSW sedang merapikan ulang link node lama yang baru menerima link dua arah. Ini terjadi kalau jumlah link node itu <b>&gt; Mmax</b>.</li>
         <li><b>Berlaku untuk semua neighbor</b>: setiap node yang baru terhubung ke node baru akan dicek. Yang tidak melebihi Mmax dilewati; yang melebihi Mmax dipruning seperti contoh ini.</li>
       </ul>
