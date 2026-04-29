@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HNSW Algorithm Visualizer</title>
+    <link rel="stylesheet" href="./hnsw_visualizer.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <h1>HNSW Visualizer</h1>
+            <p>Walkthrough interaktif untuk Algorithm 1, 2, 4, dan 5. Istilah seperti entry point, candidates, dan nearest list tetap dipakai agar cocok dengan paper dan Qdrant.</p>
+          </div>
+          <div class="mode-tabs" role="tablist" aria-label="Visualization mode">
+            <button class="tab is-active" data-mode="insert" type="button">Index / Upload</button>
+            <button class="tab" data-mode="search" type="button">K-NN Search</button>
+          </div>
+        </header>
+
+        <div class="canvas-frame">
+          <canvas id="graphCanvas" width="1040" height="640" aria-label="HNSW graph visualization"></canvas>
+          <section class="story-card" aria-live="polite">
+            <div class="story-kicker" id="storyAlgorithm">Siap</div>
+            <h2 id="storyTitle">Mulai dari base graph</h2>
+            <p id="storyDetail">Klik Prepare Scenario, lalu tekan Next untuk melihat proses berpindah dari node ke node.</p>
+            <div class="story-meta">
+              <span id="storyMove">Gerak: -</span>
+              <span id="storyFocus">Fokus: -</span>
+            </div>
+            <div class="story-help" id="storyHelp">
+              <strong>Catatan</strong>
+              <ul>
+                <li><b>C</b> adalah candidate queue: node yang akan dicek berikutnya.</li>
+                <li><b>W</b> adalah nearest list: node terdekat sementara terhadap query/vector baru.</li>
+              </ul>
+            </div>
+            <div class="story-params" id="storyParams">
+              <strong>Parameter yang dipakai</strong>
+              <div class="param-grid">
+                <span><b>M</b> jumlah neighbor/link yang dipilih.</span>
+                <span><b>ef</b> lebar pencarian sementara.</span>
+              </div>
+            </div>
+          </section>
+          <div class="legend" aria-label="Graph legend">
+            <span><i class="dot normal"></i>Vector tersimpan</span>
+            <span><i class="dot query"></i>Query / vector baru</span>
+            <span><i class="dot entry"></i>Entry point</span>
+            <span><i class="dot candidate"></i>Candidate queue C</span>
+            <span><i class="dot found"></i>Nearest list W</span>
+            <span><i class="dot removed"></i>Dibuang dari W</span>
+            <span><i class="dot selected"></i>Neighbor dipilih</span>
+            <span><i class="dot pruned"></i>Dipangkas RNG</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="control-panel">
+        <section class="panel-section">
+          <h2>Kontrol</h2>
+          <div class="button-row">
+            <button id="resetBtn" type="button">Reset Dataset</button>
+            <button id="randomBtn" type="button">Acak Dataset</button>
+          </div>
+          <div class="button-row">
+            <button id="buildBtn" type="button">Buat Base Graph</button>
+            <button id="scenarioBtn" type="button">Prepare Scenario</button>
+          </div>
+          <div class="button-row step-buttons">
+            <button id="prevBtn" type="button">Prev</button>
+            <button id="nextBtn" type="button">Next</button>
+            <button id="playBtn" type="button">Play</button>
+          </div>
+          <input id="stepSlider" type="range" min="0" max="0" value="0" aria-label="Step">
+          <div class="step-readout"><span id="stepNumber">0</span> / <span id="stepTotal">0</span></div>
+        </section>
+
+        <section class="panel-section compact-grid">
+          <label>
+            M
+            <input id="mInput" type="number" min="1" max="8" value="3">
+          </label>
+          <label>
+            Mmax
+            <input id="mmaxInput" type="number" min="2" max="12" value="5">
+          </label>
+          <label>
+            efConstruction
+            <input id="efConstructionInput" type="number" min="1" max="12" value="5">
+          </label>
+          <label>
+            efSearch
+            <input id="efSearchInput" type="number" min="1" max="12" value="5">
+          </label>
+          <label>
+            K
+            <input id="kInput" type="number" min="1" max="8" value="3">
+          </label>
+          <label>
+            Active layer
+            <select id="layerSelect"></select>
+          </label>
+        </section>
+
+        <section class="panel-section">
+          <h2 id="stepTitle">Ready</h2>
+          <p id="stepDetail">Buat base graph, lalu siapkan skenario indexing atau search.</p>
+          <div class="state-grid">
+            <div>
+              <strong>Algorithm</strong>
+              <span id="algorithmLabel">-</span>
+            </div>
+            <div>
+              <strong>Layer</strong>
+              <span id="layerLabel">-</span>
+            </div>
+            <div>
+              <strong>Entry point</strong>
+              <span id="entryLabel">-</span>
+            </div>
+            <div>
+              <strong>Current</strong>
+              <span id="currentLabel">-</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <h2>Queue / List</h2>
+          <div class="queue-box">
+            <span>C candidates</span>
+            <output id="candidateQueue">-</output>
+          </div>
+          <div class="queue-box">
+            <span>W nearest list</span>
+            <output id="foundQueue">-</output>
+          </div>
+          <div class="queue-box">
+            <span>Dibuang dari W</span>
+            <output id="removedQueue">-</output>
+          </div>
+          <div class="queue-box">
+            <span>R selected</span>
+            <output id="selectedQueue">-</output>
+          </div>
+          <div class="queue-box">
+            <span>Wd pruned</span>
+            <output id="prunedQueue">-</output>
+          </div>
+        </section>
+
+        <section class="panel-section notes">
+          <h2>Petunjuk Flowchart</h2>
+          <ol>
+            <li>Qdrant menerima vector dan HNSW menentukan level untuk vector itu.</li>
+            <li>Dari layer paling atas, greedy search mencari entry point yang makin dekat.</li>
+            <li>Di layer bawah, Algorithm 2 mengisi candidate queue C dan nearest list W.</li>
+            <li>Algorithm 4 memilih link yang arahnya beragam, lalu memangkas kandidat yang redundant.</li>
+            <li>Untuk query, Algorithm 5 turun top-down lalu mengembalikan K terdekat dari layer 0.</li>
+          </ol>
+        </section>
+      </aside>
+    </main>
+
+    <script src="./hnsw_visualizer.js"></script>
+  </body>
+</html>
