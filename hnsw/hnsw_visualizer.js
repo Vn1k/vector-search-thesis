@@ -18,6 +18,7 @@ const els = {
   efSearchInput: document.getElementById("efSearchInput"),
   kInput: document.getElementById("kInput"),
   layerSelect: document.getElementById("layerSelect"),
+  detailModeSelect: document.getElementById("detailModeSelect"),
   stepTitle: document.getElementById("stepTitle"),
   stepDetail: document.getElementById("stepDetail"),
   storyAlgorithm: document.getElementById("storyAlgorithm"),
@@ -78,6 +79,7 @@ let app = {
   lastRenderedFrame: null,
   seed: 7,
   activeLayer: 0,
+  detailMode: true,
 };
 
 function createEmptyGraph() {
@@ -521,7 +523,7 @@ function searchLayer(graph, q, entryPoints, ef, layer, recordOptions = null) {
     const currentDistance = distance(getNode(graph, current), q);
     const furthestDistance = furthest === undefined ? Infinity : distance(getNode(graph, furthest), q);
 
-    if (recordOptions) {
+    if (recordOptions && app.detailMode) {
       pushFrame({
         title: `${prefix}: extract nearest candidate`,
         detail: `${nodeLabel(current)} adalah item terdekat di C terhadap ${queryLabel(q)}. Nilainya: ${metricText(getNode(graph, current), q)}. Bandingkan cosine distance ${formatDistance(currentDistance)} dengan batas terjauh di W ${formatDistance(furthestDistance)}.`,
@@ -538,7 +540,7 @@ function searchLayer(graph, q, entryPoints, ef, layer, recordOptions = null) {
     }
 
     if (currentDistance > furthestDistance) {
-      if (recordOptions) {
+      if (recordOptions && app.detailMode) {
         pushFrame({
           title: `${prefix}: stop condition`,
           detail: `${nodeLabel(current)} punya cosine distance lebih besar dari batas W, jadi ia lebih jauh dari ${queryLabel(q)} dan Algorithm 2 berhenti scan layer ini. ${recordOptions.note || ""}`.trim(),
@@ -571,7 +573,7 @@ function searchLayer(graph, q, entryPoints, ef, layer, recordOptions = null) {
         found = sortedByDistance(graph, unique(found), q).slice(0, ef);
         removedFromW = beforeFound.filter((id) => !found.includes(id));
       }
-      if (recordOptions) {
+      if (recordOptions && app.detailMode) {
         const beforeText = asLabels(beforeFound);
         const afterText = asLabels(found);
         const removedText = asLabels(removedFromW);
@@ -595,7 +597,22 @@ function searchLayer(graph, q, entryPoints, ef, layer, recordOptions = null) {
     candidates = sortedByDistance(graph, unique(candidates), q);
   }
 
-  return { found: sortedByDistance(graph, found, q).slice(0, ef), visited: Array.from(visited) };
+  const finalFound = sortedByDistance(graph, found, q).slice(0, ef);
+  if (recordOptions && !app.detailMode) {
+    pushFrame({
+      title: `${prefix}: ringkasan SEARCH-LAYER`,
+      detail: `Mode Simple: detail cek neighbor disembunyikan. Hasil akhir layer ${layer}: W=${asLabels(finalFound)} setelah mengunjungi ${visited.size} node. Semua ranking memakai Cosine: similarity besar sama dengan cosine distance kecil.`,
+      algorithm: "Algorithm 2",
+      layer,
+      query: recordOptions.query || q,
+      entryId: entryPoints[0],
+      candidates: [],
+      found: finalFound,
+      visited: Array.from(visited),
+    });
+  }
+
+  return { found: finalFound, visited: Array.from(visited) };
 }
 
 function selectNeighborsHeuristic(graph, q, candidateIds, M, layer, options) {
@@ -637,7 +654,7 @@ function selectNeighborsHeuristic(graph, q, candidateIds, M, layer, options) {
     const blockedBy = selected.find((sid) => distance(candidateNode, getNode(graph, sid)) < distance(candidateNode, q));
     if (blockedBy === undefined) {
       selected.push(candidate);
-      if (options.record) {
+      if (options.record && app.detailMode) {
         pushFrame({
           title: "Algorithm 4: simpan neighbor yang beragam",
           detail: `${nodeLabel(candidate)} disimpan sebagai link untuk ${baseName}. Dengan metric Cosine, ${nodeLabel(candidate)} masih lebih mirip ke ${baseName} (${metricText(candidateNode, q)}) daripada ke semua neighbor yang sudah dipilih, jadi arahnya masih berguna dan tidak redundant.`,
@@ -652,7 +669,7 @@ function selectNeighborsHeuristic(graph, q, candidateIds, M, layer, options) {
       }
     } else {
       pruned.push(candidate);
-      if (options.record) {
+      if (options.record && app.detailMode) {
         pushFrame({
           title: "Algorithm 4: pangkas neighbor redundant",
           detail: `${nodeLabel(candidate)} dipangkas dari daftar link ${baseName}. Dengan Cosine, ${nodeLabel(candidate)} lebih mirip/dekat ke ${nodeLabel(blockedBy)} (${metricText(candidateNode, getNode(graph, blockedBy))}) daripada ke ${baseName} (${metricText(candidateNode, q)}). Artinya link langsung ke ${baseName} dianggap redundant.`,
@@ -674,7 +691,7 @@ function selectNeighborsHeuristic(graph, q, candidateIds, M, layer, options) {
       const backfill = sortedByDistance(graph, pruned, q)[0];
       pruned.splice(pruned.indexOf(backfill), 1);
       selected.push(backfill);
-      if (options.record) {
+      if (options.record && app.detailMode) {
         pushFrame({
           title: "Algorithm 4: isi slot dari Wd",
           detail: `${nodeLabel(backfill)} ditambahkan kembali ke link ${baseName} dari Wd karena keepPrunedConnections aktif dan R masih punya slot kosong.`,
@@ -687,6 +704,19 @@ function selectNeighborsHeuristic(graph, q, candidateIds, M, layer, options) {
         });
       }
     }
+  }
+
+  if (options.record && !app.detailMode) {
+    pushFrame({
+      title: "Algorithm 4: ringkasan pruning",
+      detail: `Mode Simple: detail uji satu per satu disembunyikan. Untuk ${baseName}, Algorithm 4 memilih R=${asLabels(selected)} dan memangkas Wd=${asLabels(pruned)}. Tujuannya menjaga link tetap beragam dan tidak melebihi batas M/Mmax.`,
+      algorithm: "Algorithm 4",
+      layer,
+      query: q,
+      currentId: q.id,
+      selected: selected.slice(),
+      pruned: pruned.slice(),
+    });
   }
 
   return { selected, pruned };
@@ -761,6 +791,13 @@ function setMode(mode) {
   app.mode = mode;
   els.tabs.forEach((tab) => tab.classList.toggle("is-active", tab.dataset.mode === mode));
   buildBaseGraph();
+}
+
+function rebuildCurrentView() {
+  const currentTitle = app.frames[app.step]?.title || "";
+  const wasScenario = app.frames.length > 2 && currentTitle !== "Base graph selesai" && currentTitle !== "Dataset siap";
+  buildBaseGraph();
+  if (wasScenario) prepareScenario();
 }
 
 function renderCurrentFrame(options = {}) {
@@ -1462,6 +1499,10 @@ els.layerSelect.addEventListener("change", (event) => {
   app.activeLayer = Number.parseInt(event.target.value, 10);
   const frame = app.frames[app.step];
   if (frame) draw(frame, 1, null);
+});
+els.detailModeSelect.addEventListener("change", (event) => {
+  app.detailMode = event.target.value === "detail";
+  rebuildCurrentView();
 });
 els.tabs.forEach((tab) => tab.addEventListener("click", () => setMode(tab.dataset.mode)));
 [els.mInput, els.mmaxInput, els.efConstructionInput, els.efSearchInput, els.kInput].forEach((input) => {
