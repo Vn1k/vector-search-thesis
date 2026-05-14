@@ -3,8 +3,8 @@ from typing import List, Optional
 
 class SearchRequest(BaseModel):
     query: str
-    limit: int = 5
-    threshold: float = 0.50
+    limit: int = 500
+    threshold: float = 0.2
 
 # Model untuk artikel di dalam group
 class ArticleResult(BaseModel):

@@ -1,0 +1,339 @@
+[
+  {
+    "rta_id": 477,
+    "agreement": "United Kingdom - Australia",
+    "acronym": "GBR-AUS-2021",
+    "iso": [
+      "GBR",
+      "AUS"
+    ],
+    "best_score": 1.0,
+    "best_confidence": "100.0000%",
+    "articles": [
+      {
+        "id": 61241,
+        "chapter_name": "SANITARY AND PHYTOSANITARY MEASURES",
+        "article_name": "Committee on SPS Measures",
+        "article_text_display": "<ol> <li> The Parties hereby establish a Committee on Sanitary and Phytosanitary Measures (the 'SPS Committee'), composed of government representatives of each Party responsible for SPS matters. </li> <li> The functions of the SPS Committee shall include: <ul style='list-style-type: lower-alpha;' class='alpha-list'> <li>monitoring implementation and considering any matter related to this Chapter;</li> <li>providing an opportunity for the identification, prioritisation, discussion, and resolution of SPS issues;</li> <li>recommending any mutually agreed proposals for amendments to this Chapter to the Joint Committee; and</li> <li>providing a forum to exchange information on each Party's SPS regulatory system.</li> </ul> </li> <li> The SPS Committee may, among other things: <ul style='list-style-type: lower-alpha;' class='alpha-list'> <li>identify opportunities for greater cooperation activities relevant to this Chapter, including trade facilitation initiatives and further work on eliminating unnecessary SPS barriers to trade between the Parties;</li> <li>discuss, at an early stage, a change to, or a proposed change to, a SPS measure being considered;</li> <li>facilitate improved understanding between the Parties on the implementation of the SPS Agreement, and promote cooperation between the Parties on SPS issues in multilateral fora, including the WTO Committee on Sanitary and Phytosanitary Measures, and relevant international organisations, as appropriate; and</li> <li>provide opportunities to identify initiatives to strengthen bilateral technical cooperation relevant to this Chapter.</li> </ul> </li> <li> The SPS Committee may establish technical working groups to address specific SPS issues with the aim of reaching a mutually acceptable resolution with the least disruption to trade. Any technical working group established shall report to the SPS Committee on progress of its work. </li> <li> A Party may refer any SPS issue to the SPS Committee. The SPS Committee shall consider the issue as expeditiously as possible. If the SPS Committee is unable to resolve an issue it shall, at the request of a Party, report to the Joint Committee. </li> <li> The SPS Committee shall meet within one year of the date of entry into force of this Agreement, and on an annual basis, unless the Parties agree otherwise. </li> <li> The SPS Committee may decide to meet by videoconference or teleconference or by any such means as may be agreed by the Parties, and it may also address issues by correspondence. </li> <li> The SPS Committee shall take decisions and make recommendations by consensus. </li> <li> The SPS Committee shall report, as needed, on its activities and work programme to the Joint Committee. </li> </ol>",
+        "score": 1.0,
+        "confidence": "100.0000%"
+      }
+    ]
+  },
+  {
+    "rta_id": 90,
+    "agreement": "Pakistan - China",
+    "acronym": "CHN-PAK-2009",
+    "iso": [
+      "CHN",
+      "PAK"
+    ],
+    "best_score": 0.998521307456247,
+    "best_confidence": "99.8521%",
+    "articles": [
+      {
+        "id": 100567,
+        "chapter_name": "Sanitary And Phyto-Sanitary Measures (Sps)",
+        "article_name": "Objectives",
+        "article_text_display": "<ol>\n<li>Promote and facilitate the trade of animals, products of animal origin, plants and products of plant origin between the Parties, protecting at the same time the human, animal or plant life or health;</li>\n<li>Reaffirm the rights and obligations of both parties with respect to each other under the SPS Agreement, which is considered as an integral part of this text;</li>\n<li>Ensure that the Parties' SPS measures do not arbitrarily or unjustifiably discriminate between the two Parties where identical or similar conditions prevail; and</li>\n<li>Provide a forum to discuss SPS measures of each other, to solve the problems of trade in this field in a prompt and efficient manner to ensure trade expansion between the parties.</li>\n</ol>",
+        "score": 0.998521307456247,
+        "confidence": "99.8521%"
+      },
+      {
+        "id": 100566,
+        "chapter_name": "Sanitary And Phyto-Sanitary Measures (Sps)",
+        "article_name": "Definition",
+        "article_text_display": "<ol>\n<li>The definitions in Annex A of the SPS Agreement shall be applied in the implementation of this Chapter.</li>\n<li>SPS Agreement means the Agreement on the Application of Sanitary and Phytosanitary Measures of the World Trade Organization.</li>\n</ol>",
+        "score": 0.8439716571661384,
+        "confidence": "84.3972%"
+      },
+      {
+        "id": 100569,
+        "chapter_name": "Sanitary And Phyto-Sanitary Measures (Sps)",
+        "article_name": "Competent Authority",
+        "article_text_display": "<ol>\n<li>The competent authorities of the Parties are the authorities competent in the respective countries for the implementation of the measures referred to in this Chapter.</li>\n<li>The Parties shall inform each other of any significant changes in the structure, organization and division of responsibility within its competent authorities.</li>\n<li>For the suitable implementation of this Chapter, bilateral contact between the homologous sanitary and phytosanitary agencies will be promoted and strengthened.</li>\n</ol>",
+        "score": 0.34618796523709816,
+        "confidence": "34.6188%"
+      },
+      {
+        "id": 100571,
+        "chapter_name": "Sanitary And Phyto-Sanitary Measures (Sps)",
+        "article_name": "Cooperation On Harmonization, Equivalency And Certificate Recognition",
+        "article_text_display": "<ol>\n<li>To achieve harmonization, both Parties shall base their SPS measures on international standards, guidelines, or recommendations, or base the measures on risk assessment, and shall cooperate in this regard.</li>\n<li>Both Parties shall consider accepting the SPS measures of each other as equivalent even if they differ from their own or from those used by other members trading in the same product, if the exporting Party objectively demonstrates to the importing Party that its measures achieve the importing Party's appropriate level of sanitary and phytosanitary procedure. For this purpose, reasonable access shall be given, upon request, to the importing Party for inspection, testing, and other relevant procedures.</li>\n<li>Both Parties shall cooperate for mutual recognition of SPS certificates.</li>\n</ol>",
+        "score": 0.295433857901486,
+        "confidence": "29.5434%"
+      }
+    ]
+  },
+  {
+    "rta_id": 159,
+    "agreement": "Agreement between Japan and Mongolia for an Economic Partnership",
+    "acronym": "JPN-MNG-2015",
+    "iso": [
+      "JPN",
+      "MNG"
+    ],
+    "best_score": 0.7029078300878224,
+    "best_confidence": "70.2908%",
+    "articles": [
+      {
+        "id": 16419,
+        "chapter_name": "IMPLEMENTING AGREEMENT PURSUANT TO ARTICLE 1.12",
+        "article_name": "Cooperation. Agriculture, Forestry and Fisheries,",
+        "article_text_display": "<p>Including matters related to SPS measures referred to in Chapter 5 of the Basic Agreement. Pursuant to Article 15.2 of the Basic Agreement, in the field referred to in subparagraph (a) of Article 15.1 of the Basic Agreement:</p>\n\n<p>(a) The areas of cooperation may include:</p>\n<ul>\n<li>Genetic resources for foods and agriculture</li>\n<li>Irrigation and seed production</li>\n<li>Establishing demonstration and model farms and facilities</li>\n<li>Production of dairy products, beef, organic foods, grains and vegetables</li>\n<li>Horticulture</li>\n<li>Beekeeping</li>\n<li>Fodder production and pet food processing</li>\n<li>Animal breeding biotechnology</li>\n<li>Animal health and veterinary services</li>\n<li>Any matters on sanitary and phytosanitary (hereinafter referred to as 'SPS') measures, including the following matters:\n    <ol style='list-style-type: upper-alpha;'>\n        <li>Establishment of pest or disease free zones</li>\n        <li>Control, inspection and approval procedures on SPS measures</li>\n    </ol>\n</li>\n<li>Food processing, including heat processing meat production</li>\n<li>Food marketing</li>\n<li>Agricultural cooperatives</li>\n<li>Wood processing</li>\n<li>Aquaculture</li>\n<li>Human resource development</li>\n<li>Other areas as may be agreed by the Parties</li>\n</ul>\n\n<p>(b) The forms of cooperation may include:</p>\n<ul>\n<li>Conducting feasibility studies of food value chain</li>\n<li>Development study</li>\n<li>Joint research work</li>\n<li>Exchanging views, information and experts</li>\n<li>Providing vocational and practical trainings</li>\n<li>Providing and encouraging the participation in trade fairs, seminars, workshops, business matching events and exhibitions</li>\n<li>Encouraging public private partnership</li>\n<li>Technical consulting service</li>\n<li>Dissemination of technology</li>\n<li>Technical assistance on harmonization and recognition of equivalence of SPS measures</li>\n<li>Other forms as may be agreed by the Parties</li>\n</ul>",
+        "score": 0.7029078300878224,
+        "confidence": "70.2908%"
+      }
+    ]
+  },
+  {
+    "rta_id": 110,
+    "agreement": "Peru - Singapore",
+    "acronym": "PER-SGP-2008",
+    "iso": [
+      "PER",
+      "SGP"
+    ],
+    "best_score": 0.5396672752787195,
+    "best_confidence": "53.9667%",
+    "articles": [
+      {
+        "id": 3440,
+        "chapter_name": "Sanitary And Phytosanitary Measures",
+        "article_name": "Definitions",
+        "article_text_display": "<ol>\n<li>relevant international organizations refers to the organizations mentioned in the SPS Agreement;</li>\n<li>SPS means sanitary and phytosanitary;</li>\n<li>SPS Agreement refers to the WTO Agreement on the Application of Sanitary and Phytosanitary Measures;</li>\n<li>trade between the Parties refers to trade in goods produced, processed or manufactured in the territory of the Parties; and</li>\n<li>the definitions under Annex A of the SPS Agreement shall apply to this Chapter.</li>\n</ol>",
+        "score": 0.5396672752787195,
+        "confidence": "53.9667%"
+      },
+      {
+        "id": 3446,
+        "chapter_name": "Sanitary And Phytosanitary Measures",
+        "article_name": "Risk Assessment And Determination Of The Appropriate Level Of Sanitary Or Phytosanitary Protection",
+        "article_text_display": "<ol>\n<li>SPS measures will be based on an assessment, in line with the circumstances of the risks existing for human, animal and plant life and health, taking into account the risk assessments guidelines developed by the relevant international organizations, so that the measures adopted may reach the appropriate level of protection.</li>\n<li>When a Party decides to make a re-evaluation of a risk assessment of a product for which there is a fluid and regular trade, said Party shall not interrupt the trade of the products affected except in the case of a sanitary or phytosanitary emergency situation.</li>\n</ol>",
+        "score": 0.40721207271992294,
+        "confidence": "40.7212%"
+      }
+    ]
+  },
+  {
+    "rta_id": 571,
+    "agreement": "United Kingdom - Moldova, Republic of",
+    "acronym": "GBR-MDA-2020",
+    "iso": [
+      "GBR",
+      "MDA"
+    ],
+    "best_score": 0.4994105123441883,
+    "best_confidence": "49.9411%",
+    "articles": [
+      {
+        "id": 84527,
+        "chapter_name": "SANITARY AND PHYTOSANITARY MEASURES",
+        "article_name": "Sanitary and Phytosanitary Sub-Committee",
+        "article_text_display": "<ol> <li>The SPS Sub-Committee is hereby established. It shall meet within three months after the entry into force of this Agreement, upon request of either Party, or at least once every year. Subject to agreement by the Parties, a meeting of the SPS Sub-Committee may be held by video or audio-conference. The SPS Sub-Committee may also address issues out of session, by correspondence.</li> <li>The SPS Sub-Committee shall have the following functions: <ul class='alpha-list'> <li>to consider any matter relating to this Chapter;</li> <li>to monitor the implementation of this Chapter and examine all matters which may arise in relation to its implementation;</li> <li>to review Annexes III to X to this Agreement, notably in the light of progress made under the consultations and procedures provided for under this Chapter;</li> <li>to modify, by means of a decision, Annexes III to X to this Agreement in the light of the review provided for in point (c) of this paragraph, or as otherwise provided in this Chapter; and</li> <li>to give opinions and make recommendations to the Political and Strategic Dialogue in trade configuration, in accordance with Article 375 of this Agreement in the light of the review provided for in point (c) of this paragraph.</li> </ul> </li> <li>The Parties agree to establish technical working groups, when appropriate, consisting of expert-level representatives of the Parties, which shall identify and address technical and scientific issues arising from the application of this Chapter. When additional expertise is required, the Parties may establish ad hoc groups, including scientific and expert groups. Membership of such ad hoc groups need not be restricted to representatives of the Parties.</li> <li>The SPS Sub-Committee shall regularly inform, by means of a report, the Political and Strategic Dialogue in Trade configuration, as set out in Article 375(3) of this Agreement, on its activities and the decisions taken within its competence.</li> <li>The SPS Sub-Committee shall adopt its working procedures at its first meeting.</li> <li>Any decision, recommendation, report or other action by the SPS Sub-Committee or any group established by the SPS Sub-Committee shall be adopted by consensus between the Parties.</li> </ol>",
+        "score": 0.4994105123441883,
+        "confidence": "49.9411%"
+      }
+    ]
+  },
+  {
+    "rta_id": 446,
+    "agreement": "United Kingdom - Viet Nam",
+    "acronym": "VNM-GBR-2020",
+    "iso": [
+      "VNM",
+      "GBR"
+    ],
+    "best_score": 0.41997635444695947,
+    "best_confidence": "41.9976%",
+    "articles": [
+      {
+        "id": 52758,
+        "chapter_name": "Sanitary and phytosanitary measures",
+        "article_name": "Competent Authorities and Contact Points",
+        "article_text_display": "<ol> <li>To ensure close and effective working relationships between the Parties in achieving the objectives of this Chapter, the competent authorities are the following: <ul class='alpha-list'> <li>in the case of Viet Nam, responsibility for SPS matters is shared between governmental agencies as follows: <ul class='roman-list'> <li>the Ministry of Agriculture and Rural Development, or its successor, is responsible for animal and plant health; it administers surveillance and control measures to prevent the introduction of diseases which negatively affect human and animal health; it also administers a comprehensive program to control and prevent the incursion of diseases and pests which negatively affect plant health and the economy; and, for animal and plant products destined for exportation, it is also responsible for inspection, for quarantine and for the issuance of certifications attesting to the agreed standards and requirements of the Union;</li> <li>the Ministry of Health, the Ministry of Agriculture and Rural Development and the Ministry of Industry and Trade, or their respective successors, are, in accordance with their respective competences, responsible for the safety of food destined for human consumption; for the importation of food, they administer surveillance and control measures, including the development of national technical regulations and approval procedures, the conduct of risk assessment of products and inspections of establishments, to ensure the compliance with the agreed standards and requirements of Viet Nam; for the exportation of food, they are also responsible for inspection and for the issuance of health certifications;</li> </ul> </li> <li>The United Kingdom shall notify Viet Nam of its competent authorities on the date of entry into force of this Agreement.</li> </ul> </li> <li>As of the date of entry into force of this Agreement, the competent authorities of each Party shall provide each other with a contact point for communication on all matters arising under this Chapter. The contact points' functions shall include: <ul class='alpha-list'> <li>enhancing communication among the Parties' agencies and ministries responsible for SPS matters;</li> <li>facilitating information exchange in order to enhance mutual understanding of each Party's SPS measures, the regulatory processes that relate to those measures and their impact on trade in the products concerned between the Parties.</li> </ul> </li> <li>The Parties shall ensure that the information provided under paragraphs 1 and 2 is kept up to date.</li> </ol>",
+        "score": 0.41997635444695947,
+        "confidence": "41.9976%"
+      }
+    ]
+  },
+  {
+    "rta_id": 475,
+    "agreement": "United Kingdom - Georgia",
+    "acronym": "GBR-GEO-2019",
+    "iso": [
+      "GBR",
+      "GEO"
+    ],
+    "best_score": 0.39984200489462557,
+    "best_confidence": "39.9842%",
+    "articles": [
+      {
+        "id": 60387,
+        "chapter_name": "SANITARY AND PHYTOSANITARY MEASURES",
+        "article_name": "Sanitary and Phytosanitary Sub-Committee",
+        "article_text_display": "<ol> <li>The SPS Sub-Committee is hereby established. It shall meet within three months after the date of entry into force of this Agreement, upon request of either Party thereafter, or at least once every year. If agreed by the Parties, a meeting of the SPS Sub-Committee may be held by video or audio-conference. The SPS Sub-Committee may also address issues out of session, by correspondence.</li>  <li>The SPS Sub-Committee shall have the following functions: <ul class='alpha-list'> <li>to consider any matter relating to this Chapter;</li> <li>to monitor the implementation of this Chapter and examine all matters which may arise in relation to its implementation;</li> <li>to review the Annexes III to X to this Agreement, notably in the light of progress made under the consultations and procedures provided for under this Chapter;</li> <li>to modify by means of an endorsement decision Annexes III to X to this Agreement in the light of the review provided for in point (c) of this paragraph, or as otherwise provided in this Chapter; and</li> <li>to give opinions and make recommendations to other bodies as defined in Title VIII (Institutional, General and Final Provisions) of this Agreement in light of the review provided for in point (c) of this paragraph.</li> </ul> </li> </ol> <ol start='3'> <li>The Parties agree to establish technical working groups, when appropriate, consisting of expert-level representatives of the Parties, which shall identify and address technical and scientific issues arising from the application of this Chapter. When additional expertise is required, the Parties may establish ad hoc groups, including scientific and expert groups. Membership of such ad hoc groups need not be restricted to representatives of the Parties.</li> <li>The SPS Sub-Committee shall regularly inform by means of a report the Strategic Partnership and Cooperation Forum in Trade configuration, as set out in Article 354(3) of this Agreement, on its activities and decisions taken within competence.</li> <li>The SPS Sub-Committee shall adopt its working procedures at its first meeting.</li> <li>Any decision, recommendation, report or other action by the SPS Sub-Committee or any group established by the SPS Sub-Committee shall be adopted by consensus between the Parties.</li> </ol>",
+        "score": 0.39984200489462557,
+        "confidence": "39.9842%"
+      }
+    ]
+  },
+  {
+    "rta_id": 255,
+    "agreement": "EFTA - Colombia",
+    "acronym": "EFTA-COL-2008",
+    "iso": [
+      "CHE",
+      "COL",
+      "ISL",
+      "LIE",
+      "NOR"
+    ],
+    "best_score": 0.3536643047638449,
+    "best_confidence": "35.3664%",
+    "articles": [
+      {
+        "id": 29289,
+        "chapter_name": "Trade In Goods",
+        "article_name": "Sanitary And Phytosanitary Measures",
+        "article_text_display": "<ol> <li>The Parties confirm their rights and obligations under the WTO Agreement on the Application of Sanitary and Phytosanitary Measures (hereinafter referred to as 'the SPS Agreement') and resulting from the decisions on the application of the SPS Agreement adopted by the WTO Committee on Sanitary and Phytosanitary Measures. For the purpose of this Chapter and for any communication on sanitary and phytosanitary related matters between the Parties, the definitions in Annex A of the SPS Agreement, as well as the glossary of harmonised terms of the relevant international organisations, shall apply.</li> <li>The Parties shall work together in the effective implementation of the SPS Agreement and of the provisions set forth in this Article with the purpose of facilitating bilateral trade, without prejudice to the right to adopt measures necessary to protect human, animal or plant health and to achieve the appropriate level of sanitary or phytosanitary protection.</li> <li>In accordance with the SPS Agreement, the Parties shall not use their sanitary and phytosanitary measures related to control, inspection, approval or certification to restrict market access without scientific justification, without prejudice to paragraph 7 of Article 5 of the SPS Agreement.</li> <li>The Parties shall strengthen their co-operation in the field of sanitary and phytosanitary measures, with a view to increasing the mutual understanding of their respective systems and to improving their sanitary and phytosanitary systems.</li> <li>Colombia and any of the EFTA States shall, whenever necessary, for facilitating access to their respective markets, develop bilateral agreements including those between their respective regulatory authorities.</li> <li>The Parties agree to designate and notify upon the entry into force of this Agreement to each other, contact points for notification and information exchange on issues related to sanitary and phytosanitary systems matters.</li> <li>The Parties hereby establish a forum for SPS experts. The forum shall meet when requested by one of the Parties. In order to permit the efficient use of resources, the Parties shall, to the extent possible, endeavour to use technological means of communication, such as electronic communication, video or telephone conference, or arrange for meetings to take place in conjunction with Joint Committee meetings or with relevant SPS meetings. The forum shall inter alia: <ul class='alpha-list'> <li>overview and ensure the implementation of this Article;</li> <li>consider measures that any Party considers are likely to affect, or have affected, access to the markets of another Party with the aim of finding appropriate and timely solutions in conformity with the SPS Agreement;</li> <li>assess progress on market access interests of the Parties;</li> <li>discuss further developments of the SPS Agreement;</li> <li>consider the Parties' obligations related to sanitary and phytosanitary matters in other international agreements; and</li> <li>establish technical expert groups, as needed.</li> </ul> </li> </ol>",
+        "score": 0.3536643047638449,
+        "confidence": "35.3664%"
+      }
+    ]
+  },
+  {
+    "rta_id": 510,
+    "agreement": "United Kingdom - New Zealand FTA",
+    "acronym": "GBR-NZL-2022",
+    "iso": [
+      "GBR",
+      "NZL"
+    ],
+    "best_score": 0.3357484316867122,
+    "best_confidence": "33.5748%",
+    "articles": [
+      {
+        "id": 70218,
+        "chapter_name": "SANITARY AND PHYTOSANITARY MEASURES",
+        "article_name": "Sanitary and Phytosanitary Measures Sub-Committee",
+        "article_text_display": "<ol> <li> The SPS Sub-Committee established under Article 30.9 (Sub-Committees - Institutional Provisions) shall be composed of the responsible competent authorities of each Party. Any SPS Sub-Committee decision shall be made by mutual agreement of the representatives of the Parties. </li> <li> The functions of the SPS Sub-Committee within the scope of this Chapter include serving as a forum: <ul style='list-style-type: lower-alpha;' class='alpha-list'> <li>to monitor the implementation of this Chapter, to consider any matter related to this Chapter, and to examine all matters which may arise in relation to its implementation;</li> <li>to provide direction for the identification, prioritisation, management, and resolution of issues;</li> <li>to consider any request by a Party to modify the modalities of import checks;</li> <li>to provide a regular forum to exchange information that relates to each Party's regulatory system; and</li> <li>to maintain a written record of the discussions between the Parties on their work and decisions made by the SPS Sub-Committee.</li> </ul> </li> <li> The SPS Sub-Committee may, within the scope of this Chapter, among other matters: <ul style='list-style-type: lower-alpha;' class='alpha-list'> <li>identify opportunities for greater bilateral engagement, including the temporary exchange of competent authority officials;</li> <li>discuss, at an early stage, a change or proposed change to a measure being considered;</li> <li>promote cooperation between the Parties on sanitary and phytosanitary issues under discussion in multilateral fora, including the WTO SPS Committee, the Codex, and the IPPC, as appropriate;</li> <li>identify and discuss, at an early stage, regulatory initiatives that would benefit from cooperation;</li> <li>refer any relevant matter to a working group or technical working group reporting to it under this Chapter;</li> <li>consider any recommendation or report from a working group under paragraph 12 of Article 5.14 (Cooperation on Antimicrobial Resistance);</li> <li>consider any recommendation or report from a technical working group under paragraph 2 of Article 5.16 (Technical Working Groups) in order to reach a resolution that is mutually acceptable to the Parties; and</li> <li>consider any recommendation from a technical working group under paragraph 4 of Article 5.16 (Technical Working Groups) and make a recommendation to the Joint Committee that a technical working group be continued or dissolved.</li> </ul> </li> <li> A Party may refer any matter within the scope of this Chapter or Chapter 6 (Animal Welfare) to the SPS Sub-Committee. The SPS Sub-Committee shall consider the issue as expeditiously as possible. </li> <li> If the SPS Sub-Committee is unable to resolve an issue expeditiously, including an issue relating to any recommendation or report from a working group or technical working group reporting to it under this Chapter, it shall, at the request of a Party, report promptly to the Joint Committee. </li> <li> Recognising that the Joint Management Committee established under Article 16 of the Sanitary Agreement (the 'Joint Management Committee') may have relevant knowledge or experience in relation to matters which may arise between the Parties in relation to the implementation of this Chapter or Chapter 6 (Animal Welfare), the SPS Sub-Committee may: <ul style='list-style-type: lower-alpha;' class='alpha-list'> <li>invite the participation of members of the Joint Management Committee in its meetings;</li> <li>exchange information with the Joint Management Committee which arises under this Chapter or Chapter 6 (Animal Welfare) and may be relevant to the implementation of the Sanitary Agreement; and</li> <li>receive reports from and consider information shared by the Joint Management Committee in relation to any matter that may arise under the auspices of the Sanitary Agreement which may affect the implementation of this Chapter or Chapter 6 (Animal Welfare).</li> </ul> </li> <li> The functions of the SPS Sub-Committee shall also include supervision of the working group reporting to it under Chapter 6 (Animal Welfare) and, in this regard, the SPS Sub-Committee may: <ul style='list-style-type: lower-alpha;' class='alpha-list'> <li>refer any relevant matter to the working group reporting to it under Chapter 6 (Animal Welfare);</li> <li>consider any report, recommendation, or matter referred to it by the working group reporting to it under Chapter 6 (Animal Welfare);</li> <li>report any matter referred to it under subparagraph (b) to the Joint Committee; and</li> <li>consider any other implementation matter within the scope of Chapter 6 (Animal Welfare).</li> </ul> </li> <li> Unless the Parties agree otherwise, the SPS Sub-Committee shall meet and establish its terms of reference, work programme, and its rules of procedure no later than one year following the date of entry into force of this Agreement. The SPS Sub-Committee shall modify its own rules of procedure, if the SPS Committee deems it appropriate. </li> <li> Following its initial meeting, the SPS Sub-Committee shall meet normally on an annual basis. Additional meetings may be held at the request of a Party or the Joint Committee. The SPS Sub-Committee may decide to meet by electronic means and it may also address issues out of session by correspondence. </li> <li> The SPS Sub-Committee shall report as required on its activities and work programme to the Joint Committee. </li> </ol>",
+        "score": 0.3357484316867122,
+        "confidence": "33.5748%"
+      }
+    ]
+  },
+  {
+    "rta_id": 442,
+    "agreement": "EAEU - Singapore",
+    "acronym": "EAEU-SGP-2019",
+    "iso": [
+      "ARM",
+      "BLR",
+      "KAZ",
+      "KGZ",
+      "RUS",
+      "SGP"
+    ],
+    "best_score": 0.3024367492397655,
+    "best_confidence": "30.2437%",
+    "articles": [
+      {
+        "id": 50794,
+        "chapter_name": "SANITARY AND PHYTOSANITARY MEASURES",
+        "article_name": "Objectives",
+        "article_text_display": "<ul class='alpha-list'> <li>To minimise negative effects of sanitary and phytosanitary (hereinafter referred to as 'SPS') measures on mutual trade while protecting human, animal or plant life or health in the territories of the Parties;</li> <li>To enhance transparency, to facilitate information exchange in the field of SPS measures and to strengthen mutual understanding of each Party's regulatory system;</li> <li>To strengthen cooperation between competent authorities of the Parties;</li> <li>To provide a means to promote efficient resolution of the issues affecting mutual trade in goods within the scope of this Chapter.</li> </ul>",
+        "score": 0.3024367492397655,
+        "confidence": "30.2437%"
+      }
+    ]
+  },
+  {
+    "rta_id": 135,
+    "agreement": "Peru - Korea, Republic of",
+    "acronym": "KOR-PER-2011",
+    "iso": [
+      "KOR",
+      "PER"
+    ],
+    "best_score": 0.2997364294697675,
+    "best_confidence": "29.9736%",
+    "articles": [
+      {
+        "id": 8905,
+        "chapter_name": "Sanitary And Phytosanitary Measures",
+        "article_name": "Definitions",
+        "article_text_display": "<p>For purposes of this Chapter:</p>\n<p>SPS Agreement means the Agreement on the Application of Sanitary and Phytosanitary Measures, contained in Annex 1A to the WTO Agreement; and definitions in Annex A to the SPS Agreement shall apply.</p>",
+        "score": 0.2997364294697675,
+        "confidence": "29.9736%"
+      }
+    ]
+  },
+  {
+    "rta_id": 443,
+    "agreement": "Chile - Indonesia Comprehensive Economic Partnership Agreement ",
+    "acronym": "CHL-IDN-2017",
+    "iso": [
+      "CHL",
+      "IDN"
+    ],
+    "best_score": 0.2510023995680698,
+    "best_confidence": "25.1002%",
+    "articles": [
+      {
+        "id": 51034,
+        "chapter_name": "Sanitary and Phytosanitory Measures",
+        "article_name": "Sub-Committee on Sanitary and Phytosanitary Measures",
+        "article_text_display": "<ol> <li>The Parties hereby establish a Sub-Committee on Sanitary and Phytosanitary Measures (Sub-Committee on SPS) with the objective of ensuring the implementation of this Chapter.</li>  <li>For the purposes of the effective implementation and operation of this Chapter, the Sub-Committee on SPS shall be a forum for: <ul class='alpha-list'> <li>enhancing mutual understanding of the sanitary and phytosanitary measures of each Party and the regulatory processes that relate to those measures;</li> <li>discussing matters related to the development or application of sanitary and phytosanitary measures that may, directly or indirectly, affect human, animal and plant health and trade between the Parties;</li> <li>addressing any bilateral issues arising from the implementation of sanitary and phytosanitary measures between the Parties;</li> <li>reviewing progress on addressing sanitary and phytosanitary measures that may arise between the Competent Authorities listed in Annex 6-A, from the implementation of sanitary and phytosanitary measures between the Parties;</li> <li>coordinating technical cooperation programs on sanitary and phytosanitary measures;</li> <li>consulting on issues relating to the meetings of the WTO Committee on SPS, Codex, OIE and IPPC;</li> <li>improving bilateral understanding related to specific implementation issues concerning the SPS Agreement;</li> <li>enhancing cooperation between the agencies of the Parties responsible for sanitary and phytosanitary measures; and</li> <li>reporting to the Committee on Trade in Goods on the implementation of this Chapter.</li> </ul> </li> </ol> <ol start='3'> <li>The Sub-Committee on SPS shall comprise and be co-chaired by representatives of the Competent Authorities of each Party responsible for sanitary and phytosanitary measures, as established in Article 6.11.</li> <li>Unless agreed otherwise by the Parties, the Sub-Committee on SPS shall meet annually in person, via teleconference, video conference, or through any other means as mutually determined by the Parties.</li> <li>The Sub-Committee on SPS shall establish its own rules of procedure during its first meeting to guide its operation. These rules may be revised or further developed at any time.</li> <li>The Sub-Committee on SPS may agree to establish ad hoc technical working groups in accordance with its rules of procedure.</li> </ol>",
+        "score": 0.2510023995680698,
+        "confidence": "25.1002%"
+      }
+    ]
+  },
+  {
+    "rta_id": 158,
+    "agreement": "China - Korea, Republic of",
+    "acronym": "CHN-KOR-2015",
+    "iso": [
+      "CHN",
+      "KOR"
+    ],
+    "best_score": 0.22261904240881467,
+    "best_confidence": "22.2619%",
+    "articles": [
+      {
+        "id": 15673,
+        "chapter_name": "Sanitary And Phytosanitary Measures",
+        "article_name": "Objectives",
+        "article_text_display": "<p>The objectives of this Chapter are to:</p> <ul class='alpha-list'> <li>minimize the negative effects of sanitary and phytosanitary (hereinafter referred to as 'SPS') measures on trade between the Parties while protecting human, animal or plant life or health in the Parties' territories;</li> <li>enhance transparency in and mutual understanding of the application of each Party's SPS measures;</li> <li>strengthen cooperation and communication among the competent authorities of the Parties which are responsible for matters covered by this Chapter; and</li> <li>enhance implementation of the SPS Agreement.</li> </ul>",
+        "score": 0.22261904240881467,
+        "confidence": "22.2619%"
+      }
+    ]
+  },
+  {
+    "rta_id": 482,
+    "agreement": "Korea, Republic of - Central America",
+    "acronym": "KOR-CENTR-2018",
+    "iso": [
+      "CRI",
+      "SLV",
+      "HND",
+      "KOR",
+      "NIC",
+      "PAN"
+    ],
+    "best_score": 0.20255318657944776,
+    "best_confidence": "20.2553%",
+    "articles": [
+      {
+        "id": 63016,
+        "chapter_name": "SANITARY AND PHYTOSANITARY MEASURES",
+        "article_name": "COMMITTEE ON SANITARY AND PHYTOSANITARY MATTERS",
+        "article_text_display": "<ol> <li>The Parties hereby establish a Committee on Sanitary and Phytosanitary Matters (hereinafter referred to as the 'Committee') comprising representatives of each Party's competent authorities who have responsibility for SPS matters.</li> <li>The objective of the Committee is to discuss matters related to the development or application of SPS measures that affect, or may affect, trade between the Parties. For this purpose, the Committee shall: <ul class='alpha-list'> <li>monitor the implementation of this Chapter;</li> <li>enhance mutual understanding of each Party's SPS measures;</li> <li>strengthen communication and cooperation between the Parties' competent authorities responsible for the matters covered by this Chapter;</li> <li>exchange information regarding SPS measures, which may affect trade between the Parties including regulations, procedures, approval of exporting establishments, or any change in sanitary status of a Party;</li> <li>discuss issues, positions, and agendas for meetings of the WTO Committee on Sanitary and Phytosanitary Measures, the Codex Alimentarius Commission, the OIE, the relevant international and regional organizations operating within the framework of the IPPC, and other international and regional forum on food safety and on human, animal, or plant life or health;</li> <li>consult on SPS matters related to the development or application of SPS measures that affect, or may affect, trade between the Parties, or arising under this Chapter;</li> <li>consider, if necessary, upon request of a Party, establishing a subsidiary working group for technical discussion with the aim of seeking to address SPS matters of mutual interest to the Parties. The meeting of such working group shall take place within a period agreed by the Parties and may be conducted by electronic means;</li> <li>coordinate cooperative activities on SPS matters referred to in Article 5.4; and</li> <li>carry out other functions as may be assigned by the Parties.</li> </ul> </li> <li>The Committee may establish terms of reference for the conduct of its work.</li> <li>Unless the Parties otherwise agree, the Committee shall meet every two years. Meetings may be conducted in person or by any technological means available to the Parties.</li> <li>Each Party shall ensure that appropriate representatives with responsibility for SPS matters participate in the Committee meetings.</li> <li>The Committee shall be coordinated by the following contact points: <ul class='alpha-list'> <li>for Korea, the Ministry of Agriculture, Food and Rural Affairs;</li> <li>for Costa Rica, the Ministry of Foreign Trade (Ministerio de Comercio Exterior);</li> <li>for El Salvador, the Ministry of Economy (Ministerio de Economía);</li> <li>for Honduras, the Secretariat of Economic Development (Secretaría de Desarrollo Económico);</li> <li>for Nicaragua, the Ministry of Development, Industry and Commerce (Ministerio de Fomento, Industria y Comercio); and</li> <li>for Panama, the Ministry of Commerce and Industries (Ministerio de Comercio e Industrias), or their successors.</li> </ul> </li> </ol>",
+        "score": 0.20255318657944776,
+        "confidence": "20.2553%"
+      }
+    ]
+  }
+]
