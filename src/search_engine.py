@@ -178,7 +178,7 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
         return None
 
-    def search(self, query: str, limit: int = 5, threshold: float = 0.1):
+    def search(self, query: str, limit: int = 5, threshold: float = 0.0):
         logger.info(f"[Search] === New Search Request ===")
         logger.info(f"[Search] Original user query: '{query}'")
         logger.info(f"[Search] Parameters: limit={limit}, threshold={threshold}")
@@ -265,7 +265,7 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
             collection_name=settings.COLLECTION_NAME,
             query=query_vector,
             query_filter=qdrant_filter,
-            limit=30,
+            limit=1000,
             with_payload=True,
         ).points
 
@@ -379,8 +379,10 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
                 {
                     "id": item["id"],
                     "chapter_name": item["chapter_name"],
+                    "article_id"  : item["article_id"],
+                    "article_number": item["article_number"],
                     "article_name": item["article_name"],
-                    # "article_text": item["article_text"],
+                    "article_text": item["article_text"],
                     "article_text_display": item["article_text_display"],
                     "score": item["score"],
                     "confidence": item["confidence"],
@@ -397,19 +399,43 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
         # ──────────────────────────────────────────────────────────────────────
 
     def _build_result(self, hit, score_percent: float) -> dict:
+        article_text = hit.payload.get("article_text") or "-"
+        article_text_display = self._resolve_article_text_display(
+            hit.payload.get("article_text_display"),
+            article_text,
+        )
+
         return {
             "id": hit.id,
             "rta_id": hit.payload.get("rta_id"),
             "agreement": hit.payload.get("Agreement") or "-",
             "chapter_name": hit.payload.get("chapter_name") or "-",
+            "article_id"  : hit.payload.get("article_id"),
+            "article_number": hit.payload.get("article_number") or "-",
             "article_name": hit.payload.get("article_name") or "-",
-            # "article_text": hit.payload.get("article_text") or "-",
-            "article_text_display": hit.payload.get("article_text_display") or "-",
+            "article_text": article_text,
+            "article_text_display": article_text_display,
             "acronym": hit.payload.get("acronym") or "-",
             "iso": hit.payload.get("iso") or "-",
             "score": score_percent,
             "confidence": f"{score_percent:.4%}",
         }
+
+    @staticmethod
+    def _resolve_article_text_display(article_text_display, article_text: str) -> str:
+        if article_text_display is None:
+            return article_text
+
+        display_text = str(article_text_display).strip()
+        if (
+            not display_text
+            or display_text == "-"
+            or display_text.lower().startswith("http")
+            or display_text.lower().startswith("<a")
+        ):
+            return article_text
+
+        return display_text
 
 
 search_engine = SearchService(

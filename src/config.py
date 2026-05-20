@@ -14,6 +14,7 @@ class Settings:
     QDRANT_HOST: str = os.getenv("QDRANT_HOST")
     QDRANT_PORT: int = int(os.getenv("QDRANT_PORT"))
     COLLECTION_NAME: str = "document_rtas"
+    COLLECTION_NAME_RECURSIVE: str = "document_rtas_recursive"
     COLLECTION_NAME_WITHOUT_CHUNKING = "no_chunk_document"
     VECTOR_SIZE: int = 768
 
@@ -24,6 +25,7 @@ class Settings:
     DATA_LIMIT = None
     FILE_COVER = str(BASE_DIR / "assets" / "dss_trade_agreements_202602201509.csv")
     FILE_DETAIL = str(BASE_DIR / "assets" / "dss_trade_agreement_detail_formatted_202602201508.csv")
-    FILE_CHUNKS = str(BASE_DIR / "assets" / "hybrid_chunks_result.csv")
+    FILE_CHUNKS = str(BASE_DIR / "assets" / "hybrid_chunks_result_2.csv")
+    FILE_CHUNKS_RECURSIVE = str(BASE_DIR / "assets" / "recursive_chunks_result2.csv")
 
 settings = Settings()
