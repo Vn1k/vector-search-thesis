@@ -15,10 +15,12 @@ class Settings:
     QDRANT_PORT: int = int(os.getenv("QDRANT_PORT"))
     COLLECTION_NAME: str = "document_rtas"
     COLLECTION_NAME_WITHOUT_CHUNKING = "no_chunk_document"
+    COLLECTION_NAME_WITH_SPARSE = "document_rtas_sparse"
     VECTOR_SIZE: int = 768
 
     #model
     VECTOR_MODEL: str = "all-mpnet-base-v2"
+    SPARSE_MODEL = "naver/efficient-splade-VI-BT-large-doc"
     RERANKER_MODEL: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 
     DATA_LIMIT = None

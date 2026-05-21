@@ -1,10 +1,11 @@
 import math
 import json
 import logging
+from pathlib import Path
 import pycountry
-from qdrant_client import QdrantClient
+from qdrant_client import QdrantClient, models
 from qdrant_client.models import FieldCondition, Filter, MatchValue
-from sentence_transformers import CrossEncoder, SentenceTransformer
+from sentence_transformers import CrossEncoder, SentenceTransformer, SparseEncoder
 from spellchecker import SpellChecker
 import localspelling
 from ollama import chat
@@ -29,6 +30,41 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 logger = logging.getLogger(__name__)
+RESULT_FILE = Path(__file__).resolve().parents[1] / "result.json"
+
+
+def sparse_embedding_to_qdrant_vector(sparse_embedding):
+    """Convert SparseEncoder output to Qdrant SparseVector lists."""
+    if hasattr(sparse_embedding, "coalesce"):
+        sparse_embedding = sparse_embedding.coalesce()
+
+    if isinstance(sparse_embedding, dict):
+        indices = sparse_embedding["indices"]
+        values = sparse_embedding["values"]
+    elif callable(getattr(sparse_embedding, "indices", None)):
+        tensor_indices = sparse_embedding.indices()
+        tensor_values = sparse_embedding.values()
+
+        if tensor_indices.dim() == 2:
+            tensor_indices = tensor_indices[-1]
+
+        indices = tensor_indices
+        values = tensor_values
+    else:
+        indices = sparse_embedding.indices
+        values = sparse_embedding.values
+
+    if hasattr(indices, "cpu"):
+        indices = indices.cpu()
+    if hasattr(values, "cpu"):
+        values = values.cpu()
+
+    if hasattr(indices, "tolist"):
+        indices = indices.tolist()
+    if hasattr(values, "tolist"):
+        values = values.tolist()
+
+    return [int(index) for index in indices], [float(value) for value in values]
 
 
 class SearchService:
@@ -37,10 +73,18 @@ class SearchService:
         use_reranker: bool = False,
         use_llm: bool = False,
         use_finetuned: bool = True,
+        use_sparse: bool = False,
     ):
         logger.info("[Init] Initializing model & database")
         self.client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
         self.vector_model = SentenceTransformer(settings.VECTOR_MODEL)
+        self.use_sparse = use_sparse
+        if self.use_sparse:
+            self.sparse_model = SparseEncoder(settings.SPARSE_MODEL)
+            logger.info("[Init] Sparse query: ON")
+        else:
+            self.sparse_model = None
+            logger.info("[Init] Sparse query: OFF")
         self.spell = SpellChecker()
 
         # ─── Reranker (opsional) ──────────────────────────────────────────────
@@ -256,20 +300,55 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
         # ──────────────────────────────────────────────────────────────────────
 
         # ─── Step 4: Vector search ────────────────────────────────────────────
-        query_vector = self.vector_model.encode(final_query).tolist()
-        logger.debug(
-            f"[QueryTransform] Query vector generated (dim: {len(query_vector)})"
-        )
+        dense_vector = self.vector_model.encode_query(final_query).tolist()
+        if self.use_sparse:
+            sparse_result = list(self.sparse_model.encode_query([final_query]))[0]
+            sparse_indices, sparse_values = sparse_embedding_to_qdrant_vector(
+                sparse_result
+            )
+            sparse_vector = models.SparseVector(
+                indices=sparse_indices,
+                values=sparse_values,
+            )
 
-        raw_hits = self.client.query_points(
-            collection_name=settings.COLLECTION_NAME,
-            query=query_vector,
-            query_filter=qdrant_filter,
-            limit=30,
-            with_payload=True,
-        ).points
-
-        logger.info(f"[QueryTransform] Qdrant returned {len(raw_hits)} results")
+            logger.debug("[QueryTransform] Hybrid vectors generated")
+            raw_hits = self.client.query_points(
+                collection_name=settings.COLLECTION_NAME_WITH_SPARSE,
+                prefetch=[
+                    # Pencarian Semantik (Dense)
+                    models.Prefetch(
+                        query=dense_vector,
+                        using="dense_vector",
+                        filter=qdrant_filter,
+                        limit=5000,
+                    ),
+                    models.Prefetch(
+                        query=sparse_vector,
+                        using="sparse_vector",
+                        filter=qdrant_filter,
+                        limit=5000,
+                    ),
+                ],
+                query=models.FusionQuery(fusion=models.Fusion.RRF),
+                limit=5000,
+                with_payload=True,
+            ).points
+            logger.info(
+                f"[QueryTransform] Qdrant returned {len(raw_hits)} hybrid results"
+            )
+        else:
+            logger.debug("[QueryTransform] Dense vector generated")
+            raw_hits = self.client.query_points(
+                collection_name=settings.COLLECTION_NAME_WITH_SPARSE,
+                query=dense_vector,
+                using="dense_vector",
+                query_filter=qdrant_filter,
+                limit=5000,
+                with_payload=True,
+            ).points
+            logger.info(
+                f"[QueryTransform] Qdrant returned {len(raw_hits)} dense results"
+            )
 
         if not raw_hits:
             logger.info("[QueryTransform] No results from Qdrant, returning empty")
@@ -298,23 +377,49 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
         hits = unique_hits
 
-        # ─── Step 5: Scoring ──────────────────────────────────────────────────
+                # ─── Step 5: Scoring ──────────────────────────────────────────────────
+        # RRF score (hybrid) dan cosine similarity (dense) punya skala berbeda:
+        #   - Dense cosine similarity : range 0.0 – 1.0  (threshold 0.2–0.5 masuk akal)
+        #   - RRF score               : range ~0.001–0.02 (threshold cosine TIDAK berlaku)
+        # Untuk hybrid, normalisasi score ke 0–1 relatif terhadap top score,
+        # sehingga threshold user tetap bisa dipakai secara intuitif di semua mode.
         if self.use_reranker:
             cross_inp = []
             for hit in hits:
                 pl = hit.payload
                 context_text = f"{pl['Agreement']} - {pl['chapter_name']} - {pl['article_name']}: {pl['article_text']}"
                 cross_inp.append([final_query, context_text])
-
+ 
             cross_scores = self.reranker.predict(cross_inp)
-
+ 
             results = []
             for idx, hit in enumerate(hits):
                 score_percent = self.sigmoid(cross_scores[idx])
                 if score_percent < threshold:
                     continue
                 results.append(self._build_result(hit, score_percent))
+ 
+        elif self.use_sparse:
+            # ── Hybrid / RRF mode ─────────────────────────────────────────────
+            # RRF score tidak bisa dibandingkan langsung dengan threshold cosine.
+            # Normalisasi ke 0–1 relatif terhadap top hit (hits sudah sorted desc).
+            # threshold=0.3 → buang hasil yang scorenya < 30% dari skor terbaik.
+            results = []
+            if hits:
+                top_rrf_score = hits[0].score
+                for hit in hits:
+                    normalized = (hit.score / top_rrf_score) if top_rrf_score > 0 else 0.0
+                    if normalized < threshold:
+                        continue
+                    results.append(self._build_result(hit, normalized))
+            logger.info(
+                f"[Scoring] Hybrid RRF normalized: "
+                f"{len(results)}/{len(hits)} hits passed threshold={threshold}"
+            )
+ 
         else:
+            # ── Dense-only mode ───────────────────────────────────────────────
+            # Cosine similarity 0–1, threshold berlaku langsung.
             results = []
             for hit in hits:
                 score_percent = float(hit.score)
@@ -391,6 +496,9 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
             grouped.values(), key=lambda x: x["best_score"], reverse=True
         )
         final_results = grouped_list[:limit]
+        with RESULT_FILE.open("w", encoding="utf-8") as file:
+            json.dump(final_results, file, ensure_ascii=False, indent=2)
+
         logger.info(f"[Search] Returning {len(final_results)} grouped results")
         logger.info(f"[Search] === Search Request Complete ===")
         return final_results
@@ -417,4 +525,5 @@ search_engine = SearchService(
     #Negation
     use_llm=False,
     use_finetuned=True,
+    use_sparse=True,
 )
