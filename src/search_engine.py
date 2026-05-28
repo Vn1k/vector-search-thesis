@@ -438,9 +438,24 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
         return display_text
 
 
-search_engine = SearchService(
-    use_reranker=False,
-    #Negation
-    use_llm=False,
-    use_finetuned=True,
-)
+_search_engine_instance = None
+
+
+def get_search_engine():
+    global _search_engine_instance
+    if _search_engine_instance is None:
+        _search_engine_instance = SearchService(
+            use_reranker=False,
+            # Negation
+            use_llm=False,
+            use_finetuned=False,
+        )
+    return _search_engine_instance
+
+
+class _LazySearchEngine:
+    def __getattr__(self, name):
+        return getattr(get_search_engine(), name)
+
+
+search_engine = _LazySearchEngine()
