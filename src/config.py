@@ -18,6 +18,22 @@ class Settings:
     COLLECTION_NAME_WITHOUT_CHUNKING = "no_chunk_document"
     VECTOR_SIZE: int = 768
 
+    #EVALUATION COLLECTION
+    # M = 8 Configurations
+    COLLECTION_HYBRID_M8_EF100: str = "rtas_hybrid_m8_ef100"
+    COLLECTION_HYBRID_M8_EF200: str = "rtas_hybrid_m8_ef200"
+    COLLECTION_HYBRID_M8_EF400: str = "rtas_hybrid_m8_ef400"
+
+    # M = 16 Configurations
+    COLLECTION_HYBRID_M16_EF100: str = "rtas_hybrid_m16_ef100"  #default
+    COLLECTION_HYBRID_M16_EF200: str = "rtas_hybrid_m16_ef200"
+    COLLECTION_HYBRID_M16_EF400: str = "rtas_hybrid_m16_ef400"
+
+    # M = 32 Configurations
+    COLLECTION_HYBRID_M32_EF100: str = "rtas_hybrid_m32_ef100"
+    COLLECTION_HYBRID_M32_EF200: str = "rtas_hybrid_m32_ef200"
+    COLLECTION_HYBRID_M32_EF400: str = "rtas_hybrid_m32_ef400"
+
     #model
     VECTOR_MODEL: str = "all-mpnet-base-v2"
     RERANKER_MODEL: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
