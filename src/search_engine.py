@@ -3,7 +3,7 @@ import json
 import logging
 import pycountry
 from qdrant_client import QdrantClient
-from qdrant_client.models import FieldCondition, Filter, MatchValue
+from qdrant_client.models import FieldCondition, Filter, MatchValue, models
 from sentence_transformers import CrossEncoder, SentenceTransformer
 from spellchecker import SpellChecker
 import localspelling
@@ -262,10 +262,11 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
         )
 
         raw_hits = self.client.query_points(
-            collection_name=settings.COLLECTION_NAME,
+            collection_name=settings.COLLECTION_HYBRID_M8_EF400,
             query=query_vector,
             query_filter=qdrant_filter,
-            limit=1000,
+            limit=100,
+            search_params=models.SearchParams(hnsw_ef=256),
             with_payload=True,
         ).points
 
@@ -448,7 +449,7 @@ def get_search_engine():
             use_reranker=False,
             # Negation
             use_llm=False,
-            use_finetuned=False,
+            use_finetuned=True,
         )
     return _search_engine_instance
 
