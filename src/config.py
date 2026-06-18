@@ -23,6 +23,7 @@ class Settings:
     COLLECTION_HYBRID_M8_EF100: str = "rtas_hybrid_m8_ef100"
     COLLECTION_HYBRID_M8_EF200: str = "rtas_hybrid_m8_ef200"
     COLLECTION_HYBRID_M8_EF400: str = "rtas_hybrid_m8_ef400"
+    COLLECTION_HYBRID_M8_EF400_RAW: str = "rtas_hybrid_m8_ef400_raw"
 
     COLLECTION_RECURSIVE_M8_EF400: str = "rtas_recursive_m8_ef400"
 

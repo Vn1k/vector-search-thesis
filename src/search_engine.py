@@ -37,11 +37,15 @@ class SearchService:
         use_reranker: bool = False,
         use_llm: bool = False,
         use_finetuned: bool = True,
+        use_dialect_normalization: bool = True,
+        use_spellchecker: bool = True,
     ):
         logger.info("[Init] Initializing model & database")
         self.client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
         self.vector_model = SentenceTransformer(settings.VECTOR_MODEL)
-        self.spell = SpellChecker()
+        self.use_dialect_normalization = use_dialect_normalization
+        self.use_spellchecker = use_spellchecker
+        self.spell = SpellChecker() if self.use_spellchecker else None
 
         # ─── Reranker (opsional) ──────────────────────────────────────────────
         self.use_reranker = use_reranker
@@ -78,6 +82,10 @@ class SearchService:
             logger.info(f"[Init] LLM Query Parser: ON ({self.LLM_MODEL})")
         else:
             logger.info("[Init] LLM Query Parser: OFF")
+        logger.info(
+            f"[Init] Dialect normalization: {'ON' if self.use_dialect_normalization else 'OFF'}"
+        )
+        logger.info(f"[Init] Spell checker: {'ON' if self.use_spellchecker else 'OFF'}")
         # ──────────────────────────────────────────────────────────────────────
 
         logger.info("[Init] System ready")
@@ -225,7 +233,7 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
 
         # ─── Step 3: Fix tokenization (fine-tuned) + dialect normalization ────
           # Original spell checker for non-finetuned mode
-        if not self.use_finetuned:
+        if self.use_spellchecker and not self.use_finetuned:
             # Spell checker hanya untuk non-finetuned mode
             words = search_query.split()
             misspelled = self.spell.unknown(words)
@@ -237,19 +245,25 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
                 else:
                     corrected.append(word)
             search_query = " ".join(corrected)
+        elif not self.use_spellchecker:
+            logger.info("[QueryTransform] Spell checker: OFF")
 
-        # Apply UK/US spelling normalization
-        spelling_query = localspelling.convert_spelling(search_query, "us")
-        excluded_terms = [
-            localspelling.convert_spelling(term, "us") for term in excluded_terms
-        ]
+        if self.use_dialect_normalization:
+            # Apply UK/US spelling normalization
+            spelling_query = localspelling.convert_spelling(search_query, "us")
+            excluded_terms = [
+                localspelling.convert_spelling(term, "us") for term in excluded_terms
+            ]
 
-        if search_query != spelling_query:
-            logger.info(
-                f"[QueryTransform] Dialect normalization: '{search_query}' -> '{spelling_query}'"
-            )
+            if search_query != spelling_query:
+                logger.info(
+                    f"[QueryTransform] Dialect normalization: '{search_query}' -> '{spelling_query}'"
+                )
+            else:
+                logger.debug("[QueryTransform] Dialect normalization: no changes")
         else:
-            logger.debug(f"[QueryTransform] Dialect normalization: no changes")
+            spelling_query = search_query
+            logger.info("[QueryTransform] Dialect normalization: OFF")
 
         final_query = spelling_query
         logger.info(f"[QueryTransform] Final query to Qdrant: '{final_query}'")
@@ -262,7 +276,7 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
         )
 
         raw_hits = self.client.query_points(
-            collection_name=settings.COLLECTION_HYBRID_M8_EF400,
+            collection_name=settings.COLLECTION_HYBRID_M8_EF400_RAW,
             query=query_vector,
             query_filter=qdrant_filter,
             limit=100,
@@ -343,7 +357,7 @@ Example: {{"positive_query": "textile tariffs", "excluded_terms": ["silk", "cott
                 found_terms = find_excluded_terms(item)
                 if found_terms:
                     # Log excluded document details
-                    doc_info = f"{item.get('agreement', '-')} - {item.get('chapter_name', '-')} - {item.get('article_name', '-')}"
+                    doc_info = f"{item.get('rta_id', '-')} - {item.get('agreement', '-')} - {item.get('chapter_name', '-')} - {item.get('article_number', '-')} - {item.get('article_name', '-')}"
                     excluded_docs_log.append({"doc": doc_info, "terms": found_terms})
                     logger.info(
                         f"[NegationFilter] EXCLUDED: '{doc_info}' matched terms: {found_terms}"
