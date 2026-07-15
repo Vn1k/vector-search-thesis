@@ -72,6 +72,10 @@ def init_qdrant():
         ("AgreementType", "keyword"),
         ("rta_id",        "integer"),
         ("chunk_index",   "integer"),
+        ("article_id",    "keyword"),
+        ("article_number","keyword"),
+        ("chapter_id",    "keyword"),
+        ("chapter_number","keyword")
     ]:
         client.create_payload_index(
             collection_name=settings.COLLECTION_NAME,
@@ -137,9 +141,13 @@ def process_and_upload(client, model, df):
 
     for idx, row in df.iterrows():
         # ── Metadata dokumen ──────────────────────────────────────────────
+        article_id     = row['article_id']
+        article_number = row['article_number'] if pd.notna(row.get('article_number'))  else ""
         article_name   = row['article_name']  if pd.notna(row.get('article_name'))  else ""
-        # article_text   = row['article_text']
+        article_text   = row['article_text']
         agreement_name = row['Agreement']
+        chapter_id     = row['chapter_id']
+        chapter_number = row['chapter_number'] if pd.notna(row.get('chapter_number'))  else ""
         chapter_name   = row['chapter_name']  if pd.notna(row.get('chapter_name'))  else "General Provisions"
         acronym        = row['acronym']        if pd.notna(row.get('acronym'))        else ""
         iso            = str(row['iso']).split(';') if pd.notna(row.get('iso')) else []
@@ -190,11 +198,15 @@ def process_and_upload(client, model, df):
         # ── Payload: article_text FULL untuk display ──────────────────────
         payload = {
             "rta_id"              : int(row['rta_id']),
+            "article_id"          : article_id,
+            "article_number"      : article_number,
             "article_name"        : article_name,
-            # "article_text"        : article_text,          # ← FULL untuk display
+            "article_text"        : article_text,
             "article_text_display": final_display,
             "Agreement"           : agreement_name,
             "AgreementType"       : agreement_type,
+            "chapter_id"          : chapter_id,
+            "chapter_number"      : chapter_number,
             "chapter_name"        : chapter_name,
             "iso"                 : iso,
             "acronym"             : acronym,

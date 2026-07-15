@@ -1,0 +1,310 @@
+query_id,query,rta_id,agreement_title,article_text,rank_legal_tina,rank_qdrant,hit rate,notes
+Q01,rules of origin,,EU - Chile Interim Trade Agreement - 2025,"A product originating in a Party shall be considered as originating in the other Party if used as a material in the production of another product in that other Party, provided that the working and processing carried out goes beyond one or more of the operations referred to in Article 3.6.
+Materials classified in Chapter 3 of the Harmonized System originating in the countries referred to in subparagraph (b) of paragraph 4 and used in the production of canned tuna products classified in subheading 1604.14 of the Harmonized System may be considered as originating in a Party provided that the conditions in subparagraphs (a) to (e) of paragraph 3 are fulfilled, and that that Party sends a notification for examination by the Sub-Committee referred to in Article 3.31.
+The Trade Committee may decide, following a recommendation by the Sub-Committee referred to in Article 3.31, that certain materials originating in the third countries referred to in paragraph 4 of this Article may be considered as originating in a Party if they are used in the production of a product in that Party provided that:
+
+    each Party has a trade agreement in force that forms a free trade area with that third country, within the meaning of Article XXIV of GATT 1994;
+    the origin of the materials referred to in this paragraph is determined in accordance with the rules of origin applicable under:
+        the European Union's trade agreement forming a free trade area with that third country, if the material concerned is used in the production of a product in Chile; and
+        Chile's trade agreement forming a free trade area with that third country, if the material concerned is used in the production of a product in the European Union;
+    an arrangement is in force between that Party and that third country on adequate administrative cooperation ensuring full implementation of this Chapter, including provisions on the use of appropriate documentation on the origin of materials, and that that Party notifies the other Party of that arrangement;
+    the production or processing of the materials undertaken in that Party goes beyond one or more of the operations referred to in Article 3.6; and
+    the Parties agree on any other applicable conditions.
+
+The third countries referred to in paragraph 3 are:
+
+    the Central American countries of Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua and Panama; and
+    the Andean countries of Colombia, Ecuador and Pein.
+
+",5,,1,This article explicitly outlines the conditions under which materials from third countries can be considered originating products under the agreement. It directly addresses the query by defining specific criteria and frameworks used to determine the rules of origin for production and processing.
+Q01,rules of origin,,China - Maldives - 2025,"Except as otherwise provided in this Chapter, the following goods shall be considered as originating in a Party:
+
+    goods wholly obtained or produced in a Party as defined in Article 18;
+    goods produced in a Party exclusively from originating materials; or
+    goods produced from non-originating materials in a Party, provided that the goods conform to a regional value content not less than 40%, except for the goods listed in Annex 2 which must comply with the requirements specified therein.
+
+  ",3,,1,"This article is highly relevant because it directly defines the legal criteria under which goods qualify as originating products. It outlines the specific conditions, such as being wholly obtained or meeting regional value content thresholds, required to determine the rules of origin."
+Q01,rules of origin,,EAEU - New Zealand - 2025,"Except as otherwise provided in this Chapter, each Party shall provide that a good is originating if it is:
+
+    wholly obtained or produced entirely in the territory of either of the Parties;
+    produced entirely in the territory of a Party, exclusively from originating materials of either of the Parties; or
+    produced entirely in the territory of a Party using non-originating materials, provided the good satisfies all applicable requirements of Annex 3A (Product Specific Rules of Origin), in each case, provided the good satisfies all other applicable requirements of this Chapter.
+",2,,1,"This article is directly relevant because it outlines the precise criteria and conditions under which a good is considered to be originating within the trade agreement. It explicitly details the frameworks used to establish the origin of goods, including a direct reference to product-specific rules of origin."
+Q01,rules of origin,,United Arab Emirates - Malaysia CEPA - 2025,"For the purpose of implementing this Agreement, goods shall be deemed originating in territory of a Party, if the goods are –
+
+    wholly obtained there in accordance with Article 7.3;
+    produced there exclusively from originating materials; or
+    obtained there incorporating materials which have not been wholly obtained there provided that such materials have undergone sufficient working or processing there in accordance with Article 7.4
+
+In each case provided in paragraph 1, the goods shall satisfy all other applicable requirements of this Chapter.",2,,1,"This article explicitly defines the legal criteria and conditions required for goods to be deemed originating within a party's territory [cite: 1]. It directly answers the query by outlining the specific frameworks, such as local production or sufficient processing, that constitute the rules of origin under the agreement [cite: 1]."
+Q01,rules of origin,,United Arab Emirates - Chile CEPA - 2025,"
+    For the purposes of implementing this Agreement, goods shall be considered as originating in the territory of a Party, if those goods are:
+        wholly obtained or produced there according to Article 3.3;
+        not wholly obtained or produced entirely there, provided that the good has undergone sufficient transformation according to Article 3.4, or
+        produced entirely there exclusively from materials that qualify as originating pursuant to the provisions of this Chapter.
+    In each case provided in paragraph 1, the goods shall also satisfy all other applicable requirements of this Chapter.
+
+For the purposes of Article 3.2(a), the following goods shall be deemed to be wholly obtained or produced in the territory of a Party:
+
+    plants and plant products grown, collected and harvested there;
+    live animals born and raised there;
+    products obtained from live animals there;
+    mineral products and natural resources extracted or taken from that Party’s soil, subsoil, waters, seabed or beneath the seabed;
+    products obtained from hunting, trapping, collecting, capturing, fishing or aquaculture conducted there;
+    products of sea fishing and other marine products taken from outside the territorial waters of the Parties by a vessel or produced or obtained by a factory ship registered, recorded, listed or licensed with a Party and flying its flag;
+    products, other than products of sea fishing and other marine products, taken or extracted from the seabed, ocean floor or the subsoil of the continental shelf or the exclusive economic zone of any of the Parties, provided that the Party or person has the right to exploit such seabed, ocean floor, or subsoil in accordance to international law;
+    raw materials recovered from used goods collected there;
+    wastes or scraps resulting from utilization, consumption or manufacturing operations conducted there, fit only for recovery of raw materials, and
+    products produced or obtained there exclusively from products referred to in subparagraphs (a) through (i), or from their derivatives, at any stage of production.
+
+    For the purposes of Article 3.2(b), a good shall be deemed to be originating if the good satisfies any of the following:
+        a change in Tariff Heading (CTH), which means that all non-originating materials used in the production of the good have undergone a change in HS tariff classification at the 4-digit level;
+        a Regional Value Content (RVC) not less than 40% of the FOB value, or
+        a Regional Value Content (RVC) not less than 35% of the Ex-Works Value.
+    Notwithstanding paragraph 1, if the good falls within the classifications included in the list in Annex 3A then the good shall fulfil the specific rule detailed therein.
+    For the purposes of paragraph 1, the RVC shall be calculated using any of the following methods:
+    RVC = (Ex-Works Value or FOB Value - V.N.M) / (Ex-Works Value or FOB Value) * 100
+    where:
+        RVC is the regional value content of a good expressed as a percentage;
+        FOB is the value of the good free on board, inclusive of the cost of transport (regardless of the mode of transport) to the port or site of final shipment abroad;
+        Ex-Works Value is the price paid for the good Ex-Works to the manufacturer in the Party in whose undertaking the last working or processing is carried out, provided the price includes the value of all the materials used, minus any internal taxes which are, or may be, repaid when the good obtained is exported, and
+        V.N.M is the CIF/Customs value of the non-originating materials at the time of importation, or the earliest ascertained price paid or payable in the Party where the production takes place for all non-originating materials, parts or produce that are acquired by the producer in the production of the good. When the producer of a good acquires non-originating materials within that Party the value of such materials shall not include freight, insurance, packing costs and any other costs incurred in transporting the material from the supplier’s warehouse to the producer’s location.
+    For a non-originating material that undergoes sufficient production in the territory of a Party as provided in Article 3.4, the resulting good shall be considered as originating and no account shall be taken of the non-originating material contained therein when that good is used as an intermediate good in the subsequent production of another good.
+    The provisions of paragraph 1 shall not apply to self-produced materials.
+    An originating good of a Party which is used in the processing or production in the territory of the other Party as material for finished goods shall be deemed as a material originating in the territory of the latter Party where the working or processing of the finished goods has taken place.
+    Notwithstanding paragraph 1, an originating good from a Party that does not undergo processing beyond the minimal or insufficient operations listed in Article 3.8 in the other Party shall retain its originating status of the former Party.
+    The Joint Committee may review this Article with a view to providing for other forms of accumulation for the purposes of qualifying goods as originating goods under this Agreement.
+
+Article 3.7: Tolerance (De Minimis)
+
+    Notwithstanding Article 3.4, a good will be considered to have undergone a change in tariff classification if the value of all non-originating materials that are used in the production of the good and that do not undergo the applicable change in tariff classification does not exceed 15% of the Ex-Works value of the good.
+    The value of non-originating materials referred to in paragraph 1 shall be included in the value of the non-originating materials for any applicable value-added content requirement.
+    Whether or not the requirements of Article 3.4 are satisfied, a good shall not be considered to be originating in the territory of a Party if the following operations are undertaken exclusively by itself or in combination in the territory of that Party:
+        slaughter of animals;
+        operations to ensure the preservation of products in good condition during transport and storage such as drying, freezing, ventilation, chilling and like operations;
+        sifting, simple classifying or sorting, washing, cutting, slitting, bending, coiling or uncoiling, sharpening, simple grinding, slicing;
+        cleaning, including removal of oxide, oil, paint or other coverings;
+        simple painting and polishing operations;
+        testing or calibration;
+        placing in bottles, cans, flasks, bags, cases, boxes, fixing on cards or boards and all other simple packaging operations;
+        simple mixing of goods, whether or not of different kinds;
+        simple assembly of parts of products to constitute a complete good or disassembly of products into parts;
+        changes of packing, unpacking or repacking operations, and breaking up and assembly of consignments;
+        affixing or printing marks, labels, logos and other like distinguishing signs on goods or their packaging;
+        husking, partial, or total bleaching, polishing and glazing of cereals and rice, and
+        mere dilution with water or another substance that does not materially alter the characteristics of the goods.
+    For the purposes of paragraph 1, the term “simple” will be defined as follows:
+        “simple” generally describes an activity which does not need special skills, machines, apparatus or equipment specially produced or installed for carrying out the activity.
+        “simple mixing” generally describes an activity which does not need special skills, machine, apparatus or equipment specially produce or install for carrying out the activity. However, simple mixing does not include chemical reaction. Chemical reaction means a process, including a biochemical process, which results in a molecule with a new structure by breaking intramolecular bonds and by forming new intramolecular bonds, or by altering the spatial arrangement of atoms in a molecule.
+
+In order to determine whether a good originates, the following material used in the production of a good shall be treated as originating material, irrespective of whether such material is originated:
+
+    energy and fuel;
+    plant and equipment;
+    machines and tools, and
+    any other materials or goods which are not incorporated into the good but whose use in the production of the good can reasonably be demonstrated to be a part of that production, testing or inspection of a good.
+
+    Accessories, spare parts, tools, and instructional or other information materials delivered with a good that form part of the good’s standard accessories, spare parts, tools, and instructional or other information materials, shall be regarded as a part of the good, and shall be disregarded in determining whether or not all the non-originating materials used in the production of the originating goods undergo the applicable change in tariff classification provided that:
+        the accessories, spare parts, tools, and instructional or other information materials are classified with and not invoiced separately from the good, and
+        the quantities and value of the accessories, spare parts, tools, and instructional or other information materials presented with the good are customary for the good.
+    Notwithstanding paragraph 1, if the goods are subject to RVC requirement, the value of the accessories, spare parts, tools and instructional or other information materials shall be taken into account as originating or non-originating materials, as the case may be, in calculating the regional value content of the goods.
+    Each Party shall provide that packaging materials and containers in which a good is packaged for retail sale, if classified with the good, according to Rule 5 of the General rules for the interpretation of the HS, shall be disregarded in determining whether all the non-originating materials used in the production of the good undergo the applicable change in tariff classification set out in any applicable product-specific rules.
+    If the good is subject to regional value content requirement, the value of such packaging materials and containers shall be taken into account as originating or non-originating materials, as the case may be, in calculating the regional value content of the good.
+
+Each Party shall provide that packing materials and containers for transportation and shipment are disregarded in determining whether a good is originating.
+
+    Each Party shall provide that the determination of whether fungible goods or materials are originating shall be made through physical segregation of each good or material, or, in case of any difficulty, through the use of any inventory management method, such as averaging, last-in, first-out, or first-in, first out, recognised in the generally accepted accounting principles of the Party in which the production is performed, or otherwise accepted by the Party in which the production is performed.
+    Each Party shall provide that an inventory management method selected under paragraph 1 for particular fungible goods or materials shall continue to be used for those fungible goods or materials throughout the fiscal year of the Party that selected the inventory management method.
+
+Sets, as defined in General Rule 3 of the HS, shall be regarded as originating when all component goods are originating. However, when a set is composed of originating and non-originating products, the set as a whole shall be regarded as originating, provided that the value of non-originating products does not exceed 15% of the Ex-Works Value of the set.",2,,1,"This article is highly relevant as it explicitly defines the core legal frameworks and criteria for establishing the rules of origin under the agreement, such as wholly obtained goods, sufficient transformation, and regional value content rules. Additionally, it lists specific production operations, exclusions, and calculation methods necessary to determine whether goods qualify for originating status."
+Q01,rules of origin,,Japan - Switzerland,"In applying the provisions of this Annex, the unit of qualification shall be the particular product which is considered as the basic unit when determining classification under the Harmonized System. Accordingly, it follows that:
+
+    when a product composed of a group or assembly of articles is classified under a single tariff line, the whole constitutes the unit of qualification; and
+    when a consignment consists of a number of identical products classified under a single tariff line, each product shall be taken individually into account in determining whether it qualifies as an originating product of a Party.
+
+With respect to packaging materials and containers that are used for retail sale of a product:
+
+    in determining whether all the non-originating materials used in the production of the product have undergone the applicable change in tariff classification or a specific manufacturing or processing operation set out in Appendix 1 to this Annex, packaging materials and containers for retail sale, which are classified with the product pursuant to Rule 5 of the General Rules for the Interpretation of the Harmonized System, shall be disregarded; and
+    in calculating the value of non-originating materials used in the production of the product, packaging materials and containers that are used for retail sale shall be considered as materials of the product.
+
+Packing materials and containers for shipment that are used to protect a product during transportation shall be disregarded in determining whether the product qualifies as an originating product of a Party.",,2,1,This article defines the standard units of qualification and rules for packaging materials when determining a product's originating status under the Harmonized System. It directly addresses the query by explaining the criteria used to classify and evaluate goods for rules of origin purposes.
+Q01,rules of origin,,"ASEAN - Korea, Republic of","
+    If the importing Party is not satisfied with the outcome of the retroactive check, it may, under exceptional circumstances, request verification visits to the exporting Party.
+    Prior to conducting a verification visit pursuant to paragraph 1:
+        an importing Party shall deliver a written notification of its intention to conduct the verification visit simultaneously to:
+            the producer and/or exporter whose premises are to be visited;
+            the issuing authority of the Party in the territory of which the verification visit is to occur;
+            the customs authority of the Party in the territory of which the verification visit is to occur;
+            the importer of the good subject to the verification visit;
+        the written notification mentioned in sub-paragraph (a) shall be as comprehensive as possible and shall include, among others:
+            the name of the customs authority issuing the notification;
+            the name of the producer and/or exporter whose premises are to be visited;
+            the proposed date of the verification visit;
+            the coverage of the proposed verification visit, including reference to the good subject to the verification;
+            the names and designation of the officials performing the verification visit;
+        an importing Party shall obtain the written consent of the producer and/or exporter whose premises are to be visited;
+        when a written consent from the producer and/or exporter is not obtained within thirty (30) days from the date of receipt of the notification pursuant to sub-paragraph (a), the notifying Party may deny preferential tariff treatment to the good referred to in the said Certificate of Origin that would have been subject to the verification visit;
+        the issuing authority receiving the notification may postpone the proposed verification visit and notify the importing Party of such intention within fifteen (15) days from the date of receipt of the notification. Notwithstanding any postponement, any verification visit shall be carried out within sixty (60) days from the date of such receipt, or a longer period as the Parties may agree.
+
+    The Party conducting the verification visit shall provide the producer and/or exporter, whose good is subject to such verification, and the relevant issuing authority with a written determination of whether or not the good subject to such verification qualifies as an originating good.
+    Any suspended preferential tariff treatment shall be reinstated upon the written determination referred to in paragraph 3 that the good qualifies as an originating good.
+    The producer and/or exporter shall be allowed thirty (30) days from the date of receipt of the written determination to provide in writing comments or additional information regarding the eligibility of the good for preferential tariff treatment. If the good is still found to be non-originating, the final written determination shall be communicated to the issuing authority within thirty (30) days from the date of receipt of the comments/additional information from the producer and/or exporter.
+    The verification visit process, including the actual visit and the determination under paragraph 3 whether the good subject to such verification is originating or not, shall be carried out and its results communicated to the issuing authority within a maximum period of six (6) months from the first day the initial verification visit was conducted. While the process of verification is being undertaken, paragraph 1(c) of Rule 14 shall be applied.",,2,1,"This article is highly relevant because it outlines the precise administrative procedures and verification processes used to confirm whether a good qualifies as an originating good under the agreement. It details the enforcement mechanisms, notifications, and compliance reviews required to validate and uphold the rules of origin."
+Q01,rules of origin,,United Kingdom - European Union,"Originating and non-originating fungible materials or fungible products shall be physically segregated during storage in order to maintain their originating and non-originating status. L 149/74 EN Official Journal of the European Union 30.4.2021
+For the purpose of paragraph 1, 'fungible materials' or 'fungible products' means materials or products that are of the same kind and commercial quality, with the same technical and physical characteristics, and that cannot be distinguished from one another for origin purposes.
+Notwithstanding paragraph 1, originating and non-originating fungible materials may be used in the production of a product without being physically segregated during storage if an accounting segregation method is used.
+Notwithstanding paragraph 1, originating and non-originating fungible products classified under Chapters 10, 15, 27, 28, 29, headings 32.01 to 32.07, or headings 39.01 to 39.14 of the Harmonised System may be stored in a Party before exportation to the other Party without being physically segregated, provided that an accounting segregation method is used.
+The accounting segregation method referred to in paragraphs 3 and 4 shall be applied in conformity with a stock management method under accounting principles which are generally accepted in the Party.
+The accounting segregation method shall be any method that ensures that at any time no more materials or products receive originating status than would be the case if the materials or products had been physically segregated. 30.4.2021 EN Official Journal of the European Union L 149/75
+A Party may require, under conditions set out in its laws or regulations, that the use of an accounting segregation method is subject to prior authorisation by the customs authorities of that Party. The customs authorities of the Party shall monitor the use of such authorisations and may withdraw an authorisation if the holder makes improper use of the accounting segregation method or fails to fulfil any of the other conditions laid down in this Chapter.",,4,1,This article explains the requirements and methods for maintaining the originating status of fungible materials and products through physical or accounting segregation. It directly relates to the query by establishing rules for tracking and managing the origin of identical goods during storage and production.
+Q01,rules of origin,,"China - Macao, China","Live animals born and raised in one side;
+Goods obtained from live animals in one side, including milk, eggs, natural honey, hair, wool, semen or manure;
+Plants or plant products grown, and harvested, picked or gathered in one side;
+Goods obtained from hunting, trapping, fishing, aquaculture, gathering or capturing conducted in one side;
+Minerals and other naturally occurring substances extracted or taken from the soil, waters, seabed or subsoil beneath the seabed of one side and not included in subparagraphs (i) to (iv) above;
+Goods extracted or taken from the waters, seabed or subsoil beneath the seabed outside one side, provided that one side has the right to exploit such waters, seabed or subsoil beneath the seabed in accordance with the provisions of relevant international agreements to which that side has forged or joined;
+Fish and other marine products obtained by fishing conducted in the sea outside the waters of one side by vessels registered with one side or holding a licence issued by one side and flying the national flag (for Mainland vessels) or the regional flag of the Hong Kong Special Administrative Region of the People's Republic of China (for Hong Kong Special Administrative Region vessels);
+Goods processed or manufactured on board factory ships registered with one side or holding a licence issued by one side and flying the national flag (for Mainland vessels) or the regional flag of the Hong Kong Special Administrative Region of the People's Republic of China (for Hong Kong Special Administrative Region vessels), exclusively from goods referred to in subparagraph (vii) above;
+Waste and scrap derived from processing operations in one side and are fit only for the recovery of raw materials;
+Waste and scrap articles consumed and collected in one side and are fit only for the recovery of raw materials;
+Goods produced in one side exclusively from goods referred to in subparagraphs (i) to (x) above.",,1,1,This article is highly relevant because it explicitly lists the categories of goods that qualify as wholly obtained or produced in a territory. It directly addresses the query by detailing the specific raw materials and production criteria used to establish rules of origin.
+Q01,rules of origin,,"China - Hong Kong, China","Live animals born and raised in one side;
+Goods obtained from live animals in one side, including milk, eggs, natural honey, hair, wool, semen or manure;
+Plants or plant products grown, and harvested, picked or gathered in one side;
+Goods obtained from hunting, trapping, fishing, aquaculture, gathering or capturing conducted in one side;
+Minerals and other naturally occurring substances extracted or taken from the soil, waters, seabed or subsoil beneath the seabed of one side and not included in subparagraphs (i) to (iv) above;
+Goods extracted or taken from the waters, seabed or subsoil beneath the seabed outside one side, provided that one side has the right to exploit such waters, seabed or subsoil beneath the seabed in accordance with the provisions of relevant international agreements to which that side has forged or joined;
+Fish and other marine products obtained by fishing conducted in the sea outside the waters of one side by vessels registered with one side or holding a licence issued by one side and flying the national flag (for Mainland vessels) or the regional flag of the Hong Kong Special Administrative Region of the People's Republic of China (for Hong Kong Special Administrative Region vessels);
+Goods processed or manufactured on board factory ships registered with one side or holding a licence issued by one side and flying the national flag (for Mainland vessels) or the regional flag of the Hong Kong Special Administrative Region of the People's Republic of China (for Hong Kong Special Administrative Region vessels), exclusively from goods referred to in subparagraph (vii) above;
+Waste and scrap derived from processing operations in one side and are fit only for the recovery of raw materials;
+Waste and scrap articles consumed and collected in one side and are fit only for the recovery of raw materials;
+Goods produced in one side exclusively from goods referred to in subparagraphs (i) to (x) above.",,1,1,"This article is highly relevant because it explicitly lists the categories of goods that are considered wholly obtained or produced within a specific side's territory. It directly addresses the query by detailing the core criteria used to determine the rules of origin for primary products, live animals, and manufactured goods."
+Q02,certificate of origin,,EU - Chile Interim Trade Agreement - 2025,,0,,0,
+Q02,certificate of origin,,China - Maldives - 2025,"A Certificate of Origin as set out in Annex 3 shall be issued by the authorized bodies of a Party on application by the exporter or producer, provided that the goods can be considered as originating in that Party subject to the provisions of this Chapter.
+The Certificate of Origin shall:
+
+    contain a unique certificate number;
+    cover one or more goods under one consignment;
+    state the basis on which the goods are deemed to qualify as originating for the purposes of this Chapter;
+    contain security features, such as specimen signatures or stamps as advised to the importing Party by the exporting Party; and
+    be completed in English.
+
+The Certificate of Origin shall be issued before or at the time of shipment. It shall be valid for 1 year from the date of issuance in the exporting Party.
+Each Party shall inform the customs authority of the other Party of the name of each authorized body, as well as relevant contact details, and shall provide details of any security features for relevant forms and documents used by each authorized body, prior to the issuance of any certificates by that body. Any change in the information provided above shall be promptly notified to the customs authority of the other Party.
+If the Certificate of Origin has not been issued before or at the time of shipment due to force majeure or justifiable reasons, the Certificate of Origin may be issued retrospectively but no longer than 1 year from the date of shipment, bearing the words 'ISSUED RETROSPECTIVELY'.
+For cases of theft, loss or accidental destruction of a Certificate of Origin, the exporter or producer may make a written or electronic request to the authorized bodies of the exporting Party for issuing a certified copy, provided that the original copy previously issued has been verified not to be used. The certified copy shall bear the words 'CERTIFIED TRUE COPY of the original Certificate of Origin number ___ dated ___'. The certified copy shall be valid during the term of validity of the original Certificate of Origin.",1,,1,"This article explicitly outlines the requirements and procedures for issuing, validating, and handling a Certificate of Origin under the agreement. It directly addresses the query by detailing the required contents, validity periods, and administrative frameworks for these certificates."
+Q02,certificate of origin,,EAEU - New Zealand - 2025,"A Certificate of Origin in paper format shall:
+
+    be in standard A4 white paper as per the attached Form set out in Annex 3-B (Certificate of Origin);
+    be forwarded by the producer or exporter to the importer for submission to the customs authority of the importing Party; and
+    apply to single importation of one or multiple goods provided that each good qualifies as an originating good separately in its own right.
+
+A Certificate of Origin in paper format can also be provided as an electronic document (for example, as a PDF version of a paper document).
+Each Certificate of Origin shall bear a unique serial reference number separately given by each place or office of issuance.
+A Certificate of Origin shall bear an official seal of a competent authority. The official seal may be applied electronically.
+Where the official seal is applied electronically, an authentication mechanism, such as quick response (QR) code or a secured website, shall be included in the certificate in order for the certificate to be deemed as an original copy.",3,,1,"This article directly addresses the query by outlining the specific physical and electronic format requirements, submission procedures, and authentication mechanisms for a Certificate of Origin. It explicitly details how the certificate must be issued, verified, and used by exporters and customs authorities under the agreement."
+Q02,certificate of origin,,United Arab Emirates - Malaysia CEPA - 2025,"A Certificate of Origin in paper format shall –
+
+    be in standard A4 white paper as per the attached Form set out in Annex 7B (Certificate of Origin);
+    comprise one original and two copies. The original shall be forwarded by the producer or exporter to the importer for submission to the Customs Authority of the importing Party. The duplicate shall be retained by the Competent Authority of the exporting Party. The triplicate shall be retained by the producer or exporter;
+    may cover one or more goods under one consignment; and
+    be in a printed format or such other medium including electronic format.
+
+Each Certificate of Origin shall bear a unique serial reference number separately given by each place or office of issuance.
+A Certificate of Origin shall bear an official seal of the Competent Authority. The official seal may be applied electronically.
+In case the official seal is applied electronically, an authentication mechanism, such as QR code or a secured website, shall be included in the certificate for the certificate to be deemed as an original copy.",4,,1,"This article explicitly outlines the formatting, issuance, and authentication requirements for a Certificate of Origin under the agreement. It directly addresses the query by detailing the specific physical and electronic standards required to validate these certificates for trade."
+Q02,certificate of origin,,United Arab Emirates - Chile CEPA - 2025,,0,,1,
+Q02,certificate of origin,,China - New Zealand,new zealand china free trade agreement resources the new zealand china free trade agreement fta entered into force on october this page provides resources to help new zealand businesses understand and utilise the agreement agreement text pdf mb frequently asked questions faqs rules of origin information sector specific information contact details for further information on the agreement please contact ministry of foreign affairs and trade wellington new zealand,,0,0,"This article is relevant because it provides informational resources and official text to help businesses understand and utilize the free trade agreement, specifically highlighting rules of origin information required to secure a certificate of origin."
+Q02,certificate of origin,,African Continental Free Trade Agreemen,"A Certificate of Origin shall be issued by the Designated Competent Authority of the exporting State Party on application having been made in writing by the Exporter or, under the Exporter's responsibility, by the authorised representative.
+For this purpose, the Exporter or the authorised representative shall fill out the Certificate of Origin as an application form, as set out in Appendix I of this Annex. The application form shall be completed in accordance with the provisions of this Annex. Where it is handwritten, it shall be completed in ink in printed characters. The description of the Products must be given in the box reserved for this purpose without leaving any blank lines. Where the box is not completely filled, a horizontal line must be drawn below the last line of the description, the empty space being crossed through.
+The Exporter applying for the issue of a Certificate of Origin shall submit at the request of the Designated Competent Authority of the exporting State Party where the Certificate of Origin is issued, all appropriate documents proving the originating status of the Products concerned as well as the fulfilment of the other requirements specified in this Annex.
+The Designated Competent Authority shall take any steps necessary to verify the originating status of the Products and the fulfilment of the other requirements specified in this Annex.
+For this purpose, the Customs Authority or Designated Competent Authority shall have the right to call for any evidence and to carry out any inspection of the Exporter's accounts or any other verification considered appropriate. The Customs Authority or Designated Competent Authority shall also ensure that the application form referred to in paragraph 1 of this Article is duly completed. In particular, the Customs Authority or Designated Competent Authority shall check whether the space reserved for the description of the Products has been completed in such a manner as to exclude all possibility of fraudulent additions.
+The date of issue of the Certificate of Origin shall be indicated in the relevant box of the Certificate.
+A Certificate of Origin shall be issued by the Designated Competent Authority and made available to the Exporter, to the best possible extent, before actual exportation has been effected.",,1,1,"This article is highly relevant because it explicitly details the administrative processes, application requirements, and verification procedures for issuing a Certificate of Origin. It outlines the specific responsibilities of both exporters and competent authorities to ensure compliance and prevent fraud."
+Q02,certificate of origin,,China - Georgia,"
+    A Certificate of Origin as set out in Annex II-B shall be issued by the authorized bodies of a Party (for China, China entry-exit inspection and quarantine organizations affiliated to the General Administration of Quality Supervision, Inspection and Quarantine and China Council for the Promotion of International Trade and its local sub-councils; for Georgia, Customs administration) on application by exporter or producer, provided that the goods can be considered as originating in that Party subject to the provision of this Chapter.
+    The Certificate of Origin shall:
+        contain a unique certificate number;
+        cover one or more goods under one consignment;
+        state the basis on which the goods are deemed to qualify as originating for purposes of this Chapter;
+        contain security features, such as specimen signatures or stamps as advised to the importing Party by the exporting Party; and
+        be completed in English.
+    The Certificate of Origin shall be issued before or at the time of shipment. It shall be valid for one year from the date of issuance in the exporting Party.
+    Each Party shall inform the customs authority of the other Party of the name of each authorised body, as well as relevant contact details, and shall provide details of any security features for relevant forms and documents used by each authorized body, prior to the issuance of any certificates by that body. Any change in the information provided above shall be promptly notified to the customs authority of the other Party.
+    A Certificate of Origin may be issued retrospectively within one year from the date of shipment, bearing the words 'ISSUED RETROSPECTIVELY' and remain valid for one year from the date of shipment, if:
+        it was not issued before or at the time of shipment due to force majeure, involuntary errors, omissions or other valid causes; or
+        it was requested by the customs authority of the importing Party, where a Certificate of Origin was issued but not accepted at importation.
+    For cases of theft, loss or accidental destruction of a Certificate of Origin, the exporter or producer may make a written request to the authorized bodies of the exporting Party for issuing a certified copy, provided that the original copy previously issued has been verified not to be used. The certified copy shall bear the words 'CERTIFIED TRUE COPY of the original Certificate of Origin number _ dated '. The certified copy shall be valid during the term of validity of the original Certificate of Origin.
+
+",,1,1,"This article explicitly outlines the requirements and procedures for issuing, validating, and handling a Certificate of Origin under the agreement. It directly addresses the query by detailing the required contents, validity periods, and administrative frameworks for these certificates."
+Q02,certificate of origin,,Australia - China,"For the purposes of obtaining preferential tariff treatment in the other Party, a Certificate of Origin shall be issued by an authorised body of the exporting Party.
+Each Party shall inform the customs administration of the other Party of the names and addresses of the authorised bodies issuing the Certificates of Origin and shall provide specimen impressions of official seals used by such authorised bodies. Any change in names, addresses or official seals shall be promptly notified to the customs administration of the other Party.
+A Certificate of Origin shall be issued before or at the time of exportation when the goods have been determined to be originating in the exporting Party in accordance with the provisions of this Chapter. The exporter or producer shall submit an application for the Certificate of Origin together with appropriate supporting documents proving that the goods qualify as originating.
+The Certificate of Origin, based on the template in Annex 3-A, shall be completed in the English language and shall be duly signed and stamped. A Certificate of Origin shall be applicable to one or more goods under one consignment unless the Parties otherwise agree and shall remain valid for 12 months from the date of issue.
+Notwithstanding paragraph 3, in exceptional cases where a Certificate of Origin has not been issued before or at the time of exportation due to force majeure, or involuntary errors, omissions or other valid reasons, a Certificate of Origin may be issued within 12 months from the date of shipment, bearing the remark 'ISSUED RETROSPECTIVELY', and remain valid for 12 months from the date of shipment.
+In cases of theft, loss or accidental destruction of a Certificate of Origin, the exporter or producer may, within the term of validity of the original Certificate of Origin, make a written request to the authorised body that issued the original certificate for a certified copy, provided that the original Certificate of Origin had not been used. The certified copy shall bear the words 'CERTIFIED TRUE COPY of the original Certificate of Origin number ___ dated ___'. The certified copy shall have the same term of validity as the original Certificate of Origin.",,1,1,"This article is highly relevant because it explicitly outlines the rules and procedures for issuing, validating, and applying for a Certificate of Origin under the agreement. It directly addresses the query by detailing requirements such as authorizing bodies, language standards, validity periods, and exceptional retroactive issuance."
+Q02,certificate of origin,,China - Costa Rica,"
+    To qualify originating goods for preferential tariff treatment, the Certificate of Origin, as set out in Annex 4 (Certificate of Origin), shall be issued by the authorized body or bodies of the exporting Party, on written application by the exporter, together with supporting documents, and shall be submitted on importation to the customs administration of the importing Party. The Certificate of Origin shall:
+        contain a unique certificate number;
+        cover one or more goods under one consignment;
+        state the basis on which the goods are deemed to qualify as originating for purposes of Section A of this Chapter;
+        contain security features, such as specimen signatures or stamps as advised to the importing Party by the exporting Party; and
+        be completed in English by typing.
+    A Certificate of Origin shall remain valid for 12 months from the date of issuance.
+    In principle, the Certificate of Origin shall be issued before or at the time of exportation. Nevertheless, a Certificate of Origin may exceptionally be issued retrospectively after exportation, on the condition that the exporter provides all the necessary commercial documents and export declaration processed by the customs administration of the exporting Party, provided that:
+        it was not issued at the time of exportation due to force majeure, or errors, or involuntary omissions or other special circumstances as may be deemed satisfied under the domestic law of each Party, where applicable; or
+        it is demonstrated to the satisfaction of the authorized body that the Certificate of Origin was issued but was not accepted at importation for technical reasons.
+    The validation period shall remain the same as indicated in the Certificate originally issued.
+    Where paragraph 3 is applied, the Certificate shall be issued retrospectively within 12 months from the date of exportation, and shall be endorsed with the words 'ISSUED RETROSPECTIVELY'.
+    In the event of theft, loss or accidental destruction of a Certificate of Origin, the exporter or producer may make a written request to the authorized body or bodies of the exporting Party for issuing a certified copy, provided that the original copy previously issued has been proved unused as a result of verification. The certified copy shall bear the words 'CERTIFIED TRUE COPY' with the original Certificate of Origin number ___ dated ___.
+",,1,1,"This article explicitly outlines the rules and procedures for issuing, validating, and applying for a Certificate of Origin under the agreement [cite: 1]. It directly addresses the query by detailing requirements such as authorizing bodies, language standards, validity periods, and exceptional retroactive issuance [cite: 1]."
+Q03,technical barriers to trade,,EU - Singapore Digital Trade Agreement - 2026,"For the purpose of this Article, the definitions set out in Annex 1 to the Agreement on Technical Barriers to Trade (hereinafter referred to as the 'TBT Agreement') shall apply mutatis mutandis.
+The Parties recognise the importance and contribution of standards, technical regulations and conformity assessment procedures in fostering a well-functioning digital economy, and reducing barriers to digital trade by increasing compatibility, interoperability and reliability.
+The Parties shall encourage their respective bodies to participate and cooperate in areas of mutual interest at international fora to which both Parties are party, to promote the development and use of international standards relating to digital trade. In emerging areas of mutual interest in the digital economy, the Parties shall also endeavour to do so for services relevant to digital trade.
+The Parties recognise that mechanisms which facilitate the cross-border recognition of conformity assessment results can facilitate digital trade. The Parties shall endeavour to avail themselves of such mechanisms, which include international recognition agreements on the acceptance of conformity assessment results by regulators. In emerging areas of mutual interest in the digital economy, the Parties shall also endeavour to do so for services relevant to digital trade.
+To this end, in areas of mutual interest that are related to digital trade, the Parties shall endeavour or encourage their respective bodies to:
+
+    identify and cooperate on joint initiatives in the field of standards, technical regulations and conformity assessment procedures; and
+    cooperate with the private sector to develop a greater understanding of standards, technical regulations and conformity assessment procedures between the Parties, the industry and other relevant stakeholders.
+
+The Parties acknowledge the importance of information exchange and transparency with regard to the preparation, adoption and application of standards, technical regulations and conformity assessment procedures for digital trade and affirm their commitments under Article 4.8 (Transparency) of the Free Trade Agreement. In emerging areas of mutual interest in the digital economy, the Parties acknowledge the importance of information exchange and transparency with regard to the preparation, adoption and application of standards, technical regulations and conformity assessment procedures for services relevant to digital trade and shall endeavour to, upon request and where appropriate, encourage their respective bodies to provide information on standards, technical regulations and conformity assessment procedures relating to services relevant to digital trade.",1,,1,"This article explicitly adopts the definitions from the Agreement on Technical Barriers to Trade to address barriers in digital trade [cite: 1]. It outlines how cooperation on standards, technical regulations, and conformity assessment procedures will be utilized to reduce these technical barriers [cite: 1]."
+Q03,technical barriers to trade,,EU - Chile Interim Trade Agreement - 2025,"With a view to preventing, identifying and eliminating unnecessary technical barriers to trade in energy goods and raw materials, Chapter 9 applies to those goods and materials. EU/CL/ITA/en 155
+In accordance with Articles 9.4 and 9.6, the Parties shall, as appropriate, promote cooperation between their relevant regulatory and standardising bodies in areas such as energy efficiency, sustainable energy and raw materials, with a view to contributing to trade, investment, and sustainable development, inter alia, through:
+
+    the convergence or harmonisation, if possible, of their respective current standards, based on mutual interest and reciprocity, and in line with modalities to be agreed by the regulators and the standardising bodies concerned;
+    joint analyses, methodologies and approaches, if possible, to assist and facilitate the development of relevant tests and measurement standards, in cooperation with their relevant standardising bodies;
+    the development of common standards, if possible, on energy efficiency and renewable energy; and
+    the promotion of standards on raw materials, renewable energy generation and energy efficiency equipment, including product design and labelling, if appropriate, through existing international cooperation initiatives.
+
+For the purposes of implementing this Chapter, the Parties aim to encourage the development and use of open standards and interoperability of networks, systems, devices, applications or components in the energy and raw materials sectors. EU/CL/ITA/en 156",2,,1,"This article is highly relevant because it explicitly states that the objective of the chapter is to prevent, identify, and eliminate unnecessary technical barriers to trade in energy goods and raw materials. It directly addresses the query by outlining how regulatory cooperation and the harmonization of standards will be used to reduce these trade barriers."
+Q03,technical barriers to trade,,China - Maldives - 2025,"The Parties affirm their rights and obligations with respect to each other under the TBT Agreement and the SPS Agreement.
+Except as otherwise provided for in this Chapter, the TBT Agreement and the SPS Agreement shall apply between the Parties, and both Agreements are hereby incorporated into and made part of this Chapter, mutatis mutandis.",4,,1,"This article is highly relevant because it explicitly outlines the agreement's objectives to implement the Technical Barriers to Trade (TBT) Agreement and strengthen cooperation on technical regulations, standards, and conformity assessment procedures. It directly addresses the query by defining the framework used to facilitate trade and reduce technical barriers between the parties."
+Q03,technical barriers to trade,,EAEU - New Zealand - 2025,,0,,1,
+Q03,technical barriers to trade,,United Arab Emirates - Malaysia CEPA - 2025,"The Parties affirm their existing rights and obligations with respect to each other under the TBT Agreement which is incorporated into and made part of this Agreement, mutatis mutandis, other than Articles 7 and 8 of the TBT Agreement.",4,,1,This article is highly relevant because it explicitly states that the objective of the chapter is to eliminate unnecessary technical barriers to trade. It directly addresses the query by outlining the core purpose of facilitating trade through transparency and enhanced regulatory cooperation [cite: 1].
+Q03,technical barriers to trade,,United Kingdom - European Union,"
+    If a Party considers that a draft or proposed technical regulation or conformity assessment procedure of the other Party might have a significant effect on trade between the Parties, it may request technical discussions on the matter. The request shall be made in writing to the other Party and shall identify:
+        the measure at issue;
+        the provisions of this Chapter or of an Annex to this Chapter to which the concerns relate; and
+        the reasons for the request, including a description of the requesting Party's concerns regarding the measure.
+    A Party shall deliver its request to the contact point of the other Party designated pursuant to Article 99.
+    At the request of either Party, the Parties shall meet to discuss the concerns raised in the request, in person or via videoconference or teleconference, within 60 days of the date of the request and shall endeavour to resolve the matter as expeditiously as possible. If a requesting Party believes that the matter is urgent, it may request that any meeting take place within a shorter time frame. In such cases, the responding Party shall give positive consideration to such a request.
+
+",,4,1,"This article is highly relevant because it explicitly states that the objective of the chapter is to prevent, identify, and eliminate unnecessary technical barriers to trade. It directly addresses the query by defining the core purpose of the agreement's framework regarding trade barriers and regulatory cooperation."
+Q03,technical barriers to trade,,European Free Trade Association (EFTA),"The Member States shall exchange relevant information regarding implementation and application of this Annex.
+Each Member State shall inform the other Member States of the changes it intends to make to the legislative, regulatory and administrative provisions relating to the subject matter of this Annex, and shall notify the other Member States in writing of the new provisions at least 60 days before their entry into force.
+Where the legislation of one of the Member States stipulates that a specific item of information must be made available to the competent authority by a person established in its territory, that authority may also approach the competent authority of the other Member States or enter into direct contact with the manufacturer or, if appropriate, the latter's agent in the territory of the other Member States, in order to obtain that information.
+Each Member State shall immediately notify the other Member States of safeguard measures taken in its territory.",,1,1,This article is relevant because it outlines the regulatory and legislative frameworks for conformity assessment and legislative equivalence between Switzerland and the EEA EFTA states. It addresses technical barriers to trade by establishing how compliance and standards are mutually recognized between the parties.
+Q03,technical barriers to trade,,"China - Hong Kong, China","Where one side considers that the technical regulation or conformity assessment procedure of the other side has constituted an obstacle to its exports, it may request technical consultations. The requested side shall actively consider and respond promptly to such request.
+Technical consultations shall be conducted within a time frame mutually agreed by the two sides, with a view to reaching a mutually satisfactory resolution. Technical consultations may be conducted via any means mutually agreed by the two sides.",,2,1,This article is relevant because it outlines the procedure for requesting technical consultations when a technical regulation or conformity assessment procedure creates an obstacle to exports [cite: 1]. It directly addresses the query by providing a mechanism to resolve these specific technical barriers to trade through mutually agreed resolutions [cite: 1].
+Q03,technical barriers to trade,,"China - Macao, China","
+    When one side considers that a relevant technical regulation or conformity assessment procedure of the other side has constituted an obstacle to its exports, it may request technical consultations. The requested side shall give active consideration and respond as early as possible to such request.
+    Technical consultations shall be held at times mutually agreed upon by both sides with a view to reaching a mutually satisfactory solution, and may be conducted through any means mutually agreed by the two sides concerned.
+
+",,1,1,This article is relevant because it outlines the procedure for requesting technical consultations when a technical regulation or conformity assessment procedure creates an obstacle to exports. It directly addresses the query by providing a mechanism to resolve these specific technical barriers to trade through mutually agreed resolutions.
+Q03,technical barriers to trade,,"Korea, Republic of - Turkey","The Parties agree:
+
+    to fulfil the transparency obligations of the Parties as indicated in the TBT Agreement; and
+    to use relevant international standards as a basis for technical regulations including conformity assessment procedures, except when such international standards would be an ineffective or inappropriate means for the fulfilment of the legitimate objectives pursued.
+
+",,1,1,This article is highly relevant because it explicitly commits the parties to fulfilling transparency obligations under the Technical Barriers to Trade (TBT) Agreement [cite: 1]. It directly addresses the query by establishing the use of international standards for technical regulations and conformity assessment procedures to prevent trade obstacles [cite: 1].

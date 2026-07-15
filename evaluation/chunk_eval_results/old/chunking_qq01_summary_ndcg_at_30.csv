@@ -1,0 +1,3 @@
+query_id,query,chunking_method,collection_label,collection_name,m,ef_construct,search_hnsw_ef,raw_qdrant_limit,raw_hit_count,unique_article_count,evaluated_rows,matched_gt_rows_at_k,ndcg_at_30,elapsed_ms,relevance_sequence
+Q01,customs clearance for perishable goods,hybrid,COLLECTION_HYBRID_M8_EF400,rtas_hybrid_m8_ef400,8,400,256,100,100,97,16,16,0.8195763614269505,156.09851000044728,"[3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0, 1.0, 1.0]"
+Q01,customs clearance for perishable goods,recursive,COLLECTION_RECURSIVE_M8_EF400,rtas_recursive_m8_ef400,8,400,256,100,100,96,13,13,0.75286797152254,145.83973200024047,"[3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 2.0, 2.0, 2.0, 3.0, 1.0]"

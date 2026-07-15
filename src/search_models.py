@@ -3,15 +3,17 @@ from typing import List, Optional
 
 class SearchRequest(BaseModel):
     query: str
-    limit: int = 5
-    threshold: float = 0.50
+    limit: int = 10
+    threshold: float = 0.0
 
 # Model untuk artikel di dalam group
 class ArticleResult(BaseModel):
     id: int
     chapter_name: str
+    article_id  : str
+    article_number: str
     article_name: str
-    # article_text: str
+    article_text: str
     article_text_display: str
     score: float
     confidence: str
