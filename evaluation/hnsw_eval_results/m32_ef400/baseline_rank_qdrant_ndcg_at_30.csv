@@ -1,0 +1,5 @@
+eval_id,query_id,query,gt_rows,ranked_rows,rank_semantics,ndcg_at_30,relevance_sequence
+Q01,Q01,customs clearance for perishable goods,29,29,"agreement_rank,article_rank",0.8986228249325606,"[3.0, 2.0, 1.0, 3.0, 2.0, 1.0, 3.0, 1.0, 0.0, 3.0, 2.0, 0.0, 3.0, 2.0, 1.0, 3.0, 2.0, 2.0, 3.0, 2.0, 0.0, 3.0, 2.0, 3.0, 1.0, 1.0, 3.0, 2.0, 0.0]"
+Q02_negation,Q02,intellectual property protection without patents,25,25,"agreement_rank,article_rank",0.9000943000364602,"[2.0, 3.0, 2.0, 2.0, 2.0, 2.0, 0.0, 1.0, 2.0, 3.0, 2.0, 2.0, 0.0, 2.0, 2.0, 1.0, 3.0, 0.0, 2.0, 2.0, 2.0, 0.0, 3.0, 2.0, 2.0]"
+Q02_no_negation,Q02,intellectual property protection without patents,26,26,"agreement_rank,article_rank",0.8851230892042234,"[2.0, 2.0, 3.0, 0.0, 2.0, 0.0, 0.0, 2.0, 2.0, 2.0, 2.0, 0.0, 0.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 0.0, 2.0, 0.0, 0.0, 2.0, 0.0, 2.0]"
+Q03,Q03,labour standards in trade,28,28,"agreement_rank,article_rank",0.923910248251773,"[3.0, 3.0, 2.0, 2.0, 2.0, 3.0, 2.0, 3.0, 2.0, 1.0, 0.0, 0.0, 0.0, 3.0, 2.0, 3.0, 2.0, 3.0, 0.0, 0.0, 0.0, 0.0, 3.0, 3.0, 0.0, 0.0, 3.0, 3.0]"

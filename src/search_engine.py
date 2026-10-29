@@ -1,35 +1,61 @@
-import math
-import spacy
+import logging
 import pycountry
 from qdrant_client import QdrantClient
-from qdrant_client.models import FieldCondition, Filter, MatchValue
-from sentence_transformers import CrossEncoder, SentenceTransformer
-from spellchecker import SpellChecker
-import localspelling
+from qdrant_client.models import FieldCondition, Filter, MatchValue, models
+from sentence_transformers import SentenceTransformer
 from src.config import settings
+
+# Import fine-tuned negation parser (optional)
+try:
+    import sys
+    import os
+
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from finetuning_negation.FLAN.inference import NegationParser
+
+    FINETUNED_AVAILABLE = True
+except ImportError:
+    FINETUNED_AVAILABLE = False
+
+# Konfigurasi logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger(__name__)
 
 
 class SearchService:
-    def __init__(self, use_reranker: bool = False): 
-        print("Initialization model & database")
+    def __init__(
+        self,
+        use_finetuned: bool = True,
+    ):
+        logger.info("[Init] Initializing model & database")
         self.client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
         self.vector_model = SentenceTransformer(settings.VECTOR_MODEL)
-        self.spell = SpellChecker()
 
-        # ─── Reranker (opsional) ───────────────────────────────────────────────
-        self.use_reranker = use_reranker
-        if self.use_reranker:
-            self.reranker = CrossEncoder(settings.RERANKER_MODEL)
-            print("Reranker: ON")
+        # ─── Fine-tuned Query Parser ───────────────────────────────────────────
+        self.use_finetuned = use_finetuned and FINETUNED_AVAILABLE
+        self.finetuned_parser = None
+        if self.use_finetuned:
+            try:
+                model_path = os.path.join(
+                    os.path.dirname(os.path.dirname(__file__)),
+                    "finetuning_negation",
+                    "FLAN",
+                    "negation_model_t5_v2",
+                )
+                self.finetuned_parser = NegationParser(model_path)
+                logger.info("[Init] Fine-tuned Parser: ON")
+            except Exception as e:
+                logger.warning(f"[Init] Fine-tuned parser failed to load: {e}")
+                self.use_finetuned = False
         else:
-            self.reranker = None
-            print("Reranker: OFF (vector score only)")
+            logger.info("[Init] Fine-tuned Parser: OFF")
         # ──────────────────────────────────────────────────────────────────────
 
-        print("System ready")
-
-    def sigmoid(self, x):
-        return 1 / (1 + math.exp(-x))
+        logger.info("[Init] System ready")
 
     def detect_iso_from_query(self, query):
         query_lower = query.lower()
@@ -52,102 +78,144 @@ class SearchService:
                 return code
 
         for country in pycountry.countries:
-            country_name = country.name.lower()
-            if country_name in query_lower:
+            if country.name.lower() in query_lower:
                 return country.alpha_3
 
         return None
 
-    def negation_and_lemma(self, query):
-        nlp = spacy.load("en_core_web_sm")
-        query = nlp(query)
-        # TODO: implementasi negation & lemmatisasi
+    def search(self, query: str, limit: int = 5, threshold: float = 0.0):
+        logger.info(f"[Search] === New Search Request ===")
+        logger.info(f"[Search] Original user query: '{query}'")
+        logger.info(f"[Search] Parameters: limit={limit}, threshold={threshold}")
 
-    def search(self, query: str, limit: int = 5, threshold: float = 0.1):
-        detected_iso = self.detect_iso_from_query(query)
+        # ─── Step 1: Query parsing ─────────────────────────────────────────────
+        excluded_terms = []
+
+        if self.use_finetuned and self.finetuned_parser:
+            # Use fine-tuned model for fast parsing
+            logger.info("[QueryParser] Using fine-tuned model")
+            parsed = self.finetuned_parser.parse(query)
+            search_query = parsed["positive_query"]
+            excluded_terms = parsed["excluded_terms"]
+            logger.info(f"[Finetuned] positive_query: '{search_query}'")
+            logger.info(f"[Finetuned] excluded_terms: {excluded_terms}")
+            logger.info(f"[Finetuned] confidence: {parsed.get('confidence', 0):.3f}")
+        else:
+            # No parsing, use original query
+            search_query = query
+        # ──────────────────────────────────────────────────────────────────────
+
+        # ─── Step 2: Deteksi negara (rule-based) ───────────────────────────────
+        detected_iso = self.detect_iso_from_query(search_query)
+
         qdrant_filter = None
         if detected_iso:
-            print(f"ML detect country: {detected_iso}, using filter")
+            logger.info(
+                f"[QueryTransform] Detected country: {detected_iso}, using filter"
+            )
             qdrant_filter = Filter(
                 must=[FieldCondition(key="iso", match=MatchValue(value=detected_iso))]
             )
         else:
-            print("No detected country, using global")
-
-        # ─── Spell correction ─────────────────────────────────────────────────
-        corrected_query_list = []
-        words = query.split()
-        misspelled = self.spell.unknown(words)
-
-        for word in words:
-            if word in misspelled:
-                correction = self.spell.correction(word)
-                corrected_query_list.append(correction if correction else word)
-            else:
-                corrected_query_list.append(word)
-
-        typo_query = " ".join(corrected_query_list)
-
-        if query != typo_query:
-            print(f"Typo detected! Original: '{query}' -> Corrected: '{typo_query}'")
-
-        spelling_query = localspelling.convert_spelling(typo_query, "us")
-
-        if typo_query != spelling_query:
-            print(f"Dialect Normalized! '{typo_query}' -> '{spelling_query}'")
-
+            logger.info("[QueryTransform] No detected country, using global search")
         # ──────────────────────────────────────────────────────────────────────
-        final_query = spelling_query
 
+        final_query = search_query
+        logger.info(f"[QueryTransform] Final query to Qdrant: '{final_query}'")
+        # ──────────────────────────────────────────────────────────────────────
+
+        # ─── Step 3: Vector search ────────────────────────────────────────────
         query_vector = self.vector_model.encode(final_query).tolist()
+        logger.debug(
+            f"[QueryTransform] Query vector generated (dim: {len(query_vector)})"
+        )
 
-        # Retrieval tahap 1 (vector search)
-        hits = self.client.query_points(
-            collection_name=settings.COLLECTION_NAME,
+        raw_hits = self.client.query_points(
+            collection_name=settings.COLLECTION_HYBRID_M8_EF400_RAW,
             query=query_vector,
             query_filter=qdrant_filter,
-            limit=20,
+            limit=100,
+            search_params=models.SearchParams(hnsw_ef=256),
             with_payload=True,
         ).points
 
-        if not hits:
+        logger.info(f"[QueryTransform] Qdrant returned {len(raw_hits)} results")
+
+        if not raw_hits:
+            logger.info("[QueryTransform] No results from Qdrant, returning empty")
             return []
+        # ──────────────────────────────────────────────────────────────────────
 
-        # ─── Scoring: pakai reranker atau vector score langsung ───────────────
-        if self.use_reranker:
-            # Pakai CrossEncoder score
-            cross_inp = []
-            for hit in hits:
-                pl = hit.payload
-                context_text = f"{pl['Agreement']} - {pl['chapter_name']} - {pl['article_name']}: {pl['article_text']}"
-                cross_inp.append([final_query, context_text])
+        unique_hits = []
+        seen_articles = set()
 
-            cross_scores = self.reranker.predict(cross_inp)
+        for hit in raw_hits:
+            rta_id = hit.payload.get("rta_id")
+            article_name = hit.payload.get("article_name", "").strip()
+            
+            # Buat "KTP" unik untuk setiap pasal: Contoh "100_Definitions"
+            unique_key = f"{rta_id}_{article_name}"
 
-            results = []
-            for idx, hit in enumerate(hits):
-                raw_score = cross_scores[idx]
-                score_percent = self.sigmoid(raw_score)
+            # Jika KTP ini belum pernah kita lihat, masukkan ke daftar unik!
+            if unique_key not in seen_articles:
+                seen_articles.add(unique_key)
+                unique_hits.append(hit)
+            else:
+                # Jika sudah ada, abaikan (karena kita hanya butuh 1 per pasal, 
+                # dan yang pertama pasti skornya paling tinggi)
+                pass
+        logger.info(f"[Deduplication] Reduced {len(raw_hits)} chunks to {len(unique_hits)} unique articles.")
 
-                if score_percent < threshold:
-                    continue
+        hits = unique_hits
 
-                results.append(self._build_result(hit, score_percent))
+        # ─── Step 4: Scoring ──────────────────────────────────────────────────
+        results = []
+        for hit in hits:
+            score_percent = float(hit.score)
+            if score_percent < threshold:
+                continue
+            results.append(self._build_result(hit, score_percent))
+        # ──────────────────────────────────────────────────────────────────────
 
-        else:
-            # Pakai vector similarity score langsung dari Qdrant
-            results = []
-            for hit in hits:
-                score_percent = float(hit.score)  # sudah 0-1 dari Qdrant
+        # ─── Step 5: Filter excluded_terms
+        if excluded_terms:
+            logger.info(
+                f"[NegationFilter] Starting exclusion filter with terms: {excluded_terms}"
+            )
+            logger.info(f"[NegationFilter] Results before filter: {len(results)}")
 
-                if score_percent < threshold:
-                    continue
+            def find_excluded_terms(item: dict) -> list:
+                """Return list of excluded terms found in the document."""
+                text = item.get("article_text_display", "").lower()
+                return [term for term in excluded_terms if term.lower() in text]
 
-                results.append(self._build_result(hit, score_percent))
+            filtered_results = []
+            excluded_docs_log = []
+
+            for item in results:
+                found_terms = find_excluded_terms(item)
+                if found_terms:
+                    # Log excluded document details
+                    doc_info = f"{item.get('rta_id', '-')} - {item.get('agreement', '-')} - {item.get('chapter_name', '-')} - {item.get('article_number', '-')} - {item.get('article_name', '-')}"
+                    excluded_docs_log.append({"doc": doc_info, "terms": found_terms})
+                    logger.info(
+                        f"[NegationFilter] EXCLUDED: '{doc_info}' matched terms: {found_terms}"
+                    )
+                else:
+                    filtered_results.append(item)
+
+            results = filtered_results
+            after = len(results)
+
+            logger.info(
+                f"[NegationFilter] Results after filter: {after} (removed {len(results) - after + len(excluded_docs_log)} documents)"
+            )
+            logger.info(f"[NegationFilter] Excluded terms applied: {excluded_terms}")
         # ──────────────────────────────────────────────────────────────────────
 
         results = sorted(results, key=lambda x: x["score"], reverse=True)
 
+        # ─── Step 6: Grouping per RTA ─────────────────────────────────────────
         grouped = {}
         for item in results:
             rta_id = item["rta_id"]
@@ -161,11 +229,12 @@ class SearchService:
                     "best_confidence": item["confidence"],
                     "articles": [],
                 }
-
             grouped[rta_id]["articles"].append(
                 {
                     "id": item["id"],
                     "chapter_name": item["chapter_name"],
+                    "article_id"  : item["article_id"],
+                    "article_number": item["article_number"],
                     "article_name": item["article_name"],
                     "article_text": item["article_text"],
                     "article_text_display": item["article_text_display"],
@@ -174,24 +243,70 @@ class SearchService:
                 }
             )
 
-        grouped_list = sorted(grouped.values(), key=lambda x: x["best_score"], reverse=True)
-        return grouped_list[:limit]
+        grouped_list = sorted(
+            grouped.values(), key=lambda x: x["best_score"], reverse=True
+        )
+        final_results = grouped_list[:limit]
+        logger.info(f"[Search] Returning {len(final_results)} grouped results")
+        logger.info(f"[Search] === Search Request Complete ===")
+        return final_results
+        # ──────────────────────────────────────────────────────────────────────
 
     def _build_result(self, hit, score_percent: float) -> dict:
-        """Helper untuk build dict result agar tidak duplikasi kode."""
+        article_text = hit.payload.get("article_text") or "-"
+        article_text_display = self._resolve_article_text_display(
+            hit.payload.get("article_text_display"),
+            article_text,
+        )
+
         return {
             "id": hit.id,
             "rta_id": hit.payload.get("rta_id"),
-            "agreement": hit.payload.get("Agreement", "-"),
-            "chapter_name": hit.payload.get("chapter_name", "-"),
-            "article_name": hit.payload.get("article_name", "-"),
-            "article_text": hit.payload.get("article_text", "-"),
-            "article_text_display": hit.payload.get("article_text_display", "-"),
-            "acronym": hit.payload.get("acronym", "-"),
-            "iso": hit.payload.get("iso", "-"),
+            "agreement": hit.payload.get("Agreement") or "-",
+            "chapter_name": hit.payload.get("chapter_name") or "-",
+            "article_id"  : hit.payload.get("article_id"),
+            "article_number": hit.payload.get("article_number") or "-",
+            "article_name": hit.payload.get("article_name") or "-",
+            "article_text": article_text,
+            "article_text_display": article_text_display,
+            "acronym": hit.payload.get("acronym") or "-",
+            "iso": hit.payload.get("iso") or "-",
             "score": score_percent,
             "confidence": f"{score_percent:.4%}",
         }
 
+    @staticmethod
+    def _resolve_article_text_display(article_text_display, article_text: str) -> str:
+        if article_text_display is None:
+            return article_text
 
-search_engine = SearchService(use_reranker=False)
+        display_text = str(article_text_display).strip()
+        if (
+            not display_text
+            or display_text == "-"
+            or display_text.lower().startswith("http")
+            or display_text.lower().startswith("<a")
+        ):
+            return article_text
+
+        return display_text
+
+
+_search_engine_instance = None
+
+
+def get_search_engine():
+    global _search_engine_instance
+    if _search_engine_instance is None:
+        _search_engine_instance = SearchService(
+            use_finetuned=True,
+        )
+    return _search_engine_instance
+
+
+class _LazySearchEngine:
+    def __getattr__(self, name):
+        return getattr(get_search_engine(), name)
+
+
+search_engine = _LazySearchEngine()
